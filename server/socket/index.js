@@ -1,23 +1,16 @@
-const express = require("express");
-const path = require('path')
-const app = express();
+let  broadcaster
 
-let broadcaster
-
-
-const http = require('http')
-const server = http.createServer(app)
-
-
-
-const io = require("socket.io")(server)
-app.use(express.static(path.join(__dirname, "..", "public")))
-
-io.sockets.on("connection", socket => {
-    console.log("socket has connected")
+module.exports = (io) => {
+  io.on("connection", (socket) => {
+    console.log(
+      `A socket connection to the server has been made: ${socket.id}`
+    );
+    socket.on("disconnect", () => {
+      console.log(`Connection ${socket.id} has left the building`);
+    });
     socket.on("broadcaster", () => {
-        broadcaster = socket.id
-        socket.broadcast.emit("broadcaster")
+    broadcaster = socket.id
+    socket.broadcast.emit("broadcaster")
     });
     socket.on("watcher", () => {
         socket.to(broadcaster).emit("watcher", socket.id);
@@ -35,12 +28,5 @@ io.sockets.on("connection", socket => {
     socket.on("candidate", (id, message) => {
       socket.to(id).emit("candidate", socket.id, message);
     });
-})
-
-
-
-const port = 3080
-io.sockets.on("error", e => console.log(e))
-app.listen(port, () => {
-    console.log(`listening on port ${port}`)
-})
+  });
+};
