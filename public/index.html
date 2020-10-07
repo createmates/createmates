@@ -11,6 +11,18 @@
     <link rel="manifest" href="./manifest.json" />
 
     <title>CREATEMATES</title>
+
+    <style>
+    video {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      display: block;
+      top: 0;
+      left: 0;
+      object-fit: cover;
+    }
+    </style>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
@@ -25,5 +37,8 @@
         });
       }
     </script>
+    <video playsinline autoplay muted></video>
+    <script src="/server/server.js"></script>
+    <!-- <script src="/server/broadcast.js"></script> -->
   </body>
 </html>
