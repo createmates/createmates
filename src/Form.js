@@ -1,13 +1,17 @@
 import React from "react";
 
 class Form extends React.Component {
+  constructor() {
+    super();
+    this.handleChange = this.handleChange.bind(this);
+  }
   state = {
     prompt: "",
   };
 
-  handleChange(event) {
+  handleChange = (event) => {
     this.setState({ prompt: event.target.value });
-  }
+  };
 
   handleSubmit = (event) => {
     event.preventDefault();
@@ -15,6 +19,7 @@ class Form extends React.Component {
   };
 
   render() {
+    const prompt = this.state;
     return (
       <form onSubmit={this.handleSubmit}>
         <input
@@ -23,6 +28,7 @@ class Form extends React.Component {
           value={this.state.prompt}
           onChange={this.handleChange}
         />
+        <button type="submit">I'm Ready</button>
       </form>
     );
   }
