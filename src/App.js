@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import Form from "./Form";
 import "./App.css";
 
-const App = () => {
+class App extends React.Component{
   // const [query, setQuery] = useState("");
   // const [weather, setWeather] = useState({});
 
@@ -14,13 +14,14 @@ const App = () => {
   //     setQuery("");
   //   }
   // };
-
-  return (
-    <div className="main-container">
-      <header>What would you like to make today?</header>
-      <Form />
-    </div>
-  );
+  render(){  return (
+      <div className="main-container">
+        <header>What would you like to make today?</header>
+        <Form />
+        <video autoPlay muted></video>
+      </div>
+    );
+  }
 };
 
 export default App;
