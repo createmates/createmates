@@ -10,6 +10,7 @@ const sessionStore = new SequelizeStore({ db });
 const PORT = process.env.PORT || 3080;
 const app = express();
 const socketio = require("socket.io");
+const {v4: uuidv4} = require('uuid')
 module.exports = app;
 
 // This is a global Mocha hook, used for resource cleanup.
@@ -74,10 +75,21 @@ const createApp = () => {
       `I received your POST request. This is what you sent me: ${req.body.post}`,
     );
   });
+
+  
   
   // auth and api routes
   app.use("/auth", require("./auth"));
   app.use("/api", require("./api"));
+
+  app.get('/', (req, res) => {
+    res.redirect(`/${uuidv4()}`)
+})
+
+app.get("/:room", (req, res, next) => {
+    res.send({roomId: req.params.room})
+    // res.render('index', {roomId: req.params.room})
+})
 
   // static file-serving middleware
   app.use(express.static(path.join(__dirname, "..", "public")));
