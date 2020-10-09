@@ -13,20 +13,23 @@
     <title>CREATEMATES</title>
 
     <style>
-    video {
-      width: 300px;
-      height: 300px;
-      position: absolute;
-      display: block;
-      top: 0;
-      left: 0;
-      object-fit: cover;
-    }
+      video {
+        width: 300px;
+        height: 300px;
+        position: absolute;
+        display: block;
+        top: 0;
+        left: 0;
+        object-fit: cover;
+      }
     </style>
-    <script> 
-      const  ROOM_ID = '<%= roomId %>' 
-</script> 
-<script defer src="https://unpkg.com/peerjs@1.3.1/dist/peerjs.min.js"></script>
+    <script>
+      const ROOM_ID = "<%= roomId %>";
+    </script>
+    <script
+      defer
+      src="https://unpkg.com/peerjs@1.3.1/dist/peerjs.min.js"
+    ></script>
     <script src="./bundle.js" defer></script>
   </head>
   <body>
@@ -42,9 +45,5 @@
         });
       }
     </script>
-    <video playsinline autoplay muted id='video-grid'></video>
-    <h1>Hello</h1>
-
-   
   </body>
 </html>
