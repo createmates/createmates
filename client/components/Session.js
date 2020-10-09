@@ -6,26 +6,16 @@ import { peers }  from '../socket.js';
 class Session extends React.Component {
   constructor() {
     super();
-
-  }
-
-  onJoin {
-  document.getElementById('video-display').appendChild(//joiner's video//
-  )
   }
 
   render() {
     return (
       //render two videos
-      <div id='video-display'>
-        {peers.forEach(peer => {
-          <video playsinline autoplay muted></video>
-        })}
-      </div>
+      <div id='video-grid'></div>
     )
   }
-
 }
+
 
 const mapState = (state) => {
   return {
