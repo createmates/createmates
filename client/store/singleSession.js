@@ -38,7 +38,7 @@ const getSession = session => ({type: GET_USER, user})
 /**
  * REDUCER
  */
-export default singleSessionReducer = (state = defaultSession, action) => {
+export default function singleSessionReducer(state = defaultSession, action){
   switch (action.type) {
     case GET_SESSION:
       return action.session

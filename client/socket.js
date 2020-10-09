@@ -1,5 +1,6 @@
 import io from 'socket.io-client'
 
+
 const socket = io(window.location.origin)
 
 
@@ -56,7 +57,7 @@ function connectToNewUser(userid, stream){
     call.on('close', () => {
         video.remove()
     })
-    Peer[userid] = call
+    peers[userid] = call
 }
 
 
@@ -65,7 +66,9 @@ function addvideoStream(video, stream) {
     video.addEventListener('loadedmetadata', () => {
         video.play()
     })
+    if(videoGrid) {
     videoGrid.append(video)
+    }
 }
 
 export default socket
