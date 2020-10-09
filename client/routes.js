@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 import { Login } from "./components/AuthForm";
 import { UserHome } from "./components/UserHome";
 import { me } from "./store";
-import { Session } from "./components/Session";
+import Session from "./components/Session";
 
 class Routes extends Component {
   componentDidMount() {
