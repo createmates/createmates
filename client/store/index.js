@@ -17,3 +17,4 @@ const reducer = combineReducers({
 
   export default store
   export * from './user'
+  export * from './singleSession'

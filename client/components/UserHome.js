@@ -15,4 +15,4 @@ export const UserHome = () => {
   );
 };
 
-export default connect(null)(UserHome);
+export default UserHome;
