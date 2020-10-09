@@ -125,9 +125,8 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _Form__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Form */ "./client/Form.js");
-/* harmony import */ var _App_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./App.css */ "./client/App.css");
-/* harmony import */ var _routes__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./routes */ "./client/routes.js");
+/* harmony import */ var _App_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./App.css */ "./client/App.css");
+/* harmony import */ var _routes__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./routes */ "./client/routes.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -154,7 +153,6 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
-
 var App = /*#__PURE__*/function (_React$Component) {
   _inherits(App, _React$Component);
 
@@ -169,7 +167,7 @@ var App = /*#__PURE__*/function (_React$Component) {
   _createClass(App, [{
     key: "render",
     value: function render() {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_routes__WEBPACK_IMPORTED_MODULE_3__["default"], null));
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_routes__WEBPACK_IMPORTED_MODULE_2__["default"], null));
     }
   }]);
 
@@ -290,6 +288,7 @@ AuthForm.propTypes = {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -316,6 +315,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
+var categories = ['music', 'poem', 'dance', 'painting', 'drawing', 'joke', 'scene', 'script', 'theater improv', 'comedy'];
+
 var Form = /*#__PURE__*/function (_React$Component) {
   _inherits(Form, _React$Component);
 
@@ -328,10 +329,6 @@ var Form = /*#__PURE__*/function (_React$Component) {
 
     _this = _super.call(this);
 
-    _defineProperty(_assertThisInitialized(_this), "state", {
-      prompt: ""
-    });
-
     _defineProperty(_assertThisInitialized(_this), "handleChange", function (event) {
       _this.setState({
         prompt: event.target.value
@@ -343,6 +340,9 @@ var Form = /*#__PURE__*/function (_React$Component) {
       alert(JSON.stringify(_this.state));
     });
 
+    _this.state = {
+      prompt: ""
+    };
     _this.handleChange = _this.handleChange.bind(_assertThisInitialized(_this));
     return _this;
   }
@@ -350,22 +350,30 @@ var Form = /*#__PURE__*/function (_React$Component) {
   _createClass(Form, [{
     key: "render",
     value: function render() {
+      var _this2 = this;
+
       var prompt = this.state;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
         onSubmit: this.handleSubmit
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        type: "text",
-        name: "prompt",
-        value: this.state.prompt,
-        onChange: this.handleChange
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        type: "submit"
-      }, "I'm Ready"));
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
+        name: "category",
+        onChange: function onChange() {
+          _this2.handleSubmit();
+        }
+      }, categories.map(function (category) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+          value: category
+        }, category);
+      })));
     }
   }]);
 
   return Form;
-}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component); // const mapState = state => {
+//   return {
+//   }
+// }
+
 
 /* harmony default export */ __webpack_exports__["default"] = (Form);
 
@@ -396,7 +404,7 @@ __webpack_require__.r(__webpack_exports__);
  */
 
 var UserHome = function UserHome() {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "What do you want to create today?"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Form__WEBPACK_IMPORTED_MODULE_3__["Form"], null));
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "What do you want to create today?"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Form__WEBPACK_IMPORTED_MODULE_3__["default"], null));
 };
 /* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_2__["connect"])(null)(UserHome));
 
@@ -574,11 +582,12 @@ Routes.propTypes = {
 /*!**************************!*\
   !*** ./client/socket.js ***!
   \**************************/
-/*! exports provided: default */
+/*! exports provided: peers, default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "peers", function() { return peers; });
 /* harmony import */ var socket_io_client__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! socket.io-client */ "./node_modules/socket.io-client/lib/index.js");
 /* harmony import */ var socket_io_client__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(socket_io_client__WEBPACK_IMPORTED_MODULE_0__);
 
@@ -660,6 +669,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var redux_devtools_extension__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! redux-devtools-extension */ "./node_modules/redux-devtools-extension/index.js");
 /* harmony import */ var redux_devtools_extension__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(redux_devtools_extension__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _user__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./user */ "./client/store/user.js");
+/* harmony import */ var _singleSession__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./singleSession */ "./client/store/singleSession.js");
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "me", function() { return _user__WEBPACK_IMPORTED_MODULE_4__["me"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "auth", function() { return _user__WEBPACK_IMPORTED_MODULE_4__["auth"]; });
@@ -671,8 +681,10 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
 var reducer = Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"])({
-  user: _user__WEBPACK_IMPORTED_MODULE_4__["default"]
+  user: _user__WEBPACK_IMPORTED_MODULE_4__["default"],
+  singleSession: _singleSession__WEBPACK_IMPORTED_MODULE_5__["default"]
 });
 var middleware = Object(redux_devtools_extension__WEBPACK_IMPORTED_MODULE_3__["composeWithDevTools"])(Object(redux__WEBPACK_IMPORTED_MODULE_0__["applyMiddleware"])(redux_thunk__WEBPACK_IMPORTED_MODULE_2__["default"], Object(redux_logger__WEBPACK_IMPORTED_MODULE_1__["createLogger"])({
   collapsed: true
@@ -680,6 +692,107 @@ var middleware = Object(redux_devtools_extension__WEBPACK_IMPORTED_MODULE_3__["c
 var store = Object(redux__WEBPACK_IMPORTED_MODULE_0__["createStore"])(reducer, middleware);
 /* harmony default export */ __webpack_exports__["default"] = (store);
 
+
+/***/ }),
+
+/***/ "./client/store/singleSession.js":
+/*!***************************************!*\
+  !*** ./client/store/singleSession.js ***!
+  \***************************************/
+/*! exports provided: getSingleSessionThunk, default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getSingleSessionThunk", function() { return getSingleSessionThunk; });
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _history__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../history */ "./client/history.js");
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+
+
+/**
+ * ACTION TYPES
+ */
+
+var GET_SESSION = 'GET_SESSION';
+/**
+ * INITIAL STATE
+ */
+
+var defaultSession = {};
+/**
+ * ACTION CREATORS
+ */
+
+var getSession = function getSession(session) {
+  return {
+    type: GET_USER,
+    user: user
+  };
+};
+/**
+ * THUNK CREATORS
+ */
+
+
+var getSingleSessionThunk = function getSingleSessionThunk(sessionId) {
+  return /*#__PURE__*/function () {
+    var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(dispatch) {
+      var singleSession;
+      return regeneratorRuntime.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              _context.prev = 0;
+              _context.next = 3;
+              return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/api/sessions/".concat(sessionId));
+
+            case 3:
+              singleSession = _context.sent;
+              dispatch(getSession(singleSession.data));
+              _context.next = 10;
+              break;
+
+            case 7:
+              _context.prev = 7;
+              _context.t0 = _context["catch"](0);
+              console.error(_context.t0);
+
+            case 10:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee, null, [[0, 7]]);
+    }));
+
+    return function (_x) {
+      return _ref.apply(this, arguments);
+    };
+  }();
+};
+/**
+ * REDUCER
+ */
+
+var singleSessionReducer = function singleSessionReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : defaultSession;
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+
+  switch (action.type) {
+    case GET_SESSION:
+      return action.session;
+
+    default:
+      return state;
+  }
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (singleSessionReducer);
 
 /***/ }),
 
@@ -14794,7 +14907,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(true);
 // Module
-___CSS_LOADER_EXPORT___.push([module.i, "html,\nbody,\n#root {\n  font: 0.9rem sans-serif;\n  background: #0a1f44;\n  color: #1e2432;\n  height: 100%;\n  margin: 0;\n}\n\n.main-container {\n  background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.418)),\n    url(\"https://cdm.link/app/uploads/2019/03/John-Coltrane-Tone-Circle-o.jpg\");\n  background-size: cover;\n  background-position: center;\n}\n\n.main-container {\n  height: 100%;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-direction: column;\n}\n\n.search {\n  outline: none;\n  padding: 20px 7%;\n  border-radius: 20px;\n  border: none;\n  margin-bottom: 5%;\n  background: rgba(250, 250, 250, 0.85);\n}\n\n.city {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  flex-direction: column;\n  padding: 40px 8%;\n  border-radius: 20px;\n  background: rgba(250, 250, 250, 0.85);\n  box-shadow: 10px 10px 5px 0px rgba(15, 15, 15, 0.404);\n}\n\np {\n  margin-top: 10px;\n  text-transform: uppercase;\n  letter-spacing: 0.05em;\n}\n\n.city-temp {\n  font-size: 5rem;\n  font-weight: bold;\n  margin-top: 10px;\n  color: #1e2432;\n  text-align: center;\n}\n\n.city sup {\n  font-size: 0.5em;\n}\n\n.city-name {\n  font-size: 2em;\n}\n\n.city-name sup {\n  padding: 0.2em 0.6em;\n  margin-left: 0.2em;\n  border-radius: 30px;\n  color: #fff;\n  background: #ff8c00;\n}\n\n.city-icon {\n  margin-top: 10px;\n  width: 100px;\n  height: 100px;\n}\n\n.info {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n}\n\n@media only screen and (max-width: 600px) {\n  .search {\n    padding: 20px 15%;\n  }\n\n  .city {\n    padding: 40px 20%;\n  }\n}\n", "",{"version":3,"sources":["webpack://client/App.css"],"names":[],"mappings":"AAAA;;;EAGE,uBAAuB;EACvB,mBAAmB;EACnB,cAAc;EACd,YAAY;EACZ,SAAS;AACX;;AAEA;EACE;+EAC6E;EAC7E,sBAAsB;EACtB,2BAA2B;AAC7B;;AAEA;EACE,YAAY;EACZ,aAAa;EACb,uBAAuB;EACvB,mBAAmB;EACnB,sBAAsB;AACxB;;AAEA;EACE,aAAa;EACb,gBAAgB;EAChB,mBAAmB;EACnB,YAAY;EACZ,iBAAiB;EACjB,qCAAqC;AACvC;;AAEA;EACE,aAAa;EACb,mBAAmB;EACnB,uBAAuB;EACvB,sBAAsB;EACtB,gBAAgB;EAChB,mBAAmB;EACnB,qCAAqC;EACrC,qDAAqD;AACvD;;AAEA;EACE,gBAAgB;EAChB,yBAAyB;EACzB,sBAAsB;AACxB;;AAEA;EACE,eAAe;EACf,iBAAiB;EACjB,gBAAgB;EAChB,cAAc;EACd,kBAAkB;AACpB;;AAEA;EACE,gBAAgB;AAClB;;AAEA;EACE,cAAc;AAChB;;AAEA;EACE,oBAAoB;EACpB,kBAAkB;EAClB,mBAAmB;EACnB,WAAW;EACX,mBAAmB;AACrB;;AAEA;EACE,gBAAgB;EAChB,YAAY;EACZ,aAAa;AACf;;AAEA;EACE,aAAa;EACb,sBAAsB;EACtB,mBAAmB;AACrB;;AAEA;EACE;IACE,iBAAiB;EACnB;;EAEA;IACE,iBAAiB;EACnB;AACF","sourcesContent":["html,\nbody,\n#root {\n  font: 0.9rem sans-serif;\n  background: #0a1f44;\n  color: #1e2432;\n  height: 100%;\n  margin: 0;\n}\n\n.main-container {\n  background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.418)),\n    url(\"https://cdm.link/app/uploads/2019/03/John-Coltrane-Tone-Circle-o.jpg\");\n  background-size: cover;\n  background-position: center;\n}\n\n.main-container {\n  height: 100%;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-direction: column;\n}\n\n.search {\n  outline: none;\n  padding: 20px 7%;\n  border-radius: 20px;\n  border: none;\n  margin-bottom: 5%;\n  background: rgba(250, 250, 250, 0.85);\n}\n\n.city {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  flex-direction: column;\n  padding: 40px 8%;\n  border-radius: 20px;\n  background: rgba(250, 250, 250, 0.85);\n  box-shadow: 10px 10px 5px 0px rgba(15, 15, 15, 0.404);\n}\n\np {\n  margin-top: 10px;\n  text-transform: uppercase;\n  letter-spacing: 0.05em;\n}\n\n.city-temp {\n  font-size: 5rem;\n  font-weight: bold;\n  margin-top: 10px;\n  color: #1e2432;\n  text-align: center;\n}\n\n.city sup {\n  font-size: 0.5em;\n}\n\n.city-name {\n  font-size: 2em;\n}\n\n.city-name sup {\n  padding: 0.2em 0.6em;\n  margin-left: 0.2em;\n  border-radius: 30px;\n  color: #fff;\n  background: #ff8c00;\n}\n\n.city-icon {\n  margin-top: 10px;\n  width: 100px;\n  height: 100px;\n}\n\n.info {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n}\n\n@media only screen and (max-width: 600px) {\n  .search {\n    padding: 20px 15%;\n  }\n\n  .city {\n    padding: 40px 20%;\n  }\n}\n"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.i, "html,\nbody,\n#root {\n  font: 0.9rem sans-serif;\n  background: #0a1f44;\n  color: #1e2432;\n  height: 100%;\n  margin: 0;\n}\n\n    video {\n      width: 300px;\n      height: 300px;\n      position: absolute;\n      display: block;\n      top: 0;\n      left: 0;\n      object-fit: cover;\n    }\n\n.main-container {\n  background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.418)),\n    url(\"https://cdm.link/app/uploads/2019/03/John-Coltrane-Tone-Circle-o.jpg\");\n  background-size: cover;\n  background-position: center;\n}\n\n.main-container {\n  height: 100%;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-direction: column;\n}\n\n.search {\n  outline: none;\n  padding: 20px 7%;\n  border-radius: 20px;\n  border: none;\n  margin-bottom: 5%;\n  background: rgba(250, 250, 250, 0.85);\n}\n\n.city {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  flex-direction: column;\n  padding: 40px 8%;\n  border-radius: 20px;\n  background: rgba(250, 250, 250, 0.85);\n  box-shadow: 10px 10px 5px 0px rgba(15, 15, 15, 0.404);\n}\n\np {\n  margin-top: 10px;\n  text-transform: uppercase;\n  letter-spacing: 0.05em;\n}\n\n.city-temp {\n  font-size: 5rem;\n  font-weight: bold;\n  margin-top: 10px;\n  color: #1e2432;\n  text-align: center;\n}\n\n.city sup {\n  font-size: 0.5em;\n}\n\n.city-name {\n  font-size: 2em;\n}\n\n.city-name sup {\n  padding: 0.2em 0.6em;\n  margin-left: 0.2em;\n  border-radius: 30px;\n  color: #fff;\n  background: #ff8c00;\n}\n\n.city-icon {\n  margin-top: 10px;\n  width: 100px;\n  height: 100px;\n}\n\n.info {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n}\n\n@media only screen and (max-width: 600px) {\n  .search {\n    padding: 20px 15%;\n  }\n\n  .city {\n    padding: 40px 20%;\n  }\n}\n", "",{"version":3,"sources":["webpack://client/App.css"],"names":[],"mappings":"AAAA;;;EAGE,uBAAuB;EACvB,mBAAmB;EACnB,cAAc;EACd,YAAY;EACZ,SAAS;AACX;;IAEI;MACE,YAAY;MACZ,aAAa;MACb,kBAAkB;MAClB,cAAc;MACd,MAAM;MACN,OAAO;MACP,iBAAiB;IACnB;;AAEJ;EACE;+EAC6E;EAC7E,sBAAsB;EACtB,2BAA2B;AAC7B;;AAEA;EACE,YAAY;EACZ,aAAa;EACb,uBAAuB;EACvB,mBAAmB;EACnB,sBAAsB;AACxB;;AAEA;EACE,aAAa;EACb,gBAAgB;EAChB,mBAAmB;EACnB,YAAY;EACZ,iBAAiB;EACjB,qCAAqC;AACvC;;AAEA;EACE,aAAa;EACb,mBAAmB;EACnB,uBAAuB;EACvB,sBAAsB;EACtB,gBAAgB;EAChB,mBAAmB;EACnB,qCAAqC;EACrC,qDAAqD;AACvD;;AAEA;EACE,gBAAgB;EAChB,yBAAyB;EACzB,sBAAsB;AACxB;;AAEA;EACE,eAAe;EACf,iBAAiB;EACjB,gBAAgB;EAChB,cAAc;EACd,kBAAkB;AACpB;;AAEA;EACE,gBAAgB;AAClB;;AAEA;EACE,cAAc;AAChB;;AAEA;EACE,oBAAoB;EACpB,kBAAkB;EAClB,mBAAmB;EACnB,WAAW;EACX,mBAAmB;AACrB;;AAEA;EACE,gBAAgB;EAChB,YAAY;EACZ,aAAa;AACf;;AAEA;EACE,aAAa;EACb,sBAAsB;EACtB,mBAAmB;AACrB;;AAEA;EACE;IACE,iBAAiB;EACnB;;EAEA;IACE,iBAAiB;EACnB;AACF","sourcesContent":["html,\nbody,\n#root {\n  font: 0.9rem sans-serif;\n  background: #0a1f44;\n  color: #1e2432;\n  height: 100%;\n  margin: 0;\n}\n\n    video {\n      width: 300px;\n      height: 300px;\n      position: absolute;\n      display: block;\n      top: 0;\n      left: 0;\n      object-fit: cover;\n    }\n\n.main-container {\n  background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.418)),\n    url(\"https://cdm.link/app/uploads/2019/03/John-Coltrane-Tone-Circle-o.jpg\");\n  background-size: cover;\n  background-position: center;\n}\n\n.main-container {\n  height: 100%;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-direction: column;\n}\n\n.search {\n  outline: none;\n  padding: 20px 7%;\n  border-radius: 20px;\n  border: none;\n  margin-bottom: 5%;\n  background: rgba(250, 250, 250, 0.85);\n}\n\n.city {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  flex-direction: column;\n  padding: 40px 8%;\n  border-radius: 20px;\n  background: rgba(250, 250, 250, 0.85);\n  box-shadow: 10px 10px 5px 0px rgba(15, 15, 15, 0.404);\n}\n\np {\n  margin-top: 10px;\n  text-transform: uppercase;\n  letter-spacing: 0.05em;\n}\n\n.city-temp {\n  font-size: 5rem;\n  font-weight: bold;\n  margin-top: 10px;\n  color: #1e2432;\n  text-align: center;\n}\n\n.city sup {\n  font-size: 0.5em;\n}\n\n.city-name {\n  font-size: 2em;\n}\n\n.city-name sup {\n  padding: 0.2em 0.6em;\n  margin-left: 0.2em;\n  border-radius: 30px;\n  color: #fff;\n  background: #ff8c00;\n}\n\n.city-icon {\n  margin-top: 10px;\n  width: 100px;\n  height: 100px;\n}\n\n.info {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n}\n\n@media only screen and (max-width: 600px) {\n  .search {\n    padding: 20px 15%;\n  }\n\n  .city {\n    padding: 40px 20%;\n  }\n}\n"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ __webpack_exports__["default"] = (___CSS_LOADER_EXPORT___);
 

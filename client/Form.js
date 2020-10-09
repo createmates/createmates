@@ -1,13 +1,16 @@
 import React from "react";
+import {connect} from 'react-redux'
 
+const categories = ['music', 'poem', 'dance', 'painting', 'drawing', 'joke', 'scene', 'script', 'theater improv', 'comedy']
 class Form extends React.Component {
   constructor() {
     super();
+    this.state = {
+      prompt: "",
+   };
     this.handleChange = this.handleChange.bind(this);
   }
-  state = {
-    prompt: "",
-  };
+  
 
   handleChange = (event) => {
     this.setState({ prompt: event.target.value });
@@ -22,16 +25,20 @@ class Form extends React.Component {
     const prompt = this.state;
     return (
       <form onSubmit={this.handleSubmit}>
-        <input
-          type="text"
-          name="prompt"
-          value={this.state.prompt}
-          onChange={this.handleChange}
-        />
-        <button type="submit">I'm Ready</button>
+        <select name="category" onChange={() => {this.handleSubmit()}}>
+          {categories.map(category => (
+            <option value={category}>{category}</option>
+          ))}
+        </select>
       </form>
     );
   }
 }
+
+// const mapState = state => {
+//   return {
+
+//   }
+// }
 
 export default Form;
