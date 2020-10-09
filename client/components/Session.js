@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { getSingleSessionThunk } from '../store/singleSession';
+import { peers }  from '../socket.js';
 
 class Session extends React.Component {
   constructor() {
@@ -17,7 +18,9 @@ class Session extends React.Component {
     return (
       //render two videos
       <div id='video-display'>
-        <video playsinline autoplay muted id='video-grid'></video>
+        {peers.forEach(peer => {
+          <video playsinline autoplay muted></video>
+        })}
       </div>
     )
   }
