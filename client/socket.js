@@ -9,7 +9,7 @@ const myPeer = new Peer(undefined, {
     port:'3081'
 })
 
-const peers = {}
+export const peers = {}
 
 const myVideo = document.createElement('video')
 myVideo.muted = true
@@ -24,7 +24,7 @@ navigator.mediaDevices
   .getUserMedia(constraints)
   .then(stream => {
     addvideoStream(myVideo, stream)
-    
+
     myPeer.on('call', call => {
         call.answer(stream)
         const video = document.createElement('video')
