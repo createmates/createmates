@@ -4,20 +4,22 @@ module.exports = router;
 const { isAdminMiddleware } = require("../app/authentication-middleware");
 const {v4: uuidv4} = require('uuid')
 
-router.get('/', (req, res) => {
+router.get('/', async (req, res, next) => {
     try {
         const sessions = await Session.findAll();
         res.json(sessions)
     } catch(err) {
         next(err)
-    }    
+    }
     // res.redirect(`/${uuidv4()}`)
 })
 
-router.get("/:room", (req, res, next) => {
-    res.send({roomId: req.params.room})
-    // res.render('index', {roomId: req.params.room})
-})
+//below is moved to /api/rooms.js
+// //:room = uuid
+// router.get("/:room", (req, res, next) => {
+//     res.send({roomId: req.params.room})
+//     // res.render('index', {roomId: req.params.room})
+// })
 
 router.post("/", async (req, res, next) => {
     try {
