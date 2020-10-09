@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { withRouter, Route, Switch } from "react-router-dom";
 import PropTypes from "prop-types";
-import { Login } from "./AuthForm";
-import UserHome from "./UserHome";
+import { Login } from "./components/AuthForm";
+import { UserHome } from "./components/UserHome";
 import { me } from "./store";
 import { Session } from "./components/Session";
 
