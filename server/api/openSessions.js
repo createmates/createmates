@@ -29,6 +29,11 @@ router.get('/', async (req, res, next) => {
 router.post("/", async (req, res, next) => {
   try {
     const session = await Session.create(req.body);
+    await session.addUser(req.body.user.id);
+    req.body.tags.forEach(async tag => {
+      const [tagObj, wasCreated] = await Tag.findOrCreate({where: {name: tag}})
+      await session.addTag(tagObj);
+    })
     res.json(session);
   } catch (err) {
     next(err);

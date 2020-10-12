@@ -13,6 +13,7 @@ const myPeer = new Peer(undefined, {
 // will be moving axios call if we still
 // need it to the redux store.
 // const getRoom = async () => {
+
 //   const roomId = await axios.get("/api/rooms");
 //   console.log(roomId);
 // };
@@ -20,6 +21,7 @@ const Session = () => {
   // getRoom();
   const [stream, setStream] = useState();
   const [peers, setPeers] = useState({});
+
 
   const userVideo = useRef();
   const partnerVideo = useRef();

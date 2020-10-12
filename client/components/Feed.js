@@ -6,6 +6,7 @@ import {getOpenSessionsThunk} from '../store/openSessions'
 class Feed extends React.Component {
     constructor() {
         super()
+
     }
 
     componentDidMount() {
@@ -17,7 +18,7 @@ class Feed extends React.Component {
         return (
             <div>
                 <h1>Open Requests Waiting For a Match</h1>
-                {openSessions && openSessions.length 
+                {openSessions && openSessions.length && openSessions[openSessions.length -1].users[0]
                 ? openSessions.map(session => (
                     <div key={session.id}>
                         <h2>{session.category}</h2>

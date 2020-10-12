@@ -3,9 +3,6 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import Form from "./Form";
 
-/**
- * COMPONENT
- */
 export default class UserHome extends React.Component {
   constructor(props) {
     super(props)
@@ -21,11 +18,9 @@ export default class UserHome extends React.Component {
     return (
       <div>
         <h3>What do you want to create today?</h3>
-        <Form />
+        <Form history={this.props.history}/>
         <button onClick={this.handleClick} type="button">See Other Artist's Requests</button>
       </div>
     );
   }
 };
-
-// export default UserHome;
