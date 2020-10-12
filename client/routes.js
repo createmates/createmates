@@ -3,9 +3,10 @@ import { connect } from "react-redux";
 import { withRouter, Route, Switch } from "react-router-dom";
 import PropTypes from "prop-types";
 import { Login } from "./components/AuthForm";
-import { UserHome } from "./components/UserHome";
+import UserHome from "./components/UserHome";
 import { me } from "./store";
 import Session from "./components/Session";
+import Feed from "./components/Feed"
 
 class Routes extends Component {
   componentDidMount() {
@@ -22,8 +23,9 @@ class Routes extends Component {
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}
-            <Route component={UserHome} />
+            <Route exact path="/" component={UserHome} />
             <Route path="/session" component={Session} />
+            <Route path="/feed" component={Feed} />
           </Switch>
         )}
         {/* Displays our Login component as a fallback */}

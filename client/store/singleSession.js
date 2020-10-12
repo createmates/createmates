@@ -26,7 +26,7 @@ const getSession = session => ({type: GET_USER, user})
  export const getSingleSessionThunk = (sessionId) => {
   return async (dispatch) => {
   try {
-    const singleSession = await axios.get(`/api/sessions/${sessionId}`);
+    const singleSession = await axios.get(`/api/openSessions/${sessionId}`);
     dispatch(getSession(singleSession.data));
    } catch (error) {
      console.error(error)
