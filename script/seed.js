@@ -1,5 +1,6 @@
 const db = require("../server/db");
-const { User } = require("../server/db/models");
+const { User, Tag, Session } = require("../server/db/models");
+// const Session = require("../server/db/models/session");
 
 const users = [
   {
@@ -49,13 +50,52 @@ const users = [
   },
 ];
 
+const exampleTags = [
+  {name: 'improv'},
+  {name: 'beginner'},
+  {name: 'jazz'},
+  {name: 'standup'},
+  {name: 'contemporarydance'},
+  {name: 'trumpet'},
+  {name: 'painter'}
+];
+
+const exampleSessions = [
+  {
+    status: 'unmatched',
+    category: 'dance',
+    blurb: 'Would love some eyes on a new 30 second phrase I just came up with',
+  },
+  {
+    status: 'unmatched',
+    category: 'joke',
+    blurb: 'Need some help wording a joke'
+  },
+  {
+    status: 'matched',
+    category: 'painting',
+    blurb: 'Who wants to paint the sunset?'
+  },
+  {
+    status: 'closed',
+    category: 'poem',
+    blurb: 'I want to write a sonnet',
+    summary: 'We wrote a beautiful sonnet'
+  },
+  {
+    status: 'unmatched',
+    category: 'music',
+    blurb: 'I just wanna jam bro'
+  }
+]
+
 const seed = async () => {
   try {
     await db.sync({ force: true });
 
     const artists = await Promise.all(
       users.map((user) =>
-        User.create({
+         User.create({
           username: user.username,
           city: user.city,
           state: user.state,
@@ -67,6 +107,32 @@ const seed = async () => {
         })
       )
     );
+
+    const tags = await Promise.all(
+      exampleTags.map(tag => 
+        Tag.create({name: tag.name})
+      )
+    );
+
+    const sessions = await Promise.all(
+      exampleSessions.map(session => 
+        Session.create({
+          status: session.status,
+          category: session.category,
+          blurb: session.blurb,
+          summary: session.summary
+        })
+      )
+    )
+
+    await sessions[0].addTag(tags[0]);
+    await sessions[0].addTag(tags[1]);
+    await sessions[0].addUser(artists[0])
+    await sessions[1].addTag(tags[3]);
+    await sessions[1].addUser(artists[3])
+    await sessions[4].addTag(tags[2]);
+    await sessions[4].addTag(tags[5]);
+    await sessions[4].addUser(artists[1])
 
     // seed your database here!
   } catch (err) {

@@ -4,10 +4,12 @@ import thunkMiddleware from 'redux-thunk'
 import {composeWithDevTools} from 'redux-devtools-extension'
 import user from './user'
 import singleSessionReducer from './singleSession'
+import openSessionsReducer from './openSessions'
 
 const reducer = combineReducers({
     user: user,
-    singleSession: singleSessionReducer
+    singleSession: singleSessionReducer,
+    openSessions: openSessionsReducer
   })
 
   const middleware = composeWithDevTools(

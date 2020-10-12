@@ -27,9 +27,10 @@ class Form extends React.Component {
       <form onSubmit={this.handleSubmit}>
         <select name="category" onChange={() => {this.handleSubmit()}}>
           {categories.map(category => (
-            <option value={category}>{category}</option>
+            <option key={category} value={category}>{category}</option>
           ))}
         </select>
+        <button type="submit">Go</button>
       </form>
     );
   }
