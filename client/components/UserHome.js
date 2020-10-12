@@ -21,7 +21,7 @@ export default class UserHome extends React.Component {
     return (
       <div>
         <h3>What do you want to create today?</h3>
-        <Form />
+        <Form history={this.props.history}/>
         <button onClick={this.handleClick} type="button">See Other Artist's Requests</button>
       </div>
     );
