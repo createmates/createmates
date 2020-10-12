@@ -16,7 +16,7 @@ const defaultSession = {}
 /**
  * ACTION CREATORS
  */
-const getSession = session => ({type: GET_USER, user})
+const getSession = session => ({type: GET_SESSION, session})
 
 
 /**

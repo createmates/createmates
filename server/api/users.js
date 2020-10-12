@@ -37,12 +37,12 @@ router.get("/:userid", async (req, res, next) => {
 });
 
 router.put("/:userid", async (req, res, next) => {
-  let profile;
-  try {
-    profile = await User.findByPk(req.params.userid);
+try {
+let profile = await User.findByPk(req.params.userid);
     profile.update(req.body);
+    res.json(profile);
   } catch (err) {
     next(err);
   }
-  res.json(profile);
+
 });
