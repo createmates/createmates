@@ -9,7 +9,9 @@ const {v4: uuidv4} = require('uuid')
  // res.redirect(`/${uuidv4()}`)
 
  //:room = uuid
-router.get("/:room", (req, res, next) => {
-    res.send({roomId: req.params.room})
+router.get("/", (req, res, next) => {
+    const roomId = uuidv4()
+    // console.log(roomId)
+    res.send({roomId: roomId})
     // res.render('index', {roomId: req.params.room})
 })
