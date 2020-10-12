@@ -3,9 +3,6 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import Form from "./Form";
 
-/**
- * COMPONENT
- */
 export default class UserHome extends React.Component {
   constructor(props) {
     super(props)
@@ -27,5 +24,3 @@ export default class UserHome extends React.Component {
     );
   }
 };
-
-// export default UserHome;

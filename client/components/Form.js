@@ -1,6 +1,7 @@
 import React from "react";
 import {connect} from 'react-redux';
 import {addSessionThunk} from '../store/openSessions'
+import PropTypes from "prop-types";
 
 const categories = ['Choose a Category', 'music', 'poem', 'dance', 'painting', 'drawing', 'joke', 'scene', 'script', 'theater improv', 'comedy']
 class Form extends React.Component {
@@ -17,7 +18,7 @@ class Form extends React.Component {
   }
   
 
-  handleChange = (event) => {
+  handleChange = event => {
     const currentKey = event.target.name;
     this.setState({ 
       [currentKey]: event.target.value,
@@ -25,7 +26,7 @@ class Form extends React.Component {
     });
   };
 
-  handleSubmit = (event) => {
+  handleSubmit = event => {
     event.preventDefault();
     const tags = this.state.tags.split(' ')
     const newSession = {
@@ -35,7 +36,8 @@ class Form extends React.Component {
       user: this.props.user,
       tags: tags
     }
-    this.props.addSession(newSession, this.props.history);
+    this.props.addSession(newSession);
+    this.props.history.push('/feed')
   };
 
   render() {
@@ -81,7 +83,7 @@ const mapState = state => {
 
 const mapDispatch = dispatch => {
   return {
-    addSession: (newSession, history) => dispatch(addSessionThunk(newSession, history))
+    addSession: (newSession) => dispatch(addSessionThunk(newSession))
   }
 }
 
