@@ -30,6 +30,7 @@ class Form extends React.Component {
             <option value={category} key={category}>{category}</option>
           ))}
         </select>
+        <button type="submit">Go</button>
       </form>
     );
   }
