@@ -17,7 +17,7 @@ const myPeer = new Peer(undefined, {
 //   // console.log(roomId)
 // }
 const  Session = () => {
-getRoom()
+// getRoom()
 const [stream, setStream] = useState()
 const [peers, setPeers] = useState({})
 
