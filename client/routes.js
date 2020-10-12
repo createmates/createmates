@@ -7,6 +7,7 @@ import UserHome from "./components/UserHome";
 import { me } from "./store";
 import Session from "./components/Session";
 import Feed from "./components/Feed"
+import UserAccount from './components/UserAccount'
 
 class Routes extends Component {
   componentDidMount() {
@@ -26,6 +27,7 @@ class Routes extends Component {
             <Route exact path="/" component={UserHome} />
             <Route path="/session" component={Session} />
             <Route path="/feed" component={Feed} />
+            <Route path="/:userId" component={UserAccount} />
           </Switch>
         )}
         {/* Displays our Login component as a fallback */}

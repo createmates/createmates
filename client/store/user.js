@@ -7,6 +7,7 @@ import history from '../history'
 const GET_USER = 'GET_USER'
 const REMOVE_USER = 'REMOVE_USER'
 
+
 /**
  * INITIAL STATE
  */
@@ -54,6 +55,28 @@ export const logout = () => async dispatch => {
   } catch (err) {
     console.error(err)
   }
+}
+
+export const getSingleUserThunk = (userId) => async dispatch => {
+  try {
+    const {data} = await axios.get(`/api/users/${userId}`)
+    const singleUser = data
+    dispatch(getUser(singleUser))
+  } catch (err) {
+    console.error(err)
+  }
+}
+
+export const updateUserThunk = (userFormData, userId) => {
+  return async dispatch => {
+    try {
+      const userRes = await axios.put(`/api/users/${userId}`,userFormData)
+      dispatch(getUser(userRes.data))
+    } catch(err) {
+      console.error(err)
+    }
+  }
+
 }
 
 /**
