@@ -1,6 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import { Link } from 'react-router-dom'
+import {v4 as uuidv4} from 'uuid'
 import {deleteSessionThunk, getOpenSessionsThunk, updateSessionThunk} from '../store/openSessions'
 import {categories} from './Form'
 
@@ -22,6 +23,7 @@ class Feed extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this)
         this.filterForm = this.filterForm.bind(this)
         this.undoFilter = this.undoFilter.bind(this)
+        this.handleMatch = this.handleMatch.bind(this)
     }
 
     componentDidMount() {
@@ -74,6 +76,20 @@ class Feed extends React.Component {
         })
     }
 
+    handleMatch(session){
+        const sessionUsers = session.users;
+        sessionUsers.push(this.props.user)
+        const roomId = uuidv4()
+        const updatedSession = {
+            roomId: roomId,
+            id: session.id,
+            users: sessionUsers,
+            status: 'matched'
+        }
+        this.props.updateSession(updatedSession)
+        this.props.history.push(`/session/${roomId}`)
+    }
+
     render() {
         let openSessions = this.props.openSessions
         let mySessions;
@@ -124,7 +140,7 @@ class Feed extends React.Component {
                         <div>
                             {session.tags.filter(tag => tag.name !== '').map(tag => (<span key={tag.id}>#{tag.name} </span>))}
                         </div>
-                        <button onClick={() => console.log('clicked Match')} >Match</button>
+                        <button onClick={() => this.handleMatch(session)} >Match</button>
                     </div>
                 ))
                 : ''}

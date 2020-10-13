@@ -44,10 +44,19 @@ router.put("/:sessionId", async (req, res, next) => {
   try {
     const session = await Session.findByPk(req.params.sessionId);
     const updatedSession = await session.update(req.body);
-    req.body.tags.forEach(async tag => {
-      const [tagObj, wasCreated] = await Tag.findOrCreate({where: {name: tag}})
-      await updatedSession.addTag(tagObj);
-    })
+    if(req.body.users){
+      req.body.users.forEach(async user => {
+         await updatedSession.addUser(user);
+      })
+    }
+    
+    if(req.body.tags){
+      req.body.tags.forEach(async tag => {
+        const [tagObj, wasCreated] = await Tag.findOrCreate({where: {name: tag}})
+        await updatedSession.addTag(tagObj);
+      })
+    }
+    
     res.json(updatedSession);
   } catch (err) {
     next(err);
