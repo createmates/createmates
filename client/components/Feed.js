@@ -1,5 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
+import { Link } from 'react-router-dom'
+import {v4 as uuidv4} from 'uuid'
 import {deleteSessionThunk, getOpenSessionsThunk, updateSessionThunk} from '../store/openSessions'
 import {categories} from './Form'
 
@@ -21,6 +23,7 @@ class Feed extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this)
         this.filterForm = this.filterForm.bind(this)
         this.undoFilter = this.undoFilter.bind(this)
+        this.handleMatch = this.handleMatch.bind(this)
     }
 
     componentDidMount() {
@@ -73,9 +76,27 @@ class Feed extends React.Component {
         })
     }
 
+    handleMatch(session){
+        const sessionUsers = session.users;
+        sessionUsers.push(this.props.user)
+        const roomId = uuidv4()
+        const updatedSession = {
+            roomId: roomId,
+            id: session.id,
+            users: sessionUsers,
+            status: 'matched'
+        }
+        this.props.updateSession(updatedSession)
+        this.props.history.push(`/session/${roomId}`)
+    }
+
     render() {
-        let openSessions = this.props.openSessions.filter(session => this.props.user.id !== session.users[0].id)
-        const mySessions = this.props.openSessions.filter(session => this.props.user.id === session.users[0].id)
+        let openSessions = this.props.openSessions
+        let mySessions;
+        if(openSessions && openSessions.length && openSessions[openSessions.length -1].users[0]){
+            openSessions = openSessions.filter(session => this.props.user.id !== session.users[0].id)
+             mySessions = this.props.openSessions.filter(session => this.props.user.id === session.users[0].id)
+        }
         if(this.state.filterCategory !== 'Choose a Category'){
             openSessions = openSessions.filter(session => session.category === this.state.filterCategory)
         }
@@ -110,22 +131,22 @@ class Feed extends React.Component {
 
                 </form> 
                 : <button type="button" onClick={this.filterForm}>Filter</button>}
-                {openSessions && openSessions.length && openSessions[openSessions.length -1].users[0]
+                {openSessions && openSessions.length
                 ? openSessions.map(session => (
                     <div key={session.id}>
                         <h2>{session.category}</h2>
-                        <h3>{session.users[0].username} writes: </h3>
+                        <h3><Link to={`/${session.users[0].id}`}>{session.users[0].username}</Link> writes: </h3>
                         <p>{session.blurb}</p>
                         <div>
                             {session.tags.filter(tag => tag.name !== '').map(tag => (<span key={tag.id}>#{tag.name} </span>))}
                         </div>
-                        <button onClick={() => console.log('clicked Match')} >Match</button>
+                        <button onClick={() => this.handleMatch(session)} >Match</button>
                     </div>
                 ))
                 : ''}
                 <h1>My Open Requests</h1>
                 
-                {mySessions && mySessions.length && mySessions[mySessions.length -1].users[0]
+                {mySessions && mySessions.length 
                 ? mySessions.map(session => (
                     <div key={session.id}>
                         <h2>{session.category}</h2>
