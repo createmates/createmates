@@ -23,6 +23,8 @@ class UserAccount extends React.Component {
           {user.id &&
             <div>
             <h1>Username: {user.username}</h1>
+            <h3>{user.firstName}</h3>
+            <h3>{user.lastName}</h3>
             <h3>Email: {user.email}</h3>
             <h3>City: {user.city}</h3>
             <h3>State: {user.state}</h3>
