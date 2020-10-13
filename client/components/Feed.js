@@ -1,5 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
+import { Link } from 'react-router-dom'
 import {deleteSessionThunk, getOpenSessionsThunk, updateSessionThunk} from '../store/openSessions'
 import {categories} from './Form'
 
@@ -74,8 +75,12 @@ class Feed extends React.Component {
     }
 
     render() {
-        let openSessions = this.props.openSessions.filter(session => this.props.user.id !== session.users[0].id)
-        const mySessions = this.props.openSessions.filter(session => this.props.user.id === session.users[0].id)
+        let openSessions = this.props.openSessions
+        let mySessions;
+        if(openSessions && openSessions.length && openSessions[openSessions.length -1].users[0]){
+            openSessions = openSessions.filter(session => this.props.user.id !== session.users[0].id)
+             mySessions = this.props.openSessions.filter(session => this.props.user.id === session.users[0].id)
+        }
         if(this.state.filterCategory !== 'Choose a Category'){
             openSessions = openSessions.filter(session => session.category === this.state.filterCategory)
         }
@@ -110,11 +115,11 @@ class Feed extends React.Component {
 
                 </form> 
                 : <button type="button" onClick={this.filterForm}>Filter</button>}
-                {openSessions && openSessions.length && openSessions[openSessions.length -1].users[0]
+                {openSessions && openSessions.length
                 ? openSessions.map(session => (
                     <div key={session.id}>
                         <h2>{session.category}</h2>
-                        <h3>{session.users[0].username} writes: </h3>
+                        <h3><Link to={`/${session.users[0].id}`}>{session.users[0].username}</Link> writes: </h3>
                         <p>{session.blurb}</p>
                         <div>
                             {session.tags.filter(tag => tag.name !== '').map(tag => (<span key={tag.id}>#{tag.name} </span>))}
@@ -125,7 +130,7 @@ class Feed extends React.Component {
                 : ''}
                 <h1>My Open Requests</h1>
                 
-                {mySessions && mySessions.length && mySessions[mySessions.length -1].users[0]
+                {mySessions && mySessions.length 
                 ? mySessions.map(session => (
                     <div key={session.id}>
                         <h2>{session.category}</h2>
