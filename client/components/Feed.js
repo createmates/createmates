@@ -12,7 +12,9 @@ class Feed extends React.Component {
             blurb: '',
             tags: '',
             filter: false,
-            filterCategory: 'Choose a Category'
+            filterCategory: 'Choose a Category',
+            filterUser: '',
+            filterTag: ''
         }
         this.handleUpdate = this.handleUpdate.bind(this)
         this.handleChange = this.handleChange.bind(this)
@@ -38,8 +40,12 @@ class Feed extends React.Component {
 
     handleChange = event => {
         const currentKey = event.target.name;
+        let value = event.target.value
+        if(currentKey === 'filterTag' && value[0] === '#'){
+            value = value.slice(1)
+        }
         this.setState({ 
-          [currentKey]: event.target.value,
+          [currentKey]: value
         });
       };
     
@@ -61,7 +67,9 @@ class Feed extends React.Component {
     undoFilter(){
         this.setState({
             filter: false,
-            filterCategory: 'Choose a Category'
+            filterCategory: 'Choose a Category',
+            filterUser: '',
+            filterTag: ''
         })
     }
 
@@ -71,6 +79,16 @@ class Feed extends React.Component {
         if(this.state.filterCategory !== 'Choose a Category'){
             openSessions = openSessions.filter(session => session.category === this.state.filterCategory)
         }
+        if(this.state.filterUser !== ''){
+            const userSessions = openSessions.filter(session => session.users[0].username === this.state.filterUser)
+            openSessions = userSessions.length ? userSessions : openSessions
+        }
+        if(this.state.filterTag !== ''){
+            const tagSessions = openSessions.filter(session => {
+                const matchs = session.tags.filter(tag => tag.name ===this.state.filterTag)
+                return matchs.length > 0})
+            openSessions = tagSessions.length ? tagSessions : openSessions
+        }
         return (
             <div>
                 <h1>Other Artists Open Requests</h1>
@@ -78,12 +96,17 @@ class Feed extends React.Component {
                 {this.state.filter 
                 ? <form>
                     <button type="button" onClick={this.undoFilter}>Undo Filters</button>
+                    <br />
                     <label htmlFor="filterCategory">Filter By Category</label>
                     <select name="filterCategory" onChange={this.handleChange}>
                         {categories.map(category => (
                             <option value={category} key={category}>{category}</option>
                         ))}
                     </select>
+                    <label htmlFor="filterUser">Filter By User</label>
+                    <input type="text" name="filterUser" onChange={this.handleChange} placeholder="Enter username"/>
+                    <label htmlFor="filterTag">Filter By Tag</label>
+                    <input type="text" name="filterTag" onChange={this.handleChange} placeholder="Enter a Tag"/>
 
                 </form> 
                 : <button type="button" onClick={this.filterForm}>Filter</button>}
