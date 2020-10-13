@@ -67,7 +67,7 @@ router.delete("/:sessionId", async (req, res, next) => {
 
   try {
     const session = await Session.findByPk(req.params.sessionId);
-    await Session.destroy(session);
+    await session.destroy();
     res.sendStatus(204);
   } catch (err) {
     next(err);

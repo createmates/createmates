@@ -41,6 +41,19 @@ export const updateSessionThunk = (updatedSession) => {
   }
 }
 
+export const deleteSessionThunk = (sessionToDelete) => {
+  return async (dispatch) => {
+    try {
+      await axios.delete(`/api/openSessions/${sessionToDelete.id}`)
+      const sessions = await axios.get('/api/openSessions')
+      dispatch(getSessions(sessions.data))
+    } catch (error) {
+      console.error(error)
+    }
+  }
+}
+
+
 const openSessionsReducer = (state = initialOpenSessions, action) => {
     switch (action.type) {
       case GET_OPEN_SESSIONS:

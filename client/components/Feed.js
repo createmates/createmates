@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {getOpenSessionsThunk, updateSessionThunk} from '../store/openSessions'
+import {deleteSessionThunk, getOpenSessionsThunk, updateSessionThunk} from '../store/openSessions'
 import {categories} from './Form'
 
 class Feed extends React.Component {
@@ -79,7 +79,7 @@ class Feed extends React.Component {
                         <div>
                             {session.tags.filter(tag => tag.name !== '').map(tag => (<span key={tag.id}>#{tag.name} </span>))}
                         </div>
-                        <button onClick={() => console.log('clicked ')} >Delete</button>
+                        <button onClick={() => this.props.deleteSession(session)} >Delete</button>
                         <button onClick={() => this.handleUpdate(session)} >Update</button>
                         {this.state.updatingId === session.id
                         ? <form onSubmit={this.handleSubmit}>
@@ -126,7 +126,8 @@ const mapState = state => {
 const mapDispatch = dispatch => {
     return {
         getOpenSessions: () => dispatch(getOpenSessionsThunk()),
-        updateSession: (updatedSession) => dispatch(updateSessionThunk(updatedSession))
+        updateSession: (updatedSession) => dispatch(updateSessionThunk(updatedSession)),
+        deleteSession: (sessionToDelete) => dispatch(deleteSessionThunk(sessionToDelete))
     }
 }
 
