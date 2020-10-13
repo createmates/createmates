@@ -57,6 +57,21 @@ export const logout = () => async dispatch => {
   }
 }
 
+export const signup = signupInfo => async dispatch => {
+  let response
+  try {
+    response = await axios.post('/auth/signup', signupInfo)
+  } catch (authError) {
+    return dispatch(getUser({error: authError}))
+  }
+  try {
+    dispatch(getUser(response.data))
+    history.push('/home')
+  } catch (dispatchOrHistoryErr) {
+    console.error(dispatchOrHistoryErr)
+  }
+}
+
 export const getSingleUserThunk = (userId) => async dispatch => {
   try {
     const {data} = await axios.get(`/api/users/${userId}`)

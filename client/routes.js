@@ -8,6 +8,7 @@ import { me } from "./store";
 import Session from "./components/Session";
 import Feed from "./components/Feed"
 import UserAccount from './components/UserAccount'
+import SignUpForm from './components/SignUpForm'
 
 class Routes extends Component {
   componentDidMount() {
@@ -21,6 +22,7 @@ class Routes extends Component {
       <Switch>
         {/* Routes placed here are available to all visitors */}
         <Route path="/login" component={Login} />
+        <Route exact path="/signup" component={SignUpForm} />
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}
@@ -28,6 +30,7 @@ class Routes extends Component {
             <Route path="/session" component={Session} />
             <Route path="/feed" component={Feed} />
             <Route path="/:userId" component={UserAccount} />
+
           </Switch>
         )}
         {/* Displays our Login component as a fallback */}
