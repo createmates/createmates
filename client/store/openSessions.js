@@ -29,6 +29,18 @@ export const addSessionThunk = (newSession) => {
   }
 }
 
+export const updateSessionThunk = (updatedSession) => {
+  return async (dispatch) => {
+    try {
+      const session = await axios.put(`/api/openSessions/${updatedSession.id}`, updatedSession)
+      const sessions = await axios.get('/api/openSessions')
+      dispatch(getSessions(sessions.data))
+    } catch (error) {
+      console.error(error)
+    }
+  }
+}
+
 const openSessionsReducer = (state = initialOpenSessions, action) => {
     switch (action.type) {
       case GET_OPEN_SESSIONS:

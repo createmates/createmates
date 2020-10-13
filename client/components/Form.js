@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {addSessionThunk} from '../store/openSessions'
 import PropTypes from "prop-types";
 
-const categories = ['Choose a Category', 'music', 'poem', 'dance', 'painting', 'drawing', 'joke', 'scene', 'script', 'theater improv', 'comedy']
+export const categories = ['Choose a Category', 'music', 'poem', 'dance', 'painting', 'drawing', 'joke', 'scene', 'script', 'theater improv', 'comedy']
 class Form extends React.Component {
   constructor(props) {
     super(props);
