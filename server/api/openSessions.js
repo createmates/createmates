@@ -40,9 +40,14 @@ router.post("/", async (req, res, next) => {
   }
 });
 
-router.put("/", async (req, res, next) => {
+router.put("/:sessionId", async (req, res, next) => {
   try {
-    const updatedSession = await Session.update(req.body);
+    const session = await Session.findByPk(req.params.sessionId);
+    const updatedSession = await session.update(req.body);
+    req.body.tags.forEach(async tag => {
+      const [tagObj, wasCreated] = await Tag.findOrCreate({where: {name: tag}})
+      await updatedSession.addTag(tagObj);
+    })
     res.json(updatedSession);
   } catch (err) {
     next(err);
@@ -62,7 +67,7 @@ router.delete("/:sessionId", async (req, res, next) => {
 
   try {
     const session = await Session.findByPk(req.params.sessionId);
-    await Session.destroy(session);
+    await session.destroy();
     res.sendStatus(204);
   } catch (err) {
     next(err);
