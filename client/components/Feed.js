@@ -78,9 +78,6 @@ class Feed extends React.Component {
     }
 
     async handleMatch(session){
-        // const sessionUsers = session.users;
-        // sessionUsers.push(this.props.user)
-        // console.log(sessionUsers)
         const roomId = uuidv4()
         const updatedSession = {
             roomId: roomId,

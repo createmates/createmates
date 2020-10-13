@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
 import { connect } from "react-redux";
-import { getSingleSessionThunk } from "../store/singleSession";
 import socket from "../socket";
 import {Link} from 'react-router-dom'
 
