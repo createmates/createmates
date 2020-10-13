@@ -44,12 +44,9 @@ router.put("/:sessionId", async (req, res, next) => {
   try {
     const session = await Session.findByPk(req.params.sessionId);
     const updatedSession = await session.update(req.body);
-    if(req.body.users){
-      req.body.users.forEach(async user => {
-         await updatedSession.addUser(user);
-      })
+    if(req.body.user){
+         await updatedSession.addUser(req.body.user.id);
     }
-    
     if(req.body.tags){
       req.body.tags.forEach(async tag => {
         const [tagObj, wasCreated] = await Tag.findOrCreate({where: {name: tag}})
@@ -65,7 +62,7 @@ router.put("/:sessionId", async (req, res, next) => {
 
 router.get("/:sessionId", async (req, res, next) => {
   try {
-    const session = await Session.findByPk(req.params.sessionId);
+    const session = await Session.findOne({where: {id: req.params.sessionId}, include: [User]});
     res.json(session);
   } catch (err) {
     next(err);

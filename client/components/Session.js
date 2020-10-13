@@ -1,24 +1,16 @@
 import React, { useEffect, useRef, useState } from "react";
 import { connect } from "react-redux";
-import { getSingleSessionThunk } from "../store/singleSession";
 import socket from "../socket";
-import axios from "axios";
+import {Link} from 'react-router-dom'
 
 const myPeer = new Peer(undefined, {
   host: "/",
   port: "3081",
 });
 
-// making this async is for getting a roomid for testing multi - videos
-// will be moving axios call if we still
-// need it to the redux store.
-// const getRoom = async () => {
 
-//   const roomId = await axios.get("/api/rooms");
-//   console.log(roomId);
-// };
-const Session = () => {
-  // getRoom();
+const Session = (props) => {
+
   const [stream, setStream] = useState();
   const [peers, setPeers] = useState({});
 
@@ -71,28 +63,37 @@ const Session = () => {
   myPeer.on("open", (id) => {
     socket.emit("join-room", this.state.session.roomId, id); //outgoing user id?
   });
-
-  return (
+  const session = props.session
+  console.log(session)
+    return (
     //render two videos
     <div id="video-grid">
+      {session.users[1]
+       ?<div>
+          <div>
+            <h3><Link to={`/${session.users[0].id}`}>{session.users[0].username}</Link></h3>
+            <h3>Medium: {session.users[0].medium}</h3>
+          </div>
+          <div>
+            <h3><Link to={`/${session.users[1].id}`}>{session.users[1].username}</Link></h3>
+            <h3>Medium: {session.users[1].medium}</h3>
+          </div>
+        </div> 
+        : ''}
+      
       <video muted ref={userVideo} autoPlay style={{ margin: "200px" }}></video>
       <video ref={partnerVideo} autoPlay></video>
+      <h2>{session.blurb}</h2>
     </div>
   );
+  
 };
 
 const mapState = (state) => {
   return {
-    session: state.session,
+    session: state.singleSession,
   };
 };
 
-const mapDispatch = (dispatch) => {
-  return {
-    getSession: (sessionId) => {
-      dispatch(getSingleSessionThunk(sessionId));
-    },
-  };
-};
 
-export default connect(mapState, mapDispatch)(Session);
+export default connect(mapState)(Session);
