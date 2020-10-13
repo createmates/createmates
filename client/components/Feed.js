@@ -10,11 +10,15 @@ class Feed extends React.Component {
             updatingId: false,
             category: '',
             blurb: '',
-            tags: ''
+            tags: '',
+            filter: false,
+            filterCategory: 'Choose a Category'
         }
         this.handleUpdate = this.handleUpdate.bind(this)
         this.handleChange = this.handleChange.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
+        this.filterForm = this.filterForm.bind(this)
+        this.undoFilter = this.undoFilter.bind(this)
     }
 
     componentDidMount() {
@@ -50,13 +54,41 @@ class Feed extends React.Component {
         this.props.updateSession(updatedSession)
     }
 
+    filterForm(){
+        this.setState({filter: true})
+    }
+
+    undoFilter(){
+        this.setState({
+            filter: false,
+            filterCategory: 'Choose a Category'
+        })
+    }
+
     render() {
-        const openSessions = this.props.openSessions
+        let openSessions = this.props.openSessions.filter(session => this.props.user.id !== session.users[0].id)
+        const mySessions = this.props.openSessions.filter(session => this.props.user.id === session.users[0].id)
+        if(this.state.filterCategory !== 'Choose a Category'){
+            openSessions = openSessions.filter(session => session.category === this.state.filterCategory)
+        }
         return (
             <div>
                 <h1>Other Artists Open Requests</h1>
+                
+                {this.state.filter 
+                ? <form>
+                    <button type="button" onClick={this.undoFilter}>Undo Filters</button>
+                    <label htmlFor="filterCategory">Filter By Category</label>
+                    <select name="filterCategory" onChange={this.handleChange}>
+                        {categories.map(category => (
+                            <option value={category} key={category}>{category}</option>
+                        ))}
+                    </select>
+
+                </form> 
+                : <button type="button" onClick={this.filterForm}>Filter</button>}
                 {openSessions && openSessions.length && openSessions[openSessions.length -1].users[0]
-                ? openSessions.filter(session => this.props.user.id !== session.users[0].id).map(session => (
+                ? openSessions.map(session => (
                     <div key={session.id}>
                         <h2>{session.category}</h2>
                         <h3>{session.users[0].username} writes: </h3>
@@ -69,9 +101,9 @@ class Feed extends React.Component {
                 ))
                 : ''}
                 <h1>My Open Requests</h1>
-                {openSessions && openSessions.length && openSessions[openSessions.length -1].users[0]
-                ? openSessions.filter(session => this.props.user.id === session.users[0].id)
-                    .map(session => (
+                
+                {mySessions && mySessions.length && mySessions[mySessions.length -1].users[0]
+                ? mySessions.map(session => (
                     <div key={session.id}>
                         <h2>{session.category}</h2>
                         <h3>{session.users[0].username} writes: </h3>
