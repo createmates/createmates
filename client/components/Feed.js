@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import { Link } from 'react-router-dom'
 import {v4 as uuidv4} from 'uuid'
 import {deleteSessionThunk, getOpenSessionsThunk, updateSessionThunk} from '../store/openSessions'
+import {getSingleSessionThunk} from "../store/singleSession"
 import {categories} from './Form'
 
 class Feed extends React.Component {
@@ -76,18 +77,21 @@ class Feed extends React.Component {
         })
     }
 
-    handleMatch(session){
-        const sessionUsers = session.users;
-        sessionUsers.push(this.props.user)
+    async handleMatch(session){
+        // const sessionUsers = session.users;
+        // sessionUsers.push(this.props.user)
+        // console.log(sessionUsers)
         const roomId = uuidv4()
         const updatedSession = {
             roomId: roomId,
             id: session.id,
-            users: sessionUsers,
+            user: this.props.user,
             status: 'matched'
         }
-        this.props.updateSession(updatedSession)
+        await this.props.updateSession(updatedSession)
+        await this.props.getSession(session.id)
         this.props.history.push(`/session/${roomId}`)
+        
     }
 
     render() {
@@ -203,7 +207,8 @@ const mapDispatch = dispatch => {
     return {
         getOpenSessions: () => dispatch(getOpenSessionsThunk()),
         updateSession: (updatedSession) => dispatch(updateSessionThunk(updatedSession)),
-        deleteSession: (sessionToDelete) => dispatch(deleteSessionThunk(sessionToDelete))
+        deleteSession: (sessionToDelete) => dispatch(deleteSessionThunk(sessionToDelete)),
+        getSession: (sessionId) =>  dispatch(getSingleSessionThunk(sessionId))
     }
 }
 
