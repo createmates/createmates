@@ -63,17 +63,7 @@ const createApp = () => {
   app.use(passport.initialize());
   app.use(passport.session());
 
-  //remove later
-  app.get("/api/hello", (req, res) => {
-    res.send({ express: "Hello From Express" });
-  });
 
-  app.post("/api/world", (req, res) => {
-    console.log(req.body);
-    res.send(
-      `I received your POST request. This is what you sent me: ${req.body.post}`
-    );
-  });
 
   // auth and api routes
   app.use("/auth", require("./auth"));

@@ -4,6 +4,7 @@ const isAdminMiddleware = (req, res, next) => {
     next();
   } else {
     const err = new Error("User is not an admin!");
+    err.status = 401
     next(err);
   }
 };
