@@ -61,7 +61,7 @@ const Session = (props) => {
     }
   });
   myPeer.on("open", (id) => {
-    socket.emit("join-room", this.state.session.roomId, id); //outgoing user id?
+    socket.emit("join-room", props.session.roomId, id); //outgoing user id?
   });
   const session = props.session
   console.log(session)
