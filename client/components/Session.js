@@ -11,6 +11,10 @@ const myPeer = new Peer(undefined, {
 
 const Session = (props) => {
 
+  let completed = false;
+
+  
+
   const [stream, setStream] = useState();
   const [peers, setPeers] = useState({});
 
@@ -60,11 +64,13 @@ const Session = (props) => {
       peers[userid].close();
     }
   });
+
   myPeer.on("open", (id) => {
     socket.emit("join-room", props.session.roomId, id); //outgoing user id?
   });
+
   const session = props.session
-  console.log(session)
+
     return (
     //render two videos
     <div id="video-grid">
@@ -82,8 +88,9 @@ const Session = (props) => {
         : ''}
       
       <video muted ref={userVideo} autoPlay style={{ margin: "200px" }}></video>
-      <video ref={partnerVideo} autoPlay></video>
+      {/* <video ref={partnerVideo} autoPlay></video> */}
       <h2>{session.blurb}</h2>
+      <Link to="/session/summary"><button>Finish Session</button></Link>
     </div>
   );
   
