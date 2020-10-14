@@ -28,11 +28,10 @@ class Form extends React.Component {
     });
   };
 
-  handleSubmit = event => {
+  handleSubmit = async (event) => {
     event.preventDefault();
-    let currentUser = this.props.user;
-    console.log('currentUser: ', currentUser)
-    if (!currentUser.sessions) {
+    await this.props.findUser(this.props.user);
+    if (!this.props.user.sessions) {
       const tags = this.state.tags.split(' ')
       const newSession = {
       category: this.state.category,
@@ -44,10 +43,8 @@ class Form extends React.Component {
     this.props.addSession(newSession);
     this.props.history.push('/feed')
   } else {
-    if(currentUser.sessions[0].status === 'unmatched') {
-    alert('YOU MAY NOT OPEN MORE THAN ONE SESSION');
-  }
-}
+        alert('YOU MAY NOT OPEN MORE THAN ONE SESSION');
+    }
   }
 
 
@@ -96,7 +93,7 @@ const mapDispatch = dispatch => {
   return {
     addSession: (newSession) => dispatch(addSessionThunk(newSession)),
 
-    // findUser: (user) => dispatch(getSingleUserThunk(user.id))
+    findUser: (user) => dispatch(getSingleUserThunk(user.id))
   }
 }
 

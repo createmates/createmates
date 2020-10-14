@@ -34,9 +34,12 @@ router.get("/:userid", async (req, res, next) => {
     const userRes = await User.findByPk(userId,
       {
         include: {
-          model: Session
+          model: Session,
+            where: {
+              status: "unmatched"
+            }
+          }
         }
-      }
       );
     res.json(userRes);
   } catch (err) {
