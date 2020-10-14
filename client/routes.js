@@ -9,6 +9,7 @@ import Session from "./components/Session";
 import Feed from "./components/Feed"
 import UserAccount from './components/UserAccount'
 import SignUpForm from './components/SignUpForm'
+import Summary from './components/Summary'
 
 class Routes extends Component {
   componentDidMount() {
@@ -27,10 +28,10 @@ class Routes extends Component {
           <Switch>
             {/* Routes placed here are only available after logging in */}
             <Route exact path="/home" component={UserHome} />
+            <Route exact path="/session/summary" component={Summary} />
             <Route path="/session/:roomId" component={Session} />
             <Route path="/feed" component={Feed} />
             <Route path="/:userId" component={UserAccount} />
-
           </Switch>
         )}
         {/* Displays our Login component as a fallback */}
