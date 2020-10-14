@@ -3,8 +3,8 @@ const {expect} = require('chai')
 const request = require('supertest')
 const db = require('../db')
 const app = require('../index')
-const {Session} = require('../db/models')
-const User = require('../db/models/user')
+const {Session, User} = require('../db/models')
+const {v4: uuidv4} = require('uuid')
 
 
 describe('OpenSessions routes', () => {
@@ -15,7 +15,7 @@ describe('OpenSessions routes', () => {
   describe('api/openSessions', () => {
     const testSessions = 'Would love some eyes on a new 30 second phrase I just came up with'
     let testUser;
-
+    const testRoomId = uuidv4()
     beforeEach(()=> {
         testUser = User.create({
             username: "doyouevenliftbro",
@@ -43,6 +43,8 @@ describe('OpenSessions routes', () => {
         expect(res.body[0].status).to.be.equal('unmatched')
     })
 
+
+
     it('POST /api/openSessions a new Session', async () => {
         const res = await request(app)
         .post('/api/openSessions')
@@ -53,12 +55,41 @@ describe('OpenSessions routes', () => {
             user: {
                 id: 1
             },
-            tags: ['pine', 'apple', 'trees']
         }).expect(200)
+
         expect(res.body).to.be.an('object')
         expect(res.body.blurb).to.be.equal('Need some help wording a joke')
         expect(res.body.status).to.be.equal('unmatched')
     })
+
+    it('PUT /api/openSessions/:sessionId updates my session', async () => {
+        const res = await request(app)
+        .put('/api/openSessions/1')
+        .send({
+            category: 'joke',
+            status: 'unmatched',
+            blurb: 'Need some help wording a joke'
+        }).expect(200)
+
+        expect(res.body).to.be.an('object')
+        expect(res.body.blurb).to.be.equal('Need some help wording a joke')
+        expect(res.body.status).to.be.equal('unmatched')
+    })
+
+    it('PUT /api/openSessions/:sessionId updates my session', async () => {
+        const res = await request(app)
+        .put('/api/openSessions/1')
+        .send({
+            roomId: testRoomId,
+            status: 'matched',
+            user: testUser
+        }).expect(200)
+
+        expect(res.body).to.be.an('object')
+        expect(res.body.roomId).to.be.equal(testRoomId)
+        expect(res.body.status).to.be.equal('matched')
+    })
+
 
     it('GET /api/openSessions/:sessionId one sessions', async () => {
         const res = await request(app)

@@ -3,8 +3,6 @@ const { Session, User, Tag } = require("../db/models");
 module.exports = router;
 const { isAdminMiddleware } = require("../app/authentication-middleware");
 
-
-
 router.get('/', async (req, res, next) => {
     try {
         const sessions = await Session.findAll({
@@ -18,21 +16,22 @@ router.get('/', async (req, res, next) => {
 })
 
 
-
-
 router.post("/", async (req, res, next) => {
   try {
     const session = await Session.create(req.body);
     await session.addUser(req.body.user.id);
-    req.body.tags.forEach(async tag => {
-      const [tagObj, wasCreated] = await Tag.findOrCreate({where: {name: tag}})
-      await session.addTag(tagObj);
-    })
+    if(req.body.tags){
+      req.body.tags.forEach(async tag => {
+        const [tagObj, wasCreated] = await Tag.findOrCreate({where: {name: tag}})
+        await updatedSession.addTag(tagObj);
+      })
+    }
     res.json(session);
   } catch (err) {
     next(err);
   }
 });
+
 
 router.put("/:sessionId", async (req, res, next) => {
   try {
@@ -54,6 +53,7 @@ router.put("/:sessionId", async (req, res, next) => {
   }
 });
 
+
 router.get("/:sessionId", async (req, res, next) => {
   try {
     const session = await Session.findOne({where: {id: req.params.sessionId}, include: [User]});
@@ -62,6 +62,7 @@ router.get("/:sessionId", async (req, res, next) => {
     next(err);
   }
 });
+
 
 router.delete("/:sessionId", async (req, res, next) => {
 
