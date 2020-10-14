@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { logout } from "../store";
 
-const Navbar = ({ handleClick, isLoggedIn, isAdmin, totalItems, user }) => (
+const Navbar = ({ handleClick, isLoggedIn, isAdmin, user }) => (
   <div>
     <div className="main-header">
       <h1>CreateMates</h1>
@@ -29,9 +29,6 @@ const Navbar = ({ handleClick, isLoggedIn, isAdmin, totalItems, user }) => (
   </div>
 );
 
-/**
- * CONTAINER
- */
 const mapState = (state) => {
   return {
     isLoggedIn: !!state.user.id,
@@ -49,9 +46,6 @@ const mapDispatch = (dispatch) => {
 
 export default connect(mapState, mapDispatch)(Navbar);
 
-/**
- * PROP TYPES
- */
 Navbar.propTypes = {
   handleClick: PropTypes.func.isRequired,
   isLoggedIn: PropTypes.bool.isRequired,

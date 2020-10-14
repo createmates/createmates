@@ -1,23 +1,21 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {getSingleUserThunk} from '../store/user'
+import {getProfileThunk} from '../store/profile'
 import UpdateUserForm from './UpdateUserForm'
 
 
 class UserAccount extends React.Component {
-  // constructor(props) {
-  //   super(props)
-  // }
+  constructor(props) {
+    super(props)
+  }
 
   componentDidMount() {
     const userId = this.props.match.params.userId
-    this.props.gotSingleUser(userId)
+    this.props.getProfile(userId)
   }
 
-
-
   render() {
-    const user = this.props.user
+    const user = this.props.profile
     return (
       <div id="single-user">
           {user.id &&
@@ -29,7 +27,9 @@ class UserAccount extends React.Component {
             <h3>City: {user.city}</h3>
             <h3>State: {user.state}</h3>
             <h3>Bio: {user.bio}</h3>
-            <UpdateUserForm user={user}/>
+            {user.id === this.props.user.id ? 
+            <UpdateUserForm user={user}/> 
+            : ''}
             </div>
 
           }
@@ -40,14 +40,15 @@ class UserAccount extends React.Component {
 
 const mapState = (state) => {
   return {
-    user: state.user
+    user: state.user,
+    profile: state.profile
   }
 }
 
 const mapDispatch = (dispatch) => {
   return {
-    gotSingleUser: (userId) => {
-      dispatch(getSingleUserThunk(userId))
+    getProfile: (userId) => {
+      dispatch(getProfileThunk(userId))
 
     }
   }
