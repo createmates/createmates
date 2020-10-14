@@ -13,10 +13,10 @@ const Session = db.define("session", {
         allowNull: false
     },
     blurb: {
-        type: Sequelize.STRING(75)
+        type: Sequelize.STRING(100)
     },
     summary: {
-        type: Sequelize.STRING(100)
+        type: Sequelize.STRING(200)
     } 
 })
 
