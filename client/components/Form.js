@@ -2,6 +2,7 @@ import React from "react";
 import {connect} from 'react-redux';
 import {addSessionThunk} from '../store/openSessions'
 import PropTypes from "prop-types";
+import {getSingleUserThunk} from '../store/user'
 
 export const categories = ['Choose a Category', 'music', 'poem', 'dance', 'painting', 'drawing', 'joke', 'scene', 'script', 'theater improv', 'comedy']
 class Form extends React.Component {
@@ -16,20 +17,22 @@ class Form extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
-  
+
 
   handleChange = event => {
     const currentKey = event.target.name;
-    this.setState({ 
+    this.setState({
       [currentKey]: event.target.value,
-      categoryChosen: true 
+      categoryChosen: true
     });
   };
 
-  handleSubmit = event => {
+  handleSubmit = async (event) => {
     event.preventDefault();
-    const tags = this.state.tags.split(' ')
-    const newSession = {
+    await this.props.findUser(this.props.user);
+    if (!this.props.user.sessions) {
+      const tags = this.state.tags.split(' ')
+      const newSession = {
       category: this.state.category,
       status: 'unmatched',
       blurb: this.state.blurb,
@@ -38,7 +41,11 @@ class Form extends React.Component {
     }
     this.props.addSession(newSession);
     this.props.history.push('/feed')
-  };
+  } else {
+        alert('YOU MAY NOT OPEN MORE THAN ONE SESSION');
+    }
+  }
+
 
   render() {
     return (
@@ -51,7 +58,7 @@ class Form extends React.Component {
         {this.state.categoryChosen ? (
           <div>
             <label htmlFor="blurb">Write a couple of sentences about what you would like to create: </label>
-            <input 
+            <input
             type="textarea"
             name="blurb"
             placeholder="Tell us more..."
@@ -83,7 +90,8 @@ const mapState = state => {
 
 const mapDispatch = dispatch => {
   return {
-    addSession: (newSession) => dispatch(addSessionThunk(newSession))
+    addSession: (newSession) => dispatch(addSessionThunk(newSession)),
+    findUser: (user) => dispatch(getSingleUserThunk(user.id))
   }
 }
 

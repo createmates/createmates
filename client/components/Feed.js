@@ -48,11 +48,11 @@ class Feed extends React.Component {
         if(currentKey === 'filterTag' && value[0] === '#'){
             value = value.slice(1)
         }
-        this.setState({ 
+        this.setState({
           [currentKey]: value
         });
       };
-    
+
     handleSubmit() {
         const tags = this.state.tags.split(' ')
         const updatedSession = {
@@ -78,17 +78,21 @@ class Feed extends React.Component {
     }
 
     async handleMatch(session){
-        const roomId = uuidv4()
-        const updatedSession = {
+        let mySessions = this.props.openSessions.filter(session => this.props.user.id === session.users[0].id)
+        if (!mySessions.length) {
+            const roomId = uuidv4()
+            const updatedSession = {
             roomId: roomId,
             id: session.id,
             user: this.props.user,
             status: 'matched'
+            }
+            await this.props.updateSession(updatedSession)
+            await this.props.getSession(session.id)
+            this.props.history.push(`/session/${roomId}`)
+        } else {
+            alert('YOU MUST DELETE YOUR OPEN REQUEST BEFORE MATCHING WITH ANOTHER USER\'S REQUEST');
         }
-        await this.props.updateSession(updatedSession)
-        await this.props.getSession(session.id)
-        this.props.history.push(`/session/${roomId}`)
-        
     }
 
     render() {
@@ -114,8 +118,8 @@ class Feed extends React.Component {
         return (
             <div>
                 <h1>Other Artists Open Requests</h1>
-                
-                {this.state.filter 
+
+                {this.state.filter
                 ? <form>
                     <button type="button" onClick={this.undoFilter}>Undo Filters</button>
                     <br />
@@ -130,7 +134,7 @@ class Feed extends React.Component {
                     <label htmlFor="filterTag">Filter By Tag</label>
                     <input type="text" name="filterTag" onChange={this.handleChange} placeholder="Enter a Tag"/>
 
-                </form> 
+                </form>
                 : <button type="button" onClick={this.filterForm}>Filter</button>}
                 {openSessions && openSessions.length
                 ? openSessions.map(session => (
@@ -146,8 +150,8 @@ class Feed extends React.Component {
                 ))
                 : ''}
                 <h1>My Open Requests</h1>
-                
-                {mySessions && mySessions.length 
+
+                {mySessions && mySessions.length
                 ? mySessions.map(session => (
                     <div key={session.id}>
                         <h2>{session.category}</h2>
@@ -167,7 +171,7 @@ class Feed extends React.Component {
                             </select>
                             <div>
                                 <label htmlFor="blurb">Write a couple of sentences about what you would like to create: </label>
-                                <input 
+                                <input
                                 type="textarea"
                                 name="blurb"
                                 value={this.state.blurb}
@@ -183,7 +187,7 @@ class Feed extends React.Component {
                                 />
                                 <button type="submit">Go</button>
                             </div>
-                        </form> 
+                        </form>
                         : ''}
                     </div>
                 ))
@@ -205,7 +209,7 @@ const mapDispatch = dispatch => {
         getOpenSessions: () => dispatch(getOpenSessionsThunk()),
         updateSession: (updatedSession) => dispatch(updateSessionThunk(updatedSession)),
         deleteSession: (sessionToDelete) => dispatch(deleteSessionThunk(sessionToDelete)),
-        getSession: (sessionId) =>  dispatch(getSingleSessionThunk(sessionId))
+        getSession: (sessionId) =>  dispatch(getSingleSessionThunk(sessionId)),
     }
 }
 

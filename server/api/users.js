@@ -1,7 +1,9 @@
 const router = require("express").Router();
-const { User } = require("../db/models");
+const { User, Session } = require("../db/models");
 module.exports = router;
 const { isAdminMiddleware } = require("../app/authentication-middleware");
+//below is from boilermaker? commented out to deconflict with our model called Session, which is now required in line 2 above:
+// const { Session } = require("express-session");
 
 router.get("/", isAdminMiddleware, async (req, res, next) => {
   try {
@@ -29,7 +31,16 @@ router.get("/", isAdminMiddleware, async (req, res, next) => {
 router.get("/:userid", async (req, res, next) => {
   const userId = req.params.userid;
   try {
-    const userRes = await User.findByPk(userId);
+    const userRes = await User.findByPk(userId,
+      {
+        include: {
+          model: Session,
+            where: {
+              status: "unmatched"
+            }
+          }
+        }
+      );
     res.json(userRes);
   } catch (err) {
     next(err);
