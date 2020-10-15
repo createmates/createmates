@@ -80,7 +80,6 @@ export const updateUserThunk = (userFormData, userId) => {
       console.error(err)
     }
   }
-
 }
 
 export default function(state = defaultUser, action) {

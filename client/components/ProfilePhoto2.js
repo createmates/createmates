@@ -1,5 +1,6 @@
 import React from 'react'
 
+
 export class ProfilePhoto2 extends React.Component {
 constructor() {
   super()
@@ -54,3 +55,5 @@ onFileSubmit = (e) => {
   }
 
 }
+
+
