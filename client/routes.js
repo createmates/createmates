@@ -31,6 +31,7 @@ class Routes extends Component {
             <Route exact path="/session/summary" component={Summary} />
             <Route path="/session/:roomId" component={Session} />
             <Route path="/feed" component={Feed} />
+            <Route path="/myAccount" component={UserAccount} />
             <Route path="/:userId" component={UserAccount} />
           </Switch>
         )}

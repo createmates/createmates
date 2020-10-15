@@ -10,8 +10,12 @@ class UserAccount extends React.Component {
   }
 
   componentDidMount() {
-    const userId = this.props.match.params.userId
-    this.props.getProfile(userId)
+    if (this.props.match.params.userId) {
+      const userId = this.props.match.params.userId
+      this.props.getProfile(userId)
+    } else {
+      this.props.getProfile(this.props.user.id)
+    }
   }
 
   render() {

@@ -4,7 +4,7 @@ const GET_PROFILE = 'GET_PROFILE'
 
 const defaultProfile = {}
 
-const getProfile = profile => ({type: GET_PROFILE, profile})
+export const getProfile = profile => ({type: GET_PROFILE, profile})
 
 export const getProfileThunk = (userId) => async dispatch => {
     try {
