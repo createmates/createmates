@@ -18,7 +18,7 @@ const Session = (props) => {
   const [stream, setStream] = useState();
   const [peers, setPeers] = useState({});
 
-
+  const session = props.session
   const userVideo = useRef();
   const partnerVideo = useRef();
 
@@ -66,10 +66,11 @@ const Session = (props) => {
   });
 
   myPeer.on("open", (id) => {
-    socket.emit("join-room", props.session.roomId, id); //outgoing user id?
+    console.log(session.roomId)
+    socket.emit("join-room", session.roomId, id); //outgoing user id?
   });
 
-  const session = props.session
+
 
     return (
     //render two videos
