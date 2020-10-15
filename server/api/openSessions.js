@@ -23,7 +23,7 @@ router.post("/", async (req, res, next) => {
     if(req.body.tags){
       req.body.tags.forEach(async tag => {
         const [tagObj, wasCreated] = await Tag.findOrCreate({where: {name: tag}})
-        await updatedSession.addTag(tagObj);
+        await session.addTag(tagObj);
       })
     }
     res.json(session);

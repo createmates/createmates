@@ -136,7 +136,7 @@ class Feed extends React.Component {
 
                 </form>
                 : <button type="button" onClick={this.filterForm}>Filter</button>}
-                {openSessions && openSessions.length
+                {openSessions && openSessions.length && openSessions[openSessions.length -1].users[0]
                 ? openSessions.map(session => (
                     <div key={session.id}>
                         <h2>{session.category}</h2>
