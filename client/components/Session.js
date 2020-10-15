@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { connect } from "react-redux";
 import socket from "../socket";
 import {Link} from 'react-router-dom'
+import MessagesList from './MessagesList';
 
 const myPeer = new Peer(undefined, {
   host: "/",
@@ -13,7 +14,7 @@ const Session = (props) => {
 
   let completed = false;
 
-  
+
 
   const [stream, setStream] = useState();
   const [peers, setPeers] = useState({});
@@ -85,16 +86,17 @@ const Session = (props) => {
             <h3><Link to={`/${session.users[1].id}`}>{session.users[1].username}</Link></h3>
             <h3>Medium: {session.users[1].medium}</h3>
           </div>
-        </div> 
+        </div>
         : ''}
-      
+
       <video muted ref={userVideo} autoPlay style={{ margin: "200px" }}></video>
       {/* <video ref={partnerVideo} autoPlay></video> */}
       <h2>{session.blurb}</h2>
+      <MessagesList />
       <Link to="/session/summary"><button>Finish Session</button></Link>
     </div>
   );
-  
+
 };
 
 const mapState = (state) => {

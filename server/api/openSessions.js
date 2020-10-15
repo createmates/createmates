@@ -46,7 +46,7 @@ router.put("/:sessionId", async (req, res, next) => {
         await updatedSession.addTag(tagObj);
       })
     }
-    
+
     res.json(updatedSession);
   } catch (err) {
     next(err);
@@ -58,6 +58,17 @@ router.get("/:sessionId", async (req, res, next) => {
   try {
     const session = await Session.findOne({where: {id: req.params.sessionId}, include: [User]});
     res.json(session);
+  } catch (err) {
+    next(err);
+  }
+});
+
+// GET /api/openSessions/:sessionId/messages
+router.get('/:sessionId/messages', async (req, res, next) => {
+  try {
+    const sessionId = req.params.sessionId;
+    const messages = await Message.findAll({ where: { sessionId } })
+    res.json(messages);
   } catch (err) {
     next(err);
   }

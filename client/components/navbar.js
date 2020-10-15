@@ -16,7 +16,6 @@ const Navbar = ({ handleClick, handleClickAccount, isLoggedIn, isAdmin, user }) 
           {/* The navbar will show these links after you log in */}
           <Link to="/home">Home</Link>
           <Link to="/feed">Feed</Link>
-          {/* <Link to={`/myAccount`}>My Account</Link> */}
           <a href="/myAccount" onClick={handleClickAccount(user.id)}>
             My Account
           </a>

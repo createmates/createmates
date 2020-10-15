@@ -6,12 +6,14 @@ import user from './user'
 import singleSessionReducer from './singleSession'
 import openSessionsReducer from './openSessions'
 import profile from './profile'
+import messagesReducer from './messages'
 
 const reducer = combineReducers({
     user: user,
     singleSession: singleSessionReducer,
     openSessions: openSessionsReducer,
     profile: profile,
+    messages: messagesReducer
   })
 
   const middleware = composeWithDevTools(
