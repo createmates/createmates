@@ -28,5 +28,16 @@ describe('User model', () => {
         expect(cody.correctPassword('bonez')).to.be.equal(false)
       })
     })
+    describe('unique email', () => {
+      beforeEach(async () => {
+        return await User.create({
+          email: 'cody@puppybook.com',
+          password: 'bones'
+        })
+      // it('emails must be unique', () => {
+        
+      // })
+      })
+    })
   }) // end describe('instanceMethods')
 }) // end describe('User model')

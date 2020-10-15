@@ -2,7 +2,7 @@ import React from "react";
 import {connect} from 'react-redux';
 import {addSessionThunk} from '../store/openSessions'
 import PropTypes from "prop-types";
-import {getSingleUserThunk} from '../store/user'
+import profile, {getProfileThunk} from '../store/profile'
 
 export const categories = ['Choose a Category', 'music', 'poem', 'dance', 'painting', 'drawing', 'joke', 'scene', 'script', 'theater improv', 'comedy']
 class Form extends React.Component {
@@ -27,22 +27,32 @@ class Form extends React.Component {
     });
   };
 
+  componentDidMount(){
+   this.props.findUserProfile(this.props.user.id);
+  }
+
   handleSubmit = async (event) => {
     event.preventDefault();
-    await this.props.findUser(this.props.user);
-    if (!this.props.user.sessions) {
+    let unmatchedCount = 0
+    for(let i = 0; i < this.props.profile.sessions.length; i++){
+      if(this.props.profile.sessions[i].status === 'unmatched'){
+        unmatchedCount++
+        break
+      }
+    }
+    if(unmatchedCount){
+       alert('YOU MAY NOT OPEN MORE THAN ONE SESSION');
+    } else {
       const tags = this.state.tags.split(' ')
       const newSession = {
-      category: this.state.category,
-      status: 'unmatched',
-      blurb: this.state.blurb,
-      user: this.props.user,
-      tags: tags
-    }
-    this.props.addSession(newSession);
-    this.props.history.push('/feed')
-  } else {
-        alert('YOU MAY NOT OPEN MORE THAN ONE SESSION');
+        category: this.state.category,
+        status: 'unmatched',
+        blurb: this.state.blurb,
+        user: this.props.user,
+        tags: tags
+      }
+      this.props.addSession(newSession);
+      this.props.history.push('/feed') 
     }
   }
 
@@ -84,14 +94,15 @@ class Form extends React.Component {
 
 const mapState = state => {
   return {
-    user: state.user
+    user: state.user,
+    profile: state.profile
   }
 }
 
 const mapDispatch = dispatch => {
   return {
     addSession: (newSession) => dispatch(addSessionThunk(newSession)),
-    findUser: (user) => dispatch(getSingleUserThunk(user.id))
+    findUserProfile: (userId) => dispatch(getProfileThunk(userId))
   }
 }
 
