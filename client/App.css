@@ -104,3 +104,17 @@ p {
     padding: 40px 20%;
   }
 }
+
+/* message form */
+
+#new-message-form {
+  position: relative;
+}
+
+#new-message-form .form-control {
+  border-width: 3px 1.5px 3px 3px;
+}
+
+#new-message-form.btn {
+  border-width: 3px;
+}

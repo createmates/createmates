@@ -3,6 +3,7 @@ module.exports = router;
 
 router.use("/users", require("./users"));
 router.use("/openSessions", require("./openSessions"))
+router.use('/messages', require('./messages'));
 
 
 router.use((req, res, next) => {
