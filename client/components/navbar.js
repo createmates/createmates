@@ -3,8 +3,9 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { logout } from "../store";
+import { getProfileThunk } from '../store/profile'
 
-const Navbar = ({ handleClick, isLoggedIn, isAdmin, user }) => (
+const Navbar = ({ handleClick, handleClickAccount, isLoggedIn, isAdmin, user }) => (
   <div>
     <div className="main-header">
       <h1>CreateMates</h1>
@@ -15,7 +16,10 @@ const Navbar = ({ handleClick, isLoggedIn, isAdmin, user }) => (
           {/* The navbar will show these links after you log in */}
           <Link to="/home">Home</Link>
           <Link to="/feed">Feed</Link>
-          <Link to={`/${user.id}`}>My Account</Link>
+          {/* <Link to={`/myAccount`}>My Account</Link> */}
+          <a href="/myAccount" onClick={handleClickAccount(user.id)}>
+            My Account
+          </a>
           <a href="#" onClick={handleClick}>
             Logout
           </a>
@@ -41,6 +45,9 @@ const mapDispatch = (dispatch) => {
     handleClick() {
       dispatch(logout());
     },
+    handleClickAccount(userId) {
+      dispatch(getProfileThunk(userId))
+    }
   };
 };
 

@@ -1,5 +1,6 @@
 import axios from 'axios'
 import history from '../history'
+import {getProfile} from './profile'
 
 const GET_USER = 'GET_USER'
 const REMOVE_USER = 'REMOVE_USER'
@@ -74,6 +75,7 @@ export const updateUserThunk = (userFormData, userId) => {
     try {
       const userRes = await axios.put(`/api/users/${userId}`,userFormData)
       dispatch(getUser(userRes.data))
+      dispatch(getProfile(userRes.data))
     } catch(err) {
       console.error(err)
     }
