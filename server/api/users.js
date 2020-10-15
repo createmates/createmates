@@ -33,10 +33,10 @@ router.get("/:userid", async (req, res, next) => {
   try {
     const userRes = await User.findByPk(userId,
       {
-        include: [Session] 
+        include: [Session]
         }
       );
- 
+
     res.json(userRes);
   } catch (err) {
     next(err);
@@ -53,3 +53,6 @@ let profile = await User.findByPk(req.params.userid);
   }
 
 });
+
+
+
