@@ -1,5 +1,4 @@
 import React from 'react'
-import axios from 'axios'
 import {updateUserThunk} from '../store/user'
 import {connect} from 'react-redux'
 

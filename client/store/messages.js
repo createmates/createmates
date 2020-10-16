@@ -39,9 +39,8 @@ const initialState = {
 }
 
 
-// :: (State, Action) -> State
-const messagesReducer = (state = initialState, action) => {
-    // return mapTypeToCallback[action.type](state, action)
+
+const messagesReducer = (state = initialState, action) => {   
     switch (action.type) {
         case GOT_MESSAGES_FROM_SERVER:
             return { ...state, messages: action.messages }
