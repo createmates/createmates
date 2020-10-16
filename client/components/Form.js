@@ -1,7 +1,6 @@
 import React from "react";
 import {connect} from 'react-redux';
 import {addSessionThunk} from '../store/openSessions'
-import PropTypes from "prop-types";
 import profile, {getProfileThunk} from '../store/profile'
 
 export const categories = ['Categories', 'Music', 'Poem', 'Dance', 'Painting', 'Drawing', 'Joke', 'Scene', 'Script', 'Theater Improv', 'Comedy']

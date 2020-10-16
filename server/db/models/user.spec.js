@@ -28,16 +28,59 @@ describe('User model', () => {
         expect(cody.correctPassword('bonez')).to.be.equal(false)
       })
     })
-    describe('unique email', () => {
+  })
+    describe('user email', () => {
       beforeEach(async () => {
         return await User.create({
           email: 'cody@puppybook.com',
           password: 'bones'
         })
-      // it('emails must be unique', () => {
-        
-      // })
+       })
+      xit('email cannot be empty', async () => {
+        const emptyEmailUser= User.build({ email: '', password: '12345'});
+        try {
+          await emptyEmailUser.validate();
+          throw Error('validation should have failed with empty email');
+        } catch (err) {
+          expect(err.message).to.contain('Validation notEmpty on email failed');
+        }
+      })
+      it('email cannot be null', async () => {
+        const emptyEmailUser= User.build({ firstName: 'mary', password: '12345'});
+        try {
+          await emptyEmailUser.validate();
+          throw Error('validation should have failed without an email');
+        } catch (err) {
+          expect(err.message).to.contain('email cannot be null');
+        }
+      })
+      xit('email must be unique', async () => {
+        const repeatEmailUser= User.build({ email: 'cody@puppybook.com', password: '12345'});
+        try {
+          await repeatEmailUser.validate();
+          throw Error('validation should have failed without an unique email');
+        } catch (err) {
+          expect(err.message).to.contain('Validation unique on email failed');
+        }
       })
     })
+    describe('Username', () => {
+      beforeEach(async () => {
+        return await User.create({
+          email: 'cody@puppybook.com',
+          username: 'cody12345',
+          password: 'bones'
+        })
+       })
+      xit('Username must be unique', async () => {
+        const repeatUsername= User.build({ email: 'cdy@puppybook.com',username: 'cody12345', password: '12345'});
+        try {
+          await repeatUsername.validate();
+          throw Error('validation should have failed without an unique username');
+        } catch (err) {
+          expect(err.message).to.contain('Validation unique on username failed');
+        }
+      })
+
   }) // end describe('instanceMethods')
 }) // end describe('User model')

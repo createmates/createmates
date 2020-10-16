@@ -2,11 +2,14 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {getProfileThunk} from '../store/profile'
 import UpdateUserForm from './UpdateUserForm'
+import ProfilePhoto from './ProfilePhoto'
+
 
 
 class UserAccount extends React.Component {
   constructor(props) {
     super(props)
+
   }
 
   componentDidMount() {
@@ -18,11 +21,16 @@ class UserAccount extends React.Component {
     }
   }
 
+
+
+
+
   render() {
     const user = this.props.profile
     return (
       <div>
           {user.id &&
+
           <div className="card">
             <div className="card-body">
             <h6 className="card-title text-center text-dark">Username: {user.username}</h6>
@@ -32,6 +40,7 @@ class UserAccount extends React.Component {
             <p className="card-text text-center text-dark">City: {user.city}</p>
             <p className="card-text text-center text-dark">State: {user.state}</p>
             <p className="card-text text-center text-dark">Bio: {user.bio}</p>
+
             {user.id === this.props.user.id ?
             <UpdateUserForm user={user}/>
             : ''}

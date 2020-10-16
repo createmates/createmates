@@ -11,7 +11,6 @@ export const getProfileThunk = (userId) => async dispatch => {
       const {data} = await axios.get(`/api/users/${userId}`)
       const singleUser = data
       dispatch(getProfile(singleUser))
-      console.log(singleUser)
     } catch (err) {
       console.error(err)
     }
