@@ -88,7 +88,7 @@ router.get('/:userId/matched', async (req, res, next) => {
       
     // })
 // console.log(session)
-    res.json(sessiongit)
+    res.json(session)
   } catch (err){
     next(err)
   }
