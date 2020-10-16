@@ -16,20 +16,13 @@ router.get('/', async (req, res, next) => {
 // POST /api/messages
 router.post('/', async (req, res, next) => {
 
-  // We don't have proper users yet (we'll get there soon, though!).
-  // Instead, we'll findOrCreate an author by name, for simplicity.
-  // Of course, you wouldn't want to do this in a real chat app!
+  console.log("request body: ", req.body);
   try {
-    const [user] = await User.findOrCreate({
-      where: {
-        username: req.body.username || 'Cody'
-      }
-    })
     const message = Message.build(req.body);
-    message.setUser(user, { save: false });
+    message.setUser(req.body.user.id, { save: false });
     await message.save()
     const returnMessage = message.toJSON();
-    returnMessage.user = user;
+    returnMessage.user = req.body.user;
     res.json(returnMessage);
   } catch (err) {
     next(err);
