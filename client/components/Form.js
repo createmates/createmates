@@ -4,7 +4,7 @@ import {addSessionThunk} from '../store/openSessions'
 import PropTypes from "prop-types";
 import profile, {getProfileThunk} from '../store/profile'
 
-export const categories = ['Choose a Category', 'music', 'poem', 'dance', 'painting', 'drawing', 'joke', 'scene', 'script', 'theater improv', 'comedy']
+export const categories = ['Categories', 'Music', 'Poem', 'Dance', 'Painting', 'Drawing', 'Joke', 'Scene', 'Script', 'Theater Improv', 'Comedy']
 class Form extends React.Component {
   constructor(props) {
     super(props);
@@ -52,7 +52,7 @@ class Form extends React.Component {
         tags: tags
       }
       this.props.addSession(newSession);
-      this.props.history.push('/feed') 
+      this.props.history.push('/feed')
     }
   }
 
@@ -60,29 +60,36 @@ class Form extends React.Component {
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
-        <select name="category" onChange={this.handleChange}>
+      <label for="exampleFormControlSelect1">Choose Your Practice</label>
+        <select className="form-control" id="exampleFormControlSelect1" name="category" onChange={this.handleChange}>
           {categories.map(category => (
             <option value={category} key={category}>{category}</option>
           ))}
         </select>
         {this.state.categoryChosen ? (
           <div>
+            <div className="form-group">
             <label htmlFor="blurb">Write a couple of sentences about what you would like to create: </label>
-            <input
+            <textarea className="form-control"
             type="textarea"
             name="blurb"
             placeholder="Tell us more..."
             maxLength="75"
             onChange={this.handleChange}
             />
+            </div>
+              <div className="form-group">
             <label htmlFor="tags">Tags: </label>
             <input
             type="text"
+            className="form-control"
             name="tags"
             placeholder="Separate each tag with a space..."
             onChange={this.handleChange}
             />
-            <button type="submit">Go</button>
+            </div>
+            <button type="submit" className="btn btn-info">Go</button>
+
           </div>
 
         ) : ''

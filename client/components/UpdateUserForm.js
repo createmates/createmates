@@ -1,5 +1,4 @@
 import React from 'react'
-import axios from 'axios'
 import {updateUserThunk} from '../store/user'
 import {connect} from 'react-redux'
 
@@ -43,24 +42,30 @@ class UpdateUserForm extends React.Component {
   render() {
     return (
       <div>
-      <h3>Edit Profile</h3>
-      <form id="user-form" onSubmit={this.handleSubmit}>
-      <label htmlFor="username">Username</label>
+      <a className="btn btn-info" type="button" data-toggle="collapse" data-target="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">Edit Profile</a>
+        <form className="collapse" id="collapseExample" onSubmit={this.handleSubmit}>
+        <div className="form-group">
+          <label htmlFor="username">Username</label>
       <input name="username" type="text" onChange={this.handleChange} value={this.username} />
-
+        </div>
+        <div class="form-group">
       <label htmlFor="email">Email</label>
       <input name="email" type="text" onChange={this.handleChange} value={this.email} />
-
+          </div>
+            <div class="form-group">
       <label htmlFor="city">City</label>
       <input name="city" type="text" onChange={this.handleChange} value={this.city} />
-
+            </div>
+             <div class="form-group">
       <label htmlFor="state">State</label>
       <input name="state" type="text" onChange={this.handleChange} value={this.userState} />
+      </div>
 
       <label htmlFor="bio">Bio</label>
       <input name="bio" type="text" onChange={this.handleChange} value={this.bio} />
-      <button type="submit">Save Changes</button>
+      <button className="btn btn-info btn-sm" type="submit">Save Changes</button>
       </form>
+
       </div>
     )
   }

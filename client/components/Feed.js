@@ -121,7 +121,7 @@ class Feed extends React.Component {
 
                 {this.state.filter
                 ? <form>
-                    <button type="button" onClick={this.undoFilter}>Undo Filters</button>
+                    <button className="btn btn-info btn-lg" type="button" onClick={this.undoFilter}>Undo Filters</button>
                     <br />
                     <label htmlFor="filterCategory">Filter By Category</label>
                     <select name="filterCategory" onChange={this.handleChange}>
@@ -135,17 +135,21 @@ class Feed extends React.Component {
                     <input type="text" name="filterTag" onChange={this.handleChange} placeholder="Enter a Tag"/>
 
                 </form>
-                : <button type="button" onClick={this.filterForm}>Filter</button>}
+                : <button className="btn btn-info btn-lg" type="button" onClick={this.filterForm}>Filter</button>}
                 {openSessions && openSessions.length && openSessions[openSessions.length -1].users[0]
                 ? openSessions.map(session => (
-                    <div key={session.id}>
-                        <h2>{session.category}</h2>
+                    <div className="row" key={session.id}>
+                        <div className="col d-flex justify-content-center">
+                            <div className="card w-75 text-center border-dark mb-3">
+                        <h2 className="card-body">{session.category}</h2>
                         <h3><Link to={`/${session.users[0].id}`}>{session.users[0].username}</Link> writes: </h3>
-                        <p>{session.blurb}</p>
+                        <p className="card-text text-dark">{session.blurb}</p>
                         <div>
                             {session.tags.filter(tag => tag.name !== '').map(tag => (<span key={tag.id}>#{tag.name} </span>))}
                         </div>
-                        <button onClick={() => this.handleMatch(session)} >Match</button>
+                        <button className="btn btn-info btn-lg" onClick={() => this.handleMatch(session)} >Match</button>
+                            </div>
+                        </div>
                     </div>
                 ))
                 : ''}
