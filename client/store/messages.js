@@ -32,8 +32,8 @@ export const sendMessage = message => async (dispatch, getState) => {
 const initialState = [];
 
 
-// :: (State, Action) -> State
-const messagesReducer = (state = initialState, action) => {
+
+const messagesReducer = (state = initialState, action) => {   
     switch (action.type) {
         case GOT_MESSAGES_FROM_SERVER:
             return action.messages

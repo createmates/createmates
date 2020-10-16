@@ -1,6 +1,6 @@
 const {expect} = require('chai')
 const db = require('../index')
-const {User, Tag, Session} = require('.')
+const {User, Tag, Session, Message} = require('.')
 
 describe('Model Association', () => {
     before(() => db.sync({ force: true }));

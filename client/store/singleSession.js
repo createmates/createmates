@@ -1,5 +1,4 @@
 import axios from 'axios'
-import history from '../history'
 
 
 /**
@@ -32,6 +31,17 @@ const getSession = session => ({type: GET_SESSION, session})
      console.error(error)
    }
   }
+ }
+
+ export const getMatchedSessionThunk = (userId) => {
+  return async (dispatch) => {
+    try {
+      const singleSession = await axios.get(`/api/openSessions/${userId}/matched`);
+      dispatch(getSession(singleSession.data));
+     } catch (error) {
+       console.error(error)
+     }
+    }
  }
 
 
