@@ -101,155 +101,155 @@ const exampleTags = [
 const exampleSessions = [
   {
     status: 'unmatched',
-    category: 'dance',
+    category: 'Dance',
     blurb: 'Would love some eyes on a new 30 second phrase I just came up with',
   },
   {
     status: 'unmatched',
-    category: 'joke',
+    category: 'Joke',
     blurb: 'Need some help wording a joke'
   },
   {
     status: 'matched',
-    category: 'painting',
+    category: 'Painting',
     blurb: 'Who wants to paint the sunset?'
   },
   {
     status: 'closed',
-    category: 'poem',
+    category: 'Poem',
     blurb: 'I want to write a sonnet',
     summary: 'We wrote a beautiful sonnet'
   },
   {
     status: 'unmatched',
-    category: 'music',
+    category: 'Music',
     blurb: 'I just wanna jam bro'
   },
   {
     status: 'unmatched',
-    category: 'theater improv',
+    category: 'Theater improv',
     blurb: 'Looking to do some fun theater improv games'
   },
   {
     status: 'unmatched',
-    category: 'drawing',
+    category: 'Drawing',
     blurb: 'Can anyone model for me? I want to draw a portrait. You can keep the finished product!'
   },
   {
     status: 'unmatched',
-    category: 'scene',
+    category: 'Scene',
     blurb: 'Doing a reading of a new scene and would love some outside perspective.'
   },
   {
     status: 'unmatched',
-    category: 'script',
+    category: 'Script',
     blurb: "Is anyone available to read over my new screenplay? I don't know if I like the ending"
   },
   {
     status: 'unmatched',
-    category: 'music',
+    category: 'Music',
     blurb: 'I just wanna jam bro'
   },
   {
     status: 'unmatched',
-    category: 'comedy',
+    category: 'Comedy',
     blurb: 'What is humor? Would love to discuss.'
   },
   {
     status: 'unmatched',
-    category: 'music',
+    category: 'Music',
     blurb: 'Anyone play guitar? I would like to try a duet.'
   },
   {
     status: 'unmatched',
-    category: 'poem',
+    category: 'Poem',
     blurb: 'Does anyone want to brainstorm words that rhyme with "toast"? Trying to write a poem about breakfast'
   },
   {
     status: 'unmatched',
-    category: 'music',
+    category: 'Music',
     blurb: "Let's singggggggggg"
   },
   {
     status: 'unmatched',
-    category: 'dance',
+    category: 'Dance',
     blurb: 'Looking to improvise with a partner. The prompt is: "Be Water"'
-  },  
+  },
   {
     status: 'unmatched',
-    category: 'joke',
+    category: 'Joke',
     blurb: "Knock knock. Who's there? I need help finishing this joke."
   },
   {
     status: 'unmatched',
-    category: 'painting',
+    category: 'Painting',
     blurb: 'Would anyone like to take a look at this painting I just finished? Need feedback.'
   },
   {
     status: 'unmatched',
-    category: 'poem',
+    category: 'Poem',
     blurb: "Let's co-write a poem!"
-  },  
+  },
   {
     status: 'unmatched',
-    category: 'music',
+    category: 'Music',
     blurb: 'Anyone good with lyrics?'
-  },  
+  },
   {
     status: 'unmatched',
-    category: 'theater improv',
+    category: 'Theater improv',
     blurb: 'Beginner improviser. Looking to chat with someone with more experience and get some tips.'
-  },      
+  },
   {
     status: 'unmatched',
-    category: 'drawing',
+    category: 'Drawing',
     blurb: "Let's share each other's work and give each other constructive feedback!"
-  },  
+  },
   {
     status: 'unmatched',
-    category: 'scene',
+    category: 'Scene',
     blurb: 'Any actors that would like to act out this scene with me?'
-  },  
+  },
   {
     status: 'unmatched',
-    category: 'scene',
+    category: 'Scene',
     blurb: "I need help crying on demand for this scene I'm rehearsing. Anyone got tips?"
-  },  
+  },
   {
     status: 'unmatched',
-    category: 'script',
+    category: 'Script',
     blurb: 'Anyone want to brainstorm screenplay ideas?'
-  },  
+  },
   {
     status: 'unmatched',
-    category: 'dance',
+    category: 'Dance',
     blurb: "I'm going to do a Cunningham warmup. Anyone want to join?"
-  },  
+  },
   {
     status: 'unmatched',
-    category: 'poem',
+    category: 'Poem',
     blurb: 'Cannot write the last line of this poem, help!!!'
-  },  
+  },
   {
     status: 'unmatched',
-    category: 'music',
+    category: 'Music',
     blurb: 'Anyone want to do a vocal warmup?'
-  },  
+  },
   {
     status: 'unmatched',
-    category: 'joke',
+    category: 'Joke',
     blurb: "Can someone honestly tell me if I'm funny?"
-  },  
+  },
   {
     status: 'unmatched',
-    category: 'theater improv',
+    category: 'Theater improv',
     blurb: 'Improv actor looking for tips on zoom performances.'
-  },  
+  },
   {
     status: 'unmatched',
-    category: 'drawing',
+    category: 'Drawing',
     blurb: "What's your favorite pencil company? Anyone want to discuss?"
-  },  
+  },
 ]
 
 const seed = async () => {
@@ -272,13 +272,13 @@ const seed = async () => {
     );
 
     const tags = await Promise.all(
-      exampleTags.map(tag => 
+      exampleTags.map(tag =>
         Tag.create({name: tag.name})
       )
     );
 
     const sessions = await Promise.all(
-      exampleSessions.map(session => 
+      exampleSessions.map(session =>
         Session.create({
           status: session.status,
           category: session.category,
@@ -295,7 +295,7 @@ const seed = async () => {
         await sessions[i].addTag(tags[Math.floor(Math.random() * tags.length)])
       }
     }
-    
+
   } catch (err) {
     console.log(err);
   }

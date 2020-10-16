@@ -28,20 +28,23 @@ class UserAccount extends React.Component {
   render() {
     const user = this.props.profile
     return (
-      <div id="single-user">
+      <div>
           {user.id &&
-            <div>
-            <ProfilePhoto />
-            <h1>Username: {user.username}</h1>
-            <h3>{user.firstName}</h3>
-            <h3>{user.lastName}</h3>
-            <h3>Email: {user.email}</h3>
-            <h3>City: {user.city}</h3>
-            <h3>State: {user.state}</h3>
-            <h3>Bio: {user.bio}</h3>
+
+          <div className="card">
+            <div className="card-body">
+            <h6 className="card-title text-center text-dark">Username: {user.username}</h6>
+            <p className="card-text text-center text-dark">{user.firstName}</p>
+            <p className="card-text text-center text-dark">{user.lastName}</p>
+            <p className="card-text text-center text-dark">Email: {user.email}</p>
+            <p className="card-text text-center text-dark">City: {user.city}</p>
+            <p className="card-text text-center text-dark">State: {user.state}</p>
+            <p className="card-text text-center text-dark">Bio: {user.bio}</p>
+
             {user.id === this.props.user.id ?
             <UpdateUserForm user={user}/>
             : ''}
+            </div>
             </div>
 
           }

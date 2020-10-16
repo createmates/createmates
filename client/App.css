@@ -2,8 +2,8 @@ html,
 body,
 #root {
   font: 0.9rem sans-serif;
-  background: #c4cedf;
-  color: #1e2432;
+  background: #212d42;
+  color: rgb(214, 213, 213);
   height: 100%;
   margin: 0;
 }
@@ -59,12 +59,11 @@ p {
   letter-spacing: 0.05em;
 }
 
-.city-temp {
-  font-size: 5rem;
-  font-weight: bold;
-  margin-top: 10px;
-  color: #1e2432;
-  text-align: center;
+.card {
+  margin: 0 auto;
+  width: auto;
+  float: none;
+  margin-bottom: 10px;
 }
 
 .city sup {

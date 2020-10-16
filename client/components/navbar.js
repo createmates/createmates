@@ -7,27 +7,38 @@ import { getProfileThunk } from '../store/profile'
 
 const Navbar = ({ handleClick, handleClickAccount, isLoggedIn, isAdmin, user }) => (
   <div>
-    <div className="main-header">
-      <h1>CreateMates</h1>
-    </div>
-    <nav>
+    <nav className="navbar navbar-expand-lg navbar-light bg-light">
+      <a className="navbar-brand" href="/home">
+        <img src="https://legacy.earlham.edu/~tobeyfo/musictechnology/Images/sin_wavetable.png" width="30" height="30" className="d-inline-block align-top" alt="" loading="lazy"/>CREATEMATES
+      </a>
+      <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <span className="navbar-toggler-icon"></span>
+  </button>
       {isLoggedIn ? (
-        <div>
+        <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div className="navbar-nav">
           {/* The navbar will show these links after you log in */}
-          <Link to="/home">Home</Link>
-          <Link to="/feed">Feed</Link>
-          <a href="/myAccount" onClick={handleClickAccount(user.id)}>
-            My Account
-          </a>
-          <a href="#" onClick={handleClick}>
-            Logout
-          </a>
 
+
+
+             <a className="nav-link active" href="/home">Create<span className="sr-only">(current)</span></a>
+
+
+             <a className="nav-link" href="/myAccount" onClick={handleClickAccount(user.id)}>My Account<span className="sr-only">(current)</span></a>
+
+             <a className="nav-link" href="/feed">Match with a Mate<span className="sr-only">(current)</span></a>
+
+             <a className="nav-link" href="#" onClick={handleClick}>Logout<span className="sr-only">(current)</span></a>
+
+
+
+        </div>
         </div>
       ) : (
         <div>{/* The navbar will show these links before you log in */}</div>
       )}
     </nav>
+
     <hr />
   </div>
 );
