@@ -76,7 +76,7 @@ const Session = (props) => {
     return (
     //render two videos
     <div id="video-grid">
-      {session.users[1]
+      {session.users && session.users[1]
        ?<div>
           <div>
             <h3><Link to={`/${session.users[0].id}`}>{session.users[0].username}</Link></h3>

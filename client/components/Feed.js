@@ -89,7 +89,7 @@ class Feed extends React.Component {
             }
             await this.props.updateSession(updatedSession)
             await this.props.getSession(session.id)
-            this.props.history.push(`/session/${roomId}`)
+            this.props.history.push(`/session`)
         } else {
             alert('YOU MUST DELETE YOUR OPEN REQUEST BEFORE MATCHING WITH ANOTHER USER\'S REQUEST');
         }
