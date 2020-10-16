@@ -82,6 +82,18 @@ export const updateUserThunk = (userFormData, userId) => {
   }
 }
 
+export const savePhotoThunk = (profilePhoto, userId) => {
+  return async dispatch => {
+    try {
+      const userRes = await axios.put(`/api/users/${userId}`, profilePhoto)
+      dispatch(getUser(userRes.data))
+      dispatch(getProfile(userRes.data))
+    } catch (err) {
+      console.error(err)
+    }
+  }
+}
+
 export default function(state = defaultUser, action) {
   switch (action.type) {
     case GET_USER:

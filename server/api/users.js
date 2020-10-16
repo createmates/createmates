@@ -20,6 +20,7 @@ router.get("/", isAdminMiddleware, async (req, res, next) => {
         "medium",
         "email",
         "isAdmin",
+        "profilePhoto"
       ],
     });
     res.json(users);
@@ -53,6 +54,5 @@ let profile = await User.findByPk(req.params.userid);
   }
 
 });
-
 
 

@@ -2,7 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {getProfileThunk} from '../store/profile'
 import UpdateUserForm from './UpdateUserForm'
-import {ProfilePhoto2} from './ProfilePhoto2'
+import ProfilePhoto from './ProfilePhoto'
 
 
 
@@ -31,7 +31,7 @@ class UserAccount extends React.Component {
       <div id="single-user">
           {user.id &&
             <div>
-            <ProfilePhoto2 />
+            <ProfilePhoto />
             <h1>Username: {user.username}</h1>
             <h3>{user.firstName}</h3>
             <h3>{user.lastName}</h3>
