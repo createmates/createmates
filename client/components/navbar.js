@@ -9,7 +9,7 @@ const Navbar = ({ handleClick, handleClickAccount, isLoggedIn, isAdmin, user }) 
   <div>
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <a className="navbar-brand" href="/home">
-        <img src="https://legacy.earlham.edu/~tobeyfo/musictechnology/Images/sin_wavetable.png" width="30" height="30" className="d-inline-block align-top" alt="" loading="lazy"/>CREATEMATES
+        <img src="/public/images/sin_wavetable.png" width="30" height="30" className="d-inline-block align-top" alt="" loading="lazy"/>CREATEMATES
       </a>
       <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
     <span className="navbar-toggler-icon"></span>

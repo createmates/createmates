@@ -78,26 +78,30 @@ console.log(props.user)
 // console.log(session)
     return (
     //render two videos
-    
+
     <div id="video-grid">
       {session.users && session.users[1]
        ?<div>
-          <div>
+          <h2>{session.blurb}</h2>
+          <div className="card d-flex justify-content" style={{width: "18rem"}}>
             <h3><Link to={`/${session.users[0].id}`}>{session.users[0].username}</Link></h3>
             <h3>Medium: {session.users[0].medium}</h3>
           </div>
           <div>
+          <div className="card" style={{width: "18rem"}}>
             <h3><Link to={`/${session.users[1].id}`}>{session.users[1].username}</Link></h3>
             <h3>Medium: {session.users[1].medium}</h3>
           </div>
+          </div>
         </div>
         : ''}
-
-      <video muted ref={userVideo} autoPlay style={{ margin: "200px" }}></video>
+        <div>
+      <video className="d-flex align-items-end" muted ref={userVideo} autoPlay style={{ margin: "200px" }}></video>
+      </div>
       {/* <video ref={partnerVideo} autoPlay></video> */}
-      <h2>{session.blurb}</h2>
+
       <MessagesList />
-      <Link to="/sessionSummary"><button>Finish Session</button></Link>
+      <Link to="/sessionSummary"><button className="btn btn-info btn-md">Finish Session</button></Link>
     </div>
   );
 
