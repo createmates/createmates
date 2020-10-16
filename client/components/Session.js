@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import socket from "../socket";
 import {Link} from 'react-router-dom'
 import MessagesList from './MessagesList';
+import { getMatchedSessionThunk } from "../store";
 
 const myPeer = new Peer(undefined, {
   host: "/",
@@ -29,6 +30,8 @@ const Session = (props) => {
       // Uncomment to enable audio
       audio: true,
     };
+console.log(props.user)
+    props.getSession(props.user.id)
 
     navigator.mediaDevices.getUserMedia(constraints).then((stream) => {
       setStream(stream);
@@ -72,11 +75,12 @@ const Session = (props) => {
   });
 
 
-
+console.log(session)
     return (
     //render two videos
+    
     <div id="video-grid">
-      {session.users && session.users[1]
+      {session.users[1]
        ?<div>
           <div>
             <h3><Link to={`/${session.users[0].id}`}>{session.users[0].username}</Link></h3>
@@ -93,7 +97,7 @@ const Session = (props) => {
       {/* <video ref={partnerVideo} autoPlay></video> */}
       <h2>{session.blurb}</h2>
       <MessagesList />
-      <Link to="/session/summary"><button>Finish Session</button></Link>
+      <Link to="/sessionSummary"><button>Finish Session</button></Link>
     </div>
   );
 
@@ -102,8 +106,15 @@ const Session = (props) => {
 const mapState = (state) => {
   return {
     session: state.singleSession,
+    user: state.user
   };
 };
 
+const mapDispatch = dispatch => {
+  return {
+    getSession: (userId) => dispatch(getMatchedSessionThunk(userId))
+  }
+}
 
-export default connect(mapState)(Session);
+
+export default connect(mapState, mapDispatch)(Session);

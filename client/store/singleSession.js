@@ -33,6 +33,17 @@ const getSession = session => ({type: GET_SESSION, session})
   }
  }
 
+ export const getMatchedSessionThunk = (userId) => {
+  return async (dispatch) => {
+    try {
+      const singleSession = await axios.get(`/api/openSessions/${userId}/matched`);
+      dispatch(getSession(singleSession.data));
+     } catch (error) {
+       console.error(error)
+     }
+    }
+ }
+
 
 /**
  * REDUCER

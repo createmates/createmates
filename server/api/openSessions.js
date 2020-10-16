@@ -63,6 +63,25 @@ router.get("/:sessionId", async (req, res, next) => {
   }
 });
 
+// GET /api/openSessions/:userId/matched
+router.get('/:userId/matched', async (req, res, next) => {
+  try {
+    const sessionArray = await Session.findAll({
+      where: {status: 'matched'},
+      include:[User]
+    })
+    console.log(sessionArray)
+    const session = sessionArray.filter(session => {
+      console.log(session.users[0].user.id)
+      return session.users[0].user.id === req.params.userId || session.users[1].user.id === req.params.userId 
+    })
+
+    res.json(session[0])
+  } catch (err){
+    next(err)
+  }
+})
+
 // GET /api/openSessions/:sessionId/messages
 router.get('/:sessionId/messages', async (req, res, next) => {
   try {

@@ -28,7 +28,7 @@ class Routes extends Component {
           <Switch>
             {/* Routes placed here are only available after logging in */}
             <Route exact path="/home" component={UserHome} />
-            <Route exact path="/session/summary" component={Summary} />
+            <Route path="/sessionSummary" component={Summary} />
             <Route path="/session" component={Session} />
             <Route path="/feed" component={Feed} />
             <Route path="/myAccount" component={UserAccount} />
