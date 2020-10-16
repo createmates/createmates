@@ -8,7 +8,7 @@ import {savePhotoThunk} from '../store/user'
 
      this.state = {
        profilePhoto: '',
-       file: null
+       file: ""
      }
 
      this.handleSubmit = this.handleSubmit.bind(this)
@@ -26,8 +26,10 @@ import {savePhotoThunk} from '../store/user'
 
   handleImageUpload = event => {
     const [file] = event.target.files;
+
     console.log("what's the", file)
     if(file) {
+      this.fileName = file.name
       const reader = new FileReader();
       const {current} = this.uploadedImage;
       current.file = file;
@@ -46,8 +48,9 @@ import {savePhotoThunk} from '../store/user'
 
   handleSubmit(event) {
     event.preventDefault()
-    const userPhoto = this.props.user.profilePhoto
-    this.props.savePhoto(this.state, userPhoto)
+    const userPhoto = this.fileName
+    const userId = this.props.user.id
+    this.props.savePhoto(userPhoto, userId)
   }
 
 render (){
@@ -94,8 +97,8 @@ const mapState = (state) => {
 
 const mapDispatch = (dispatch) => {
   return {
-    savePhoto: (user, userId, profilePhoto) => {
-      dispatch(savePhotoThunk(user, userId, profilePhoto))
+    savePhoto: (userPhoto, userId) => {
+      dispatch(savePhotoThunk(userPhoto, userId))
     }
   }
 }

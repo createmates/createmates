@@ -84,10 +84,12 @@ export const updateUserThunk = (userFormData, userId) => {
 
 export const savePhotoThunk = (profilePhoto, userId) => {
   return async dispatch => {
+
     try {
       const userRes = await axios.put(`/api/users/${userId}`, profilePhoto)
       dispatch(getUser(userRes.data))
       dispatch(getProfile(userRes.data))
+      console.log("what the fuckkkk", userRes, userId, profilePhoto)
     } catch (err) {
       console.error(err)
     }
