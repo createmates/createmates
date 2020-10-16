@@ -20,19 +20,21 @@ export class NewMessageEntry extends Component {
 
   render () {
     return (
+      <div className="form-group">
       <form id="new-message-form" onSubmit={this.handleSubmit}>
-        <div className="input-group input-group-lg">
-          <input
+        <div className="input-group input-group-lg w-50 p-3">
+          <textarea
             className="form-control"
             type="text"
             name="content"
             placeholder="Say something nice..."
           />
           <span className="input-group-btn">
-            <button className="btn btn-default" type="submit">Chat!</button>
+            <button className="btn btn-info btn-md" type="submit">Chat!</button>
           </span>
         </div>
       </form>
+      </div>
     );
   }
 }
