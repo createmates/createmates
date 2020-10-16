@@ -8,7 +8,7 @@ import {savePhotoThunk} from '../store/user'
 
      this.state = {
        profilePhoto: '',
-       file: ""
+       fileName: ""
      }
 
      this.handleSubmit = this.handleSubmit.bind(this)
@@ -18,18 +18,24 @@ import {savePhotoThunk} from '../store/user'
   componentDidMount() {
     this.setState({
       profilePhoto: this.props.user.profilePhoto
+
     })
   }
 
-  uploadedImage = React.createRef(null);
- imageUploader = React.createRef(null);
+uploadedImage = React.createRef(null);
+imageUploader = React.createRef(null);
+
+
 
   handleImageUpload = event => {
     const [file] = event.target.files;
 
     console.log("what's the", file)
     if(file) {
-      this.fileName = file.name
+       this.setState({
+        fileName: file.name
+       })
+
       const reader = new FileReader();
       const {current} = this.uploadedImage;
       current.file = file;
@@ -48,9 +54,9 @@ import {savePhotoThunk} from '../store/user'
 
   handleSubmit(event) {
     event.preventDefault()
-    const userPhoto = this.fileName
+    const userPhoto = this.state.fileName
     const userId = this.props.user.id
-    this.props.savePhoto(userPhoto, userId)
+    this.props.savePhoto({profilePhoto: userPhoto}, userId)
   }
 
 render (){
