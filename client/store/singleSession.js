@@ -1,4 +1,5 @@
 import axios from 'axios'
+import socket from '../socket';
 
 
 /**
@@ -38,6 +39,7 @@ const getSession = session => ({type: GET_SESSION, session})
     try {
       const singleSession = await axios.get(`/api/openSessions/${userId}/matched`);
       dispatch(getSession(singleSession.data));
+      socket.emit('create or join', singleSession.data.roomId)
      } catch (error) {
        console.error(error)
      }
