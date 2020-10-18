@@ -2,6 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import { Link } from 'react-router-dom'
 import {v4 as uuidv4} from 'uuid'
+import socket from '../socket'
 import {deleteSessionThunk, getOpenSessionsThunk, updateSessionThunk} from '../store/openSessions'
 import {getSingleSessionThunk} from "../store/singleSession"
 import {categories} from './Form'
@@ -90,6 +91,8 @@ class Feed extends React.Component {
             await this.props.updateSession(updatedSession)
             await this.props.getSession(session.id)
             this.props.history.push(`/session`)
+            //starting the room in the socket connection
+            socket.emit('create or join', roomId)
         } else {
             alert('YOU MUST DELETE YOUR OPEN REQUEST BEFORE MATCHING WITH ANOTHER USER\'S REQUEST');
         }

@@ -19,7 +19,6 @@ export const getProfileThunk = (userId) => async dispatch => {
 export default function(state = defaultProfile, action) {
     switch (action.type) {
       case GET_PROFILE:
-        console.log('inReducer', action.profile)
         return action.profile
       default:
         return state

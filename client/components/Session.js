@@ -1,81 +1,39 @@
 import React, { useEffect, useRef, useState } from "react";
 import { connect } from "react-redux";
-import socket from "../socket";
 import {Link} from 'react-router-dom'
 import MessagesList from './MessagesList';
 import { getMatchedSessionThunk } from "../store";
 
-const myPeer = new Peer(undefined, {
-  host: "/",
-  port: "3081",
-});
 
+export let roomId;
 
 const Session = (props) => {
 
   let completed = false;
 
-
-
   const [stream, setStream] = useState();
-  const [peers, setPeers] = useState({});
 
   const session = props.session
   const userVideo = useRef();
   const partnerVideo = useRef();
 
+  roomId = session.roomId
+
   useEffect(() => {
-    const constraints = {
-      video: { facingMode: "user" },
-      // Uncomment to enable audio
-      audio: true,
-    };
-console.log(props.user)
-    props.getSession(props.user.id)
-
-    navigator.mediaDevices.getUserMedia(constraints).then((stream) => {
-      setStream(stream);
-      if (userVideo.current) {
-        userVideo.current.srcObject = stream;
-      }
-
-      myPeer.on("call", (call) => {
-        call.answer(stream);
-        call.on("stream", (userVideoStream) => {
-          if (partnerVideo.current) {
-            partnerVideo.current.srcObject = userVideoStream;
-          }
-        });
-      });
-      socket.on("user-connected", (userid) => {
-        console.log("userId", userid);
-        const call = myPeer.call(userid, stream);
-        call.on("stream", (userVideoStream) => {
-          if (partnerVideo.current) {
-            partnerVideo.current.srcObject = userVideoStream;
-          }
-        });
-        call.on("close", () => {
-          video.remove();
-        });
-        setPeers({ userId: call });
-      });
-    });
-  }, []);
-
-  socket.on("user-disconnected", (userid) => {
-    if (peers[userid]) {
-      peers[userid].close();
+    
+    if(!session.users || session.status !== 'matched'){
+        props.getSession(props.user.id)
     }
-  });
+        
+    setStream(props.videos.myVideo)
+    if(userVideo.current && props.videos.myVideo.id){
+      userVideo.current.srcObject = props.videos.myVideo
+    }
+    if(partnerVideo.current && props.videos.partnersVideo && props.videos.partnersVideo.id){
+      partnerVideo.current.srcObject = props.videos.partnersVideo
+    }
+  })
 
-  myPeer.on("open", (id) => {
-    console.log(session.roomId)
-    socket.emit("join-room", session.roomId, id); //outgoing user id?
-  });
-
-
-// console.log(session)
     return (
     //render two videos
 
@@ -98,7 +56,7 @@ console.log(props.user)
         <div>
       <video className="d-flex align-items-end" muted ref={userVideo} autoPlay style={{ margin: "200px" }}></video>
       </div>
-      {/* <video ref={partnerVideo} autoPlay></video> */}
+      <video ref={partnerVideo} autoPlay style={{marginTop: '200px', marginLeft: '600px'}}></video>
 
       <MessagesList />
       <Link to="/sessionSummary"><button className="btn btn-info btn-md">Finish Session</button></Link>
@@ -110,7 +68,8 @@ console.log(props.user)
 const mapState = (state) => {
   return {
     session: state.singleSession,
-    user: state.user
+    user: state.user,
+    videos: state.videos
   };
 };
 

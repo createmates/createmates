@@ -68,26 +68,8 @@ router.get('/:userId/matched', async (req, res, next) => {
   try {
     const userSession = await User.findAll({where: {id: req.params.userId}, include: {
       model: Session, where: {status: 'matched'}}})
-    console.log(userSession[0].sessions)
     const session = await Session.findOne({where: {id: userSession[0].sessions[0].id}, include: [User]})
-    console.log(session)
-    // const sessionArray = await Session.findAll({
-    //   where: {status: 'matched'},
-    //   include:[User]
-    // })
-    // console.log(sessionArray)
-    // const session = sessionArray.filter(session => {
-    //   console.log(session.users)
-    //   if(session.users[0].id === req.params.userId){
-    //     return true
-    //   } else if(session.users[1].id === req.params.userId){
-    //     return true
-    //   }else{
-    //     return false
-    //   }
-      
-    // })
-// console.log(session)
+  
     res.json(session)
   } catch (err){
     next(err)
