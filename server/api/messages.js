@@ -16,7 +16,6 @@ router.get('/', async (req, res, next) => {
 // POST /api/messages
 router.post('/', async (req, res, next) => {
 
-  console.log("request body: ", req.body);
   try {
     const message = Message.build(req.body);
     message.setUser(req.body.user.id, { save: false });

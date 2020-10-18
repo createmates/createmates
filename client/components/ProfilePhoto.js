@@ -30,7 +30,6 @@ imageUploader = React.createRef(null);
   handleImageUpload = event => {
     const [file] = event.target.files;
 
-    console.log("what's the", file)
     if(file) {
        this.setState({
         fileName: file.name
