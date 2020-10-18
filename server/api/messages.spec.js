@@ -53,8 +53,7 @@ let testSessions;
         .post('/api/messages')
         .send({
             content: 'bye',
-            userId: testUser.id,
-            sessionId: testSessions.id,
+            user: testUser,
             username: 'doyouevenliftbro'
         }).expect(200)
 
@@ -62,7 +61,7 @@ let testSessions;
         expect(res.body.content).to.be.equal('bye')
     })
 //there was something wrong with the route when I wrote this test
-    xit('PUT /api/messages/:messageId updates my messages', async () => {
+    it('PUT /api/messages/:messageId updates my messages', async () => {
         const res = await request(app)
         .put('/api/messages/1')
         .send({
