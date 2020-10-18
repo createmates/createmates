@@ -89,7 +89,7 @@ export const savePhotoThunk = (userPhoto, userId) => {
       const userRes = await axios.put(`/api/users/${userId}`, userPhoto)
       dispatch(getUser(userRes.data))
       dispatch(getProfile(userRes.data))
-      console.log("what the fuckkkk", userPhoto)
+
     } catch (err) {
       console.error(err)
     }
