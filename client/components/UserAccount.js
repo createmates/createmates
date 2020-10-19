@@ -34,8 +34,9 @@ class UserAccount extends React.Component {
           <div className="card">
             <div className="card-body">
             <h6 className="card-title text-center text-dark">Username: {user.username}</h6>
-            <p className="card-text text-center text-dark">{user.firstName}</p>
-            <p className="card-text text-center text-dark">{user.lastName}</p>
+            <p className="card-text text-center text-dark">Medium: {user.medium}</p>
+            <p className="card-text text-center text-dark">First Name: {user.firstName}</p>
+            <p className="card-text text-center text-dark">Last Name: {user.lastName}</p>
             <p className="card-text text-center text-dark">Email: {user.email}</p>
             <p className="card-text text-center text-dark">City: {user.city}</p>
             <p className="card-text text-center text-dark">State: {user.state}</p>
