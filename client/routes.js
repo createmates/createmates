@@ -10,6 +10,8 @@ import Feed from "./components/Feed"
 import UserAccount from './components/UserAccount'
 import SignUpForm from './components/SignUpForm'
 import Summary from './components/Summary'
+import SignUpAccountInfo from "./components/SignUpAccountInfo";
+import SignUpFeedGuide from "./components/SignUpFeedGuide";
 
 class Routes extends Component {
   componentDidMount() {
@@ -32,8 +34,9 @@ class Routes extends Component {
             <Route path="/session" component={Session} />
             <Route path="/feed" component={Feed} />
             <Route path="/myAccount" component={UserAccount} />
+            <Route path="/startMyAccount" component={SignUpAccountInfo} />
+            <Route path='/signUpFeedGuide' component={SignUpFeedGuide} />
             <Route path="/:userId" component={UserAccount} />
-            <Route component={UserHome} />
           </Switch>
         )}
         {/* Displays our Login component as a fallback */}

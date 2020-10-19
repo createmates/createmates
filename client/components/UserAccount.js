@@ -27,12 +27,12 @@ class UserAccount extends React.Component {
 
   render() {
     const user = this.props.profile
-    return (
+    
+    if(user.id){
+      return (
       <div>
-          {user.id &&
-
-          <div className="card">
-            <div className="card-body">
+        <div className="card">
+          <div className="card-body">
             <h6 className="card-title text-center text-dark">Username: {user.username}</h6>
             <p className="card-text text-center text-dark">Medium: {user.medium}</p>
             <p className="card-text text-center text-dark">First Name: {user.firstName}</p>
@@ -45,12 +45,13 @@ class UserAccount extends React.Component {
             {user.id === this.props.user.id ?
             <UpdateUserForm user={user}/>
             : ''}
-            </div>
-            </div>
-
-          }
+          </div>
+        </div>
       </div>
-    )
+      )
+    } else {
+      return <div>Loading</div>
+    }
   }
 }
 

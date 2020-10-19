@@ -54,7 +54,7 @@ export const signup = signupInfo => async dispatch => {
   }
   try {
     dispatch(getUser(response.data))
-    history.push('/home')
+    history.push('/startMyAccount')
   } catch (dispatchOrHistoryErr) {
     console.error(dispatchOrHistoryErr)
   }

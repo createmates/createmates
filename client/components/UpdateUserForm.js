@@ -54,15 +54,15 @@ class UpdateUserForm extends React.Component {
           <label htmlFor="medium">Medium</label>
       <input name="medium" type="text" onChange={this.handleChange} value={this.medium} />
         </div>
-        <div class="form-group">
+        <div className="form-group">
       <label htmlFor="email">Email</label>
       <input name="email" type="text" onChange={this.handleChange} value={this.email} />
           </div>
-            <div class="form-group">
+            <div className="form-group">
       <label htmlFor="city">City</label>
       <input name="city" type="text" onChange={this.handleChange} value={this.city} />
             </div>
-             <div class="form-group">
+             <div className="form-group">
       <label htmlFor="state">State</label>
       <input name="state" type="text" onChange={this.handleChange} value={this.userState} />
       </div>
