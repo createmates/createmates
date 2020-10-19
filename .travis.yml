@@ -1,0 +1,30 @@
+language: node_js
+node_js:
+  - 12 # uses version 12
+services:
+  - postgresql # starts up postgres
+addons:
+  postgresql: '10' # recent postgres version on Travis
+dist: xenial # uses xenial environment
+notifications:
+  email:
+    on_success: change # default: change (only when going from broken to fixed)
+    on_failure: always # default: always (which is annoying, as it should be)
+install:
+  - npm ci # faster, goes only from package-lock
+before_script:
+  - psql -c 'create database "createmates-test";' -U postgres # remember to change this name if you change it elsewhere (e.g. package.json)
+script:
+  - npm test # test the code
+  - npm run build-client # make the bundle
+before_deploy: # omit node_modules, since we set skip_cleanup below
+  - rm -rf node_modules
+deploy: # see README for details on these keys
+  # prevents travis from deleting the build
+  skip_cleanup: true
+  provider: heroku
+  # app should be your heroku app name; see README
+  app: createmates
+  # the secure key indicates an encrypted value; see README
+  api_key:
+    secure: qhErhRtEh7BP6Xe1iY85ytKsLCgBDhAiD5EQSnm03H3gLAcg3OwsbdB34F++Y/gLQSOL1C4kX1h7kYrv1KaHtXT4pAP49djn2ZRtwtB5ED548Re6lIN0q2RDoHBEYBSor8eNU+XBHyEZ2D2hD5VUhf6BGnsuDEjPxCWUHjhtv+Vxny7zTgMRAvYlc8c+EMnhK7fbaePaYTQtkxJJMURp+8Wq6XRSZTGqsr1Oo3iYldM5iU5wmR7yxFbNdfoaW/d2O7Z/7QyN1ZWvN1ZbxK4e3pDe8wWifhwX/e8xbcMGidMBit5m254hXUn4CEEOskM/estBzL7S2ftapXxDw9dgEReu6OewOZCLTdEIkFKzLQlXKJHa3qV0cnC58nWdy8+f5TxJFmJst/6myhYmQ4JqyTel6ehemLPCILVSL7R+ohxOmZ5lzj4CzxMuasNV8yY8GUBmfr+vZzMkYrGBHjCgVHGlpz5cixtERb7PLfmIFvXY/rVbrycEcTojJZRo4ml0ZtCw2Ae119Enus5en3znb3Kbdo922rxOktW321Encw/hs2xWScRkTp26+EfpR8kFrIduTIjpRyYzxY5/haNNBgtXr0J1xArsdxUwPOh1sEEicK0zwT/cF4Yrq8MHCZX+C39AvB1nCOmzhldssqiNZuv8PD7rR7sFJBKPl7GEPzU=
