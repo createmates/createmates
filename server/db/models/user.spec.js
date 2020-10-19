@@ -54,13 +54,12 @@ describe('User model', () => {
           expect(err.message).to.contain('email cannot be null');
         }
       })
-      xit('email must be unique', async () => {
-        const repeatEmailUser= User.build({ email: 'cody@puppybook.com', password: '12345'});
+      it('email must be unique', async () => {
         try {
-          await repeatEmailUser.validate();
+          await User.create({ email: 'cody@puppybook.com', password: '12345'});
           throw Error('validation should have failed without an unique email');
         } catch (err) {
-          expect(err.message).to.contain('Validation unique on email failed');
+          expect(err.message).to.contain('Validation error');
         }
       })
     })
@@ -72,13 +71,12 @@ describe('User model', () => {
           password: 'bones'
         })
        })
-      xit('Username must be unique', async () => {
-        const repeatUsername= User.build({ email: 'cdy@puppybook.com',username: 'cody12345', password: '12345'});
+      it('Username must be unique', async () => {
         try {
-          await repeatUsername.validate();
+          await User.create({ email: 'cdy@puppybook.com',username: 'cody12345', password: '12345'});
           throw Error('validation should have failed without an unique username');
         } catch (err) {
-          expect(err.message).to.contain('Validation unique on username failed');
+          expect(err.message).to.contain('Validation error');
         }
       })
 
