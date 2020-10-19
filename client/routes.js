@@ -33,6 +33,7 @@ class Routes extends Component {
             <Route path="/feed" component={Feed} />
             <Route path="/myAccount" component={UserAccount} />
             <Route path="/:userId" component={UserAccount} />
+            <Route component={UserHome} />
           </Switch>
         )}
         {/* Displays our Login component as a fallback */}

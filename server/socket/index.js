@@ -1,8 +1,8 @@
 module.exports = io => {
   io.on('connection', socket => {
     console.log(`A socket connection to the server has been made: ${socket.id}`)
-    
-    //when client emits create or join 
+
+    //when client emits create or join
     socket.on('create or join', function(room){
         console.log('create or jotn to room', room)
         //count number of users in room
@@ -20,9 +20,9 @@ module.exports = io => {
           socket.emit('full', room)
         }
       })
-      
-      
-      //relay only handlers 
+
+
+      //relay only handlers
       socket.on('new-message', message => {
         socket.broadcast.emit('new-message', message);
       });
@@ -40,6 +40,6 @@ module.exports = io => {
       })
      socket.on('disconnect', () => {
       console.log(`${socket.id} has left the building`)
-    })   
+    })
   })
 }
