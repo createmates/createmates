@@ -23,7 +23,6 @@ const Navbar = ({ handleClick, handleClickAccount, isLoggedIn, isAdmin, user }) 
 
              <a className="nav-link active" href="/home">Create<span className="sr-only">(current)</span></a>
 
-
              <a className="nav-link" href="/myAccount" onClick={handleClickAccount(user.id)}>My Account<span className="sr-only">(current)</span></a>
 
              <a className="nav-link" href="/feed">Match with a Mate<span className="sr-only">(current)</span></a>

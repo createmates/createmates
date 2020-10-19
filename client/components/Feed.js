@@ -4,7 +4,7 @@ import {v4 as uuidv4} from 'uuid'
 import socket from '../socket'
 import {deleteSessionThunk, getOpenSessionsThunk, updateSessionThunk} from '../store/openSessions'
 import {categories} from './Form'
-import SessionCard from './SessionCard'
+import OpenRequestCard from './OpenRequestCard'
 
 class Feed extends React.Component {
     constructor() {
@@ -140,7 +140,7 @@ class Feed extends React.Component {
                 : <button className="btn btn-info btn-lg" type="button" onClick={this.filterForm}>Filter</button>}
                 
                 {openSessions && openSessions.length && openSessions[openSessions.length -1].users[0]
-                    ? openSessions.map(session => <SessionCard session={session} key={session.id} />)
+                    ? openSessions.map(session => <OpenRequestCard session={session} key={session.id} />)
                     : <h2>No Open Requests found</h2>
                 }
 

@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-const SessionCard = props => {
+const OpenRequestCard = props => {
     const session = props.session
     return (
         <div className="row">
@@ -20,4 +20,4 @@ const SessionCard = props => {
     )
 }
 
-export default SessionCard
+export default OpenRequestCard

@@ -23,10 +23,6 @@ export default class UserHome extends React.Component {
 
        </div>
 
-
-
-
-
     );
   }
 };

@@ -73,7 +73,7 @@ export const getSingleUserThunk = (userId) => async dispatch => {
 export const updateUserThunk = (userFormData, userId) => {
   return async dispatch => {
     try {
-      const userRes = await axios.put(`/api/users/${userId}`,userFormData)
+      const userRes = await axios.put(`/api/users/${userId}`, userFormData)
       dispatch(getUser(userRes.data))
       dispatch(getProfile(userRes.data))
     } catch(err) {
