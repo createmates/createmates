@@ -3,26 +3,22 @@ import {connect} from 'react-redux'
 import { Link } from 'react-router-dom'
 import {v4 as uuidv4} from 'uuid'
 import socket from '../socket'
-import {deleteSessionThunk, getOpenSessionsThunk, updateSessionThunk} from '../store/openSessions'
+import {getOpenSessionsThunk} from '../store/openSessions'
 import {getSingleSessionThunk} from "../store/singleSession"
 import {categories} from './Form'
+import MyRequest from './MyRequest';
 
 class Feed extends React.Component {
     constructor() {
         super()
         this.state = {
-            updatingId: false,
-            category: '',
-            blurb: '',
-            tags: '',
             filter: false,
             filterCategory: 'Choose a Category',
             filterUser: '',
             filterTag: ''
         }
-        this.handleUpdate = this.handleUpdate.bind(this)
+
         this.handleChange = this.handleChange.bind(this)
-        this.handleSubmit = this.handleSubmit.bind(this)
         this.filterForm = this.filterForm.bind(this)
         this.undoFilter = this.undoFilter.bind(this)
         this.handleMatch = this.handleMatch.bind(this)
@@ -30,17 +26,6 @@ class Feed extends React.Component {
 
     componentDidMount() {
         this.props.getOpenSessions()
-    }
-    handleUpdate(sessionToUpdate){
-        const tags = sessionToUpdate.tags.reduce((str, tag) => {
-            return str += tag.name + " "
-        }, '')
-        this.setState({
-            updatingId: sessionToUpdate.id,
-            category: sessionToUpdate.category,
-            blurb: sessionToUpdate.blurb,
-            tags: tags
-        })
     }
 
     handleChange = event => {
@@ -53,17 +38,6 @@ class Feed extends React.Component {
           [currentKey]: value
         });
       };
-
-    handleSubmit() {
-        const tags = this.state.tags.split(' ')
-        const updatedSession = {
-            blurb: this.state.blurb,
-            category: this.state.category,
-            tags: tags,
-            id: this.state.updatingId
-        }
-        this.props.updateSession(updatedSession)
-    }
 
     filterForm(){
         this.setState({filter: true})
@@ -100,10 +74,8 @@ class Feed extends React.Component {
 
     render() {
         let openSessions = this.props.openSessions
-        let mySessions;
         if(openSessions && openSessions.length && openSessions[openSessions.length -1].users[0]){
             openSessions = openSessions.filter(session => this.props.user.id !== session.users[0].id)
-             mySessions = this.props.openSessions.filter(session => this.props.user.id === session.users[0].id)
         }
         if(this.state.filterCategory !== 'Choose a Category'){
             openSessions = openSessions.filter(session => session.category === this.state.filterCategory)
@@ -156,49 +128,8 @@ class Feed extends React.Component {
                     </div>
                 ))
                 : ''}
-                <h1>My Open Requests</h1>
 
-                {mySessions && mySessions.length
-                ? mySessions.map(session => (
-                    <div key={session.id}>
-                        <h2>{session.category}</h2>
-                        <h3>{session.users[0].username} writes: </h3>
-                        <p>{session.blurb}</p>
-                        <div>
-                            {session.tags.filter(tag => tag.name !== '').map(tag => (<span key={tag.id}>#{tag.name} </span>))}
-                        </div>
-                        <button onClick={() => this.props.deleteSession(session)} >Delete</button>
-                        <button onClick={() => this.handleUpdate(session)} >Update</button>
-                        {this.state.updatingId === session.id
-                        ? <form onSubmit={this.handleSubmit}>
-                             <select name="category" onChange={this.handleChange} value={this.state.category}>
-                            {categories.map(category => (
-                                <option value={category} key={category}>{category}</option>
-                            ))}
-                            </select>
-                            <div>
-                                <label htmlFor="blurb">Write a couple of sentences about what you would like to create: </label>
-                                <input
-                                type="textarea"
-                                name="blurb"
-                                value={this.state.blurb}
-                                maxLength="75"
-                                onChange={this.handleChange}
-                                />
-                                <label htmlFor="tags">Tags: </label>
-                                <input
-                                type="text"
-                                name="tags"
-                                value={this.state.tags}
-                                onChange={this.handleChange}
-                                />
-                                <button type="submit">Go</button>
-                            </div>
-                        </form>
-                        : ''}
-                    </div>
-                ))
-                : ''}
+                <MyRequest />
             </div>
         )
     }
@@ -214,8 +145,6 @@ const mapState = state => {
 const mapDispatch = dispatch => {
     return {
         getOpenSessions: () => dispatch(getOpenSessionsThunk()),
-        updateSession: (updatedSession) => dispatch(updateSessionThunk(updatedSession)),
-        deleteSession: (sessionToDelete) => dispatch(deleteSessionThunk(sessionToDelete)),
         getSession: (sessionId) =>  dispatch(getSingleSessionThunk(sessionId)),
     }
 }

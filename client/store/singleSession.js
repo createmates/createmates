@@ -46,6 +46,17 @@ const getSession = session => ({type: GET_SESSION, session})
     }
  }
 
+ export const getMyOpenSessionThunk = (userId) => {
+   return async (dispatch) => {
+     try {
+       const myOpenSession = await axios.get(`/api/openSessions/${userId}/open`);
+       dispatch(getSession(myOpenSession.data));
+     } catch (error) {
+       console.error(error)
+     }
+   }
+ }
+
 
 /**
  * REDUCER
