@@ -7,10 +7,6 @@ import ProfilePhoto from './ProfilePhoto'
 
 
 class UserAccount extends React.Component {
-  constructor(props) {
-    super(props)
-
-  }
 
   componentDidMount() {
     if (this.props.match.params.userId) {
@@ -20,9 +16,6 @@ class UserAccount extends React.Component {
       this.props.getProfile(this.props.user.id)
     }
   }
-
-
-
 
 
   render() {
@@ -45,6 +38,7 @@ class UserAccount extends React.Component {
             {user.id === this.props.user.id ?
             <UpdateUserForm user={user}/>
             : ''}
+            
           </div>
         </div>
       </div>
