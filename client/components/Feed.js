@@ -140,7 +140,7 @@ class Feed extends React.Component {
                 : <button className="btn btn-info btn-lg" type="button" onClick={this.filterForm}>Filter</button>}
                 
                 {openSessions && openSessions.length && openSessions[openSessions.length -1].users[0]
-                    ? openSessions.map(session => <OpenRequestCard session={session} key={session.id} />)
+                    ? openSessions.map(session => <OpenRequestCard session={session} key={session.id} handleMatch={this.handleMatch}/>)
                     : <h2>No Open Requests found</h2>
                 }
 

@@ -13,7 +13,7 @@ const OpenRequestCard = props => {
             <div>
                 {session.tags.filter(tag => tag.name !== '').map(tag => (<span key={tag.id}>#{tag.name} </span>))}
             </div>
-            <button className="btn btn-info btn-lg" onClick={() => this.handleMatch(session)} >Match</button>
+            <button className="btn btn-info btn-lg" onClick={() => props.handleMatch(session)} >Match</button>
                 </div>
             </div>
         </div>
