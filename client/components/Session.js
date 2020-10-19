@@ -7,7 +7,7 @@ import { getMatchedSessionThunk } from "../store";
 
 export let roomId;
 
-const Session = (props) => {
+const Session = (props) => {GOOGLE_CALLBACK
 
   const [stream, setStream] = useState();
 
