@@ -116,35 +116,14 @@ class Feed extends React.Component {
             const tagSessions = openSessions.filter(session => {
                 const matchs = session.tags.filter(tag => tag.name.includes(this.state.filterTag))
                 return matchs.length > 0})
-            openSessions = tagSessions 
+            openSessions = tagSessions
         }
         return (
             <div>
-                <h1>Other Artists Open Requests</h1>
-
-                {this.state.filter
-                ? <form>
-                    <button className="btn btn-info btn-lg" type="button" onClick={this.undoFilter}>Undo Filters</button>
-                    <br />
-                    <label htmlFor="filterCategory">Filter By Category</label>
-                    <select name="filterCategory" onChange={this.handleChange}>
-                        {categories.map(category => (
-                            <option value={category} key={category}>{category}</option>
-                        ))}
-                    </select>
-                    <label htmlFor="filterUser">Search By User</label>
-                    <input type="text" name="filterUser" onChange={this.handleChange} placeholder="Enter username"/>
-                    <label htmlFor="filterTag">Filter By Tag</label>
-                    <input type="text" name="filterTag" onChange={this.handleChange} placeholder="Enter a Tag"/>
-                </form>
-                : <button className="btn btn-info btn-lg" type="button" onClick={this.filterForm}>Filter</button>}
-                
-                {openSessions && openSessions.length && openSessions[openSessions.length -1].users[0]
-                    ? openSessions.map(session => <OpenRequestCard session={session} key={session.id} />)
-                    : <h2>No Open Requests found</h2>
-                }
-
+                <div className="card">
                 <h1>My Open Requests</h1>
+                </div>
+
 
                 {mySessions && mySessions.length
                 ? mySessions.map(session => (
@@ -187,6 +166,34 @@ class Feed extends React.Component {
                     </div>
                 ))
                 : ''}
+
+                <h1>Other Artists Open Requests</h1>
+
+                {this.state.filter
+                ? <form>
+                    <button className="btn btn-info btn-lg" type="button" onClick={this.undoFilter}>Undo Filters</button>
+                    <br />
+                    <label htmlFor="filterCategory">Filter By Category</label>
+                    <select name="filterCategory" onChange={this.handleChange}>
+                        {categories.map(category => (
+                            <option value={category} key={category}>{category}</option>
+                        ))}
+                    </select>
+                    <label htmlFor="filterUser">Search By User</label>
+                    <input type="text" name="filterUser" onChange={this.handleChange} placeholder="Enter username"/>
+                    <label htmlFor="filterTag">Filter By Tag</label>
+                    <input type="text" name="filterTag" onChange={this.handleChange} placeholder="Enter a Tag"/>
+                </form>
+                : <button className="btn btn-info btn-lg" type="button" onClick={this.filterForm}>Filter</button>}
+                <div>
+                {openSessions && openSessions.length && openSessions[openSessions.length -1].users[0]
+                    ? openSessions.map(session => <OpenRequestCard session={session} key={session.id} />)
+                    : <h2>No Open Requests found</h2>
+                }
+                </div>
+
+
+
             </div>
         )
     }
