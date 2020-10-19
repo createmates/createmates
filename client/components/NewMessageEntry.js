@@ -16,6 +16,7 @@ export class NewMessageEntry extends Component {
       content: message,
       sessionId: this.props.sessionId
     })
+    event.target.content.value = '';
   }
 
   render () {
