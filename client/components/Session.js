@@ -9,7 +9,6 @@ export let roomId;
 
 const Session = (props) => {
 
-
   const [stream, setStream] = useState();
 
   const session = props.session
