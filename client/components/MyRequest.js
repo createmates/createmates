@@ -8,13 +8,14 @@ class MyRequest extends React.Component {
   constructor() {
     super()
     this.state = {
-      updatingId: false,
+      updating: false,
       category: '',
       blurb: '',
       tags: '',
     }
     this.handleUpdate = this.handleUpdate.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
+    this.handleChange = this.handleChange.bind(this)
   }
 
   componentDidMount() {
@@ -26,7 +27,7 @@ class MyRequest extends React.Component {
             return str += tag.name + " "
         }, '')
         this.setState({
-            updatingId: sessionToUpdate.id,
+            updating: true,
             category: sessionToUpdate.category,
             blurb: sessionToUpdate.blurb,
             tags: tags
@@ -39,10 +40,18 @@ class MyRequest extends React.Component {
             blurb: this.state.blurb,
             category: this.state.category,
             tags: tags,
-            id: this.state.updatingId
+            id: this.props.myOpenSession.id
         }
         this.props.updateSession(updatedSession)
     }
+
+    handleChange = event => {
+      const currentKey = event.target.name;
+      let value = event.target.value
+      this.setState({
+        [currentKey]: value
+      });
+    };
 
     render() {
       const myOpenSession = this.props.myOpenSession
@@ -68,9 +77,36 @@ class MyRequest extends React.Component {
             </div>
             :
               <div>
-              <h2 style={{color: 'red'}}>Another user wants to create with you!</h2>
+              <h2 style={{color: 'red'}}>SESSION MATCHED!</h2>
               <a className="nav-link" href="/session">Join Room</a>
               </div>
+            }
+            {this.state.updating &&
+              <form onSubmit={this.handleSubmit}>
+                <select name="category" onChange={this.handleChange} value={this.state.category}>
+              {categories.map(category => (
+                  <option value={category} key={category}>{category}</option>
+              ))}
+              </select>
+              <div>
+                  <label htmlFor="blurb">Write a couple of sentences about what you would like to create: </label>
+                  <input
+                  type="textarea"
+                  name="blurb"
+                  value={this.state.blurb}
+                  maxLength="75"
+                  onChange={this.handleChange}
+                  />
+                  <label htmlFor="tags">Tags: </label>
+                  <input
+                  type="text"
+                  name="tags"
+                  value={this.state.tags}
+                  onChange={this.handleChange}
+                  />
+                  <button type="submit">Go</button>
+              </div>
+            </form>
             }
            </div>
           }
