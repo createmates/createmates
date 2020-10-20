@@ -18,11 +18,11 @@ const Session = (props) => {
   roomId = session.roomId
 
   useEffect(() => {
-    
+
     if(!session.users || session.status !== 'matched'){
         props.getSession(props.user.id)
     }
-        
+
     setStream(props.videos.myVideo)
     if(userVideo.current && props.videos.myVideo.id){
       userVideo.current.srcObject = props.videos.myVideo

@@ -46,7 +46,11 @@ export const deleteSessionThunk = (sessionToDelete) => {
   return async (dispatch) => {
     try {
       await axios.delete(`/api/openSessions/${sessionToDelete.id}`)
+
+      dispatch(getSession({}));
+
       dispatch(getOpenSessionsThunk())
+
     } catch (error) {
       console.error(error)
     }
@@ -62,6 +66,6 @@ const openSessionsReducer = (state = initialOpenSessions, action) => {
         return state
     }
   }
-  
-  
+
+
   export default openSessionsReducer
