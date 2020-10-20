@@ -93,7 +93,9 @@ class Feed extends React.Component {
         }
         return (
             <div>
+
                 <MyRequest />
+
                 <h1>Other Artists Open Requests</h1>
 
                 {this.state.filter
@@ -113,10 +115,12 @@ class Feed extends React.Component {
                 </form>
                 : <button className="btn btn-info btn-lg" type="button" onClick={this.filterForm}>Filter</button>}
 
+
                 {openSessions && openSessions.length && openSessions[openSessions.length -1].users[0]
                     ? openSessions.map(session => <OpenRequestCard session={session} key={session.id} handleMatch={this.handleMatch}/>)
                     : <h2>No Open Requests found</h2>
                 }
+
 
             </div>
         )
