@@ -9,7 +9,8 @@ import profile from './profile'
 import messagesReducer from './messages'
 import videoReducer from './videos'
 
-const reducer = combineReducers({
+//exporting for Mocha Test usage
+export const reducer = combineReducers({
     user: user,
     singleSession: singleSessionReducer,
     openSessions: openSessionsReducer,

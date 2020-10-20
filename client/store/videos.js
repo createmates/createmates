@@ -4,7 +4,7 @@ const initialVideo = {
     partnersVideo: {}
 }
 
-const   SET_MY_VIDEO = "SET_MY_VIDEO"
+const SET_MY_VIDEO = "SET_MY_VIDEO"
 const SET_PARTNERS_VIDEO = 'SET_PARTNERS_VIDEO'
 
 export const setMyVideo = (localStream) => {
