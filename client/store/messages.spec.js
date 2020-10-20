@@ -6,6 +6,7 @@ import MockAdapter from 'axios-mock-adapter'
 import configureMockStore from 'redux-mock-store'
 import thunkMiddleware from 'redux-thunk'
 import {createStore} from 'redux'
+import { fetchMessages } from './messages'
 // import messagesReducer, { gotNewMessage } from './messages'
 
 
@@ -22,6 +23,7 @@ describe.skip('Redux - messages', () => {
   let initialState = {sessions: [],
                             session: {}}
  const message = {content: 'hello'}
+ const messages = [message, {content: 'goodbye'}]
   beforeEach(() => {
     mockAxios = new MockAdapter(axios)
     store = mockStore(initialState)
@@ -40,12 +42,12 @@ describe.skip('Redux - messages', () => {
     })
   })
   describe('Thunks', () => {
-    it('getOpenSessionsThunk eventually dispatches the Get SESSIONS action', async () => {
-      mockAxios.onGet('/api/openSessions').replyOnce(200, testSessions)
-      await store.dispatch(getOpenSessionsThunk())
+    it('fetchMessages eventually dispatches the GOT MESSAGES FROM SERVER action', async () => {
+      mockAxios.onGet('/api/messages').replyOnce(200, messages)
+      await store.dispatch(fetchMessages())
       const actions = store.getActions()
-      expect(actions[0].type).to.be.equal('GET_OPEN_SESSIONS')
-      expect(actions[0].sessions).to.be.deep.equal(testSessions)
+      expect(actions[0].type).to.be.equal('GOT_MESSAGES_FROM_SERVER')
+      expect(actions[0].messages).to.be.deep.equal(messages)
     })
     it('addSessionThunk eventually dispatches the Get SESSION action', async () => {
         mockAxios.onPost('/api/openSessions', testSession1).replyOnce(200, testSession1)
