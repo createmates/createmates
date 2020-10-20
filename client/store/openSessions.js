@@ -1,4 +1,5 @@
 import axios from 'axios'
+import {getSession} from './singleSession'
 
 const GET_OPEN_SESSIONS = 'GET_OPEN_SESSIONS';
 
@@ -47,6 +48,7 @@ export const deleteSessionThunk = (sessionToDelete) => {
       await axios.delete(`/api/openSessions/${sessionToDelete.id}`)
       const sessions = await axios.get('/api/openSessions')
       dispatch(getSessions(sessions.data))
+      dispatch(getSession({}));
     } catch (error) {
       console.error(error)
     }
@@ -62,6 +64,6 @@ const openSessionsReducer = (state = initialOpenSessions, action) => {
         return state
     }
   }
-  
-  
+
+
   export default openSessionsReducer

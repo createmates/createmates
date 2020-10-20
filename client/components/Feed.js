@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 import { Link } from 'react-router-dom'
 import {v4 as uuidv4} from 'uuid'
 import socket from '../socket'
-import {getOpenSessionsThunk} from '../store/openSessions'
+import {getOpenSessionsThunk, updateSessionThunk} from '../store/openSessions'
 import {getSingleSessionThunk} from "../store/singleSession"
 import {categories} from './Form'
 import MyRequest from './MyRequest';
@@ -146,6 +146,7 @@ const mapDispatch = dispatch => {
     return {
         getOpenSessions: () => dispatch(getOpenSessionsThunk()),
         getSession: (sessionId) =>  dispatch(getSingleSessionThunk(sessionId)),
+        updateSession: (updatedSession) => dispatch(updateSessionThunk(updatedSession))
     }
 }
 
