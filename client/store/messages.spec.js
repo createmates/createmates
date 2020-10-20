@@ -6,7 +6,7 @@ import MockAdapter from 'axios-mock-adapter'
 import configureMockStore from 'redux-mock-store'
 import thunkMiddleware from 'redux-thunk'
 import {createStore} from 'redux'
-// import openSessionsReducer, { addSessionThunk, deleteSessionThunk, getOpenSessionsThunk, updateSessionThunk } from './openSessions'
+// import messagesReducer, { gotNewMessage } from './messages'
 
 
 // TODO: figure out how to mock sockets before uncommenting these tests.
@@ -15,17 +15,13 @@ import {createStore} from 'redux'
 const middlewares = [thunkMiddleware]
 const mockStore = configureMockStore(middlewares)
 
-describe.skip('Redux - OpenSession', () => {
+describe.skip('Redux - messages', () => {
   let store
   let mockAxios
 
   let initialState = {sessions: [],
                             session: {}}
-    const testSession1 = {
-            id: 1,
-            name: 'cody'
-        }
-    const testSessions = [testSession1, {id:2, name:'jane'}]
+ const message = {content: 'hello'}
   beforeEach(() => {
     mockAxios = new MockAdapter(axios)
     store = mockStore(initialState)
@@ -34,6 +30,14 @@ describe.skip('Redux - OpenSession', () => {
   afterEach(() => {
     mockAxios.restore()
     store.clearActions()
+  })
+  describe('Action creaters', () => {
+    it('getNewMessage action creater', () => {
+        expect(gotNewMessage(message)).to.deep.equal({
+            type: 'GOT_NEW_MESSAGE',
+            message
+        })
+    })
   })
   describe('Thunks', () => {
     it('getOpenSessionsThunk eventually dispatches the Get SESSIONS action', async () => {
@@ -51,49 +55,23 @@ describe.skip('Redux - OpenSession', () => {
         expect(actions[0].type).to.be.equal('GET_SESSION')
         expect(actions[0].session).to.be.deep.equal(testSession1)
       })
-    xit('addSessionThunk eventually dispatches the Get SESSIONS action', async () => {
-        mockAxios.onPost('/api/openSessions', testSession1).replyOnce(200, testSession1)
-        mockAxios.onGet('/api/openSessions').replyOnce(200, testSessions)
-        await store.dispatch(addSessionThunk(testSession1))
-        const actions = store.getActions()
-        console.log(store)
-        expect(actions[1].type).to.be.equal('GET_OPEN_SESSIONS')
-        expect(actions[1].sessions).to.be.deep.equal(testSessions)
-      })
-    it('updateSessionThunk eventually dispatches the Get SESSION action', async () => {
-        mockAxios.onPut('/api/openSessions/1', testSession1).replyOnce(200, testSession1)
-        mockAxios.onGet('/api/openSessions').replyOnce(200, testSessions)
-        await store.dispatch(updateSessionThunk(testSession1))
-        const actions = store.getActions()
-        expect(actions[0].type).to.be.equal('GET_SESSION')
-        expect(actions[0].session).to.be.deep.equal(testSession1)
-      })
-    xit('updateSessionThunk eventually dispatches the Get SESSIONS action', async () => {
-        mockAxios.onPut('/api/openSessions/1', testSession1).replyOnce(200, testSession1)
-        mockAxios.onGet('/api/openSessions').replyOnce(200, testSessions)
-        await store.dispatch(updateSessionThunk(testSession1))
-        const actions = store.getActions()
-        
-        expect(actions[1].type).to.be.equal('GET_OPEN_SESSIONS')
-        expect(actions[1].sessions).to.be.deep.equal(testSessions)
-      })
-      xit('deleteSessionThunk eventually dispatches the Get SESSIONs action', async () => {
-        mockAxios.onDelete('/api/openSessions/1').replyOnce(204)
-        mockAxios.onGet('/api/openSessions').replyOnce(200, testSessions)
-        await store.dispatch(deleteSessionThunk(testSession1))
-        const actions = store.getActions()
-        console.log(actions)
-
-        expect(actions[0].type).to.be.equal('GET_OPEN_SESSIONS')
-        expect(actions[0].sessions).to.be.deep.equal(testSessions)
-      })
   })
-  describe('openSession Reducer', () => {
+  describe.skip('openSession Reducer', () => {
     let testStore;
   
     beforeEach(()=>{
       initialState = []
-        testStore = createStore(openSessionsReducer)
+        testStore = createStore(messagesReducer)
+    })
+    it('reduces on GET OPEN SESSIONS', () => {
+      const action = { type: 'GET_OPEN_SESSIONS', sessions: testSessions };
+
+      const prevState = testStore.getState();
+      testStore.dispatch(action);
+      const newState = testStore.getState();
+
+      expect(newState).to.be.deep.equal(testSessions);
+      expect(newState).to.not.be.equal(prevState);
     })
     it('reduces on GET OPEN SESSIONS', () => {
       const action = { type: 'GET_OPEN_SESSIONS', sessions: testSessions };
