@@ -7,7 +7,7 @@ import videoReducer, { setMyVideo, setPartnerVideo } from './videos';
 const mockStore = configureMockStore()
 
 //for some yet known reason this is require sockets
-describe.only('video - redux', () => {
+describe('video - redux', () => {
     let store;
     const video = {id: 'hello'}
     const initialState = {
