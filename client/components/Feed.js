@@ -89,10 +89,11 @@ class Feed extends React.Component {
             const tagSessions = openSessions.filter(session => {
                 const matchs = session.tags.filter(tag => tag.name.includes(this.state.filterTag))
                 return matchs.length > 0})
-            openSessions = tagSessions 
+            openSessions = tagSessions
         }
         return (
             <div>
+                <MyRequest />
                 <h1>Other Artists Open Requests</h1>
 
                 {this.state.filter
@@ -111,14 +112,12 @@ class Feed extends React.Component {
                     <input type="text" name="filterTag" onChange={this.handleChange} placeholder="Enter a Tag"/>
                 </form>
                 : <button className="btn btn-info btn-lg" type="button" onClick={this.filterForm}>Filter</button>}
-                
+
                 {openSessions && openSessions.length && openSessions[openSessions.length -1].users[0]
                     ? openSessions.map(session => <OpenRequestCard session={session} key={session.id} handleMatch={this.handleMatch}/>)
                     : <h2>No Open Requests found</h2>
                 }
 
-                <h1>My Open Requests</h1>
-                <MyRequest />
             </div>
         )
     }

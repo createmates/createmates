@@ -7,7 +7,7 @@ import { getMatchedSessionThunk } from "../store";
 
 export let roomId;
 
-const Session = (props) => {GOOGLE_CALLBACK
+const Session = (props) => {
 
   const [stream, setStream] = useState();
 
@@ -18,11 +18,11 @@ const Session = (props) => {GOOGLE_CALLBACK
   roomId = session.roomId
 
   useEffect(() => {
-    
+
     if(!session.users || session.status !== 'matched'){
         props.getSession(props.user.id)
     }
-        
+
     setStream(props.videos.myVideo)
     if(userVideo.current && props.videos.myVideo.id){
       userVideo.current.srcObject = props.videos.myVideo
