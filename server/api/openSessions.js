@@ -2,6 +2,7 @@ const router = require("express").Router();
 const { Session, User, Tag } = require("../db/models");
 module.exports = router;
 const { isAdminMiddleware } = require("../app/authentication-middleware");
+const {Op} = require("sequelize");
 
 router.get('/', async (req, res, next) => {
     try {
@@ -69,7 +70,26 @@ router.get('/:userId/matched', async (req, res, next) => {
     const userSession = await User.findAll({where: {id: req.params.userId}, include: {
       model: Session, where: {status: 'matched'}}})
     const session = await Session.findOne({where: {id: userSession[0].sessions[0].id}, include: [User]})
-  
+
+    res.json(session)
+  } catch (err){
+    next(err)
+  }
+})
+
+// GET /api/openSessions/:userId/open
+router.get('/:userId/open', async (req, res, next) => {
+  try {
+    const userSession = await User.findAll({where: {id: req.params.userId}, include: {
+      model: Session, where: {
+        status: {
+          [Op.ne] : 'closed'
+        }
+    }
+  }
+})
+    const session = await Session.findOne({where: {id: userSession[0].sessions[0].id}, include: [User, Tag]})
+
     res.json(session)
   } catch (err){
     next(err)
