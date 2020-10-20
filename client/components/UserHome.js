@@ -1,5 +1,6 @@
 import React from "react";
 import Form from "./Form";
+import MyRequest from "./MyRequest"
 
 export default class UserHome extends React.Component {
   constructor(props) {
@@ -20,6 +21,8 @@ export default class UserHome extends React.Component {
 
          <hr className="my-4"/>
          <a className="btn btn-info btn-lg" href="#" onClick={this.handleClick} role="button">See Other Artist's Requests</a>
+
+         <MyRequest />
 
        </div>
 
