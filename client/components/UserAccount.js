@@ -8,10 +8,6 @@ import MyRequest from './MyRequest'
 
 
 class UserAccount extends React.Component {
-  constructor(props) {
-    super(props)
-
-  }
 
   componentDidMount() {
     if (this.props.match.params.userId) {
@@ -23,14 +19,13 @@ class UserAccount extends React.Component {
   }
 
 
-
-
-
   render() {
     const user = this.props.profile
-    return (
+    
+    if(user.id){
+      return (
       <div>
-          {user.id &&
+
 
           <div className="card">
             <div className="card-body">
@@ -51,9 +46,13 @@ class UserAccount extends React.Component {
               }
             </div>
           </div>
-          }
+          
+        
       </div>
-    )
+      )
+    } else {
+      return <div>Loading</div>
+    }
   }
 }
 

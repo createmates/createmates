@@ -22,8 +22,8 @@ export const addSessionThunk = (newSession) => {
   return async (dispatch) => {
     try {
       const session = await axios.post('/api/openSessions', newSession)
-      const sessions = await axios.get('/api/openSessions')
-      dispatch(getSessions(sessions.data))
+      dispatch(getSession(session.data))
+      dispatch(getOpenSessionsThunk())
     } catch (error) {
       console.error(error)
     }
@@ -34,8 +34,8 @@ export const updateSessionThunk = (updatedSession) => {
   return async (dispatch) => {
     try {
       const session = await axios.put(`/api/openSessions/${updatedSession.id}`, updatedSession)
-      const sessions = await axios.get('/api/openSessions')
-      dispatch(getSessions(sessions.data))
+      dispatch(getSession(session.data))
+      dispatch(getOpenSessionsThunk())
     } catch (error) {
       console.error(error)
     }
@@ -46,9 +46,11 @@ export const deleteSessionThunk = (sessionToDelete) => {
   return async (dispatch) => {
     try {
       await axios.delete(`/api/openSessions/${sessionToDelete.id}`)
-      const sessions = await axios.get('/api/openSessions')
-      dispatch(getSessions(sessions.data))
+
       dispatch(getSession({}));
+
+      dispatch(getOpenSessionsThunk())
+
     } catch (error) {
       console.error(error)
     }

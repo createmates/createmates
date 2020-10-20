@@ -47,4 +47,6 @@ describe('thunk creators', () => {
       expect(history.location.pathname).to.be.equal('/login')
     })
   })
+
+  
 })

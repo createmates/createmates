@@ -1,12 +1,12 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import { Link } from 'react-router-dom'
 import {v4 as uuidv4} from 'uuid'
 import socket from '../socket'
 import {getOpenSessionsThunk, updateSessionThunk} from '../store/openSessions'
 import {getSingleSessionThunk} from "../store/singleSession"
 import {categories} from './Form'
 import MyRequest from './MyRequest';
+import OpenRequestCard from './OpenRequestCard'
 
 class Feed extends React.Component {
     constructor() {
@@ -57,14 +57,15 @@ class Feed extends React.Component {
         if (!mySessions.length) {
             const roomId = uuidv4()
             const updatedSession = {
-            roomId: roomId,
-            id: session.id,
-            user: this.props.user,
-            status: 'matched'
+                roomId: roomId,
+                id: session.id,
+                user: this.props.user,
+                status: 'matched'
             }
+
             await this.props.updateSession(updatedSession)
-            await this.props.getSession(session.id)
             this.props.history.push(`/session`)
+
             //starting the room in the socket connection
             socket.emit('create or join', roomId)
         } else {
@@ -81,14 +82,14 @@ class Feed extends React.Component {
             openSessions = openSessions.filter(session => session.category === this.state.filterCategory)
         }
         if(this.state.filterUser !== ''){
-            const userSessions = openSessions.filter(session => session.users[0].username === this.state.filterUser)
-            openSessions = userSessions.length ? userSessions : openSessions
+            const userSessions = openSessions.filter(session => session.users[0].username.includes(this.state.filterUser))
+            openSessions = userSessions
         }
         if(this.state.filterTag !== ''){
             const tagSessions = openSessions.filter(session => {
-                const matchs = session.tags.filter(tag => tag.name ===this.state.filterTag)
+                const matchs = session.tags.filter(tag => tag.name.includes(this.state.filterTag))
                 return matchs.length > 0})
-            openSessions = tagSessions.length ? tagSessions : openSessions
+            openSessions = tagSessions 
         }
         return (
             <div>
@@ -104,31 +105,19 @@ class Feed extends React.Component {
                             <option value={category} key={category}>{category}</option>
                         ))}
                     </select>
-                    <label htmlFor="filterUser">Filter By User</label>
+                    <label htmlFor="filterUser">Search By User</label>
                     <input type="text" name="filterUser" onChange={this.handleChange} placeholder="Enter username"/>
                     <label htmlFor="filterTag">Filter By Tag</label>
                     <input type="text" name="filterTag" onChange={this.handleChange} placeholder="Enter a Tag"/>
-
                 </form>
                 : <button className="btn btn-info btn-lg" type="button" onClick={this.filterForm}>Filter</button>}
+                
                 {openSessions && openSessions.length && openSessions[openSessions.length -1].users[0]
-                ? openSessions.map(session => (
-                    <div className="row" key={session.id}>
-                        <div className="col d-flex justify-content-center">
-                            <div className="card w-75 text-center border-dark mb-3">
-                        <h2 className="card-body">{session.category}</h2>
-                        <h3><Link to={`/${session.users[0].id}`}>{session.users[0].username}</Link> writes: </h3>
-                        <p className="card-text text-dark">{session.blurb}</p>
-                        <div>
-                            {session.tags.filter(tag => tag.name !== '').map(tag => (<span key={tag.id}>#{tag.name} </span>))}
-                        </div>
-                        <button className="btn btn-info btn-lg" onClick={() => this.handleMatch(session)} >Match</button>
-                            </div>
-                        </div>
-                    </div>
-                ))
-                : ''}
+                    ? openSessions.map(session => <OpenRequestCard session={session} key={session.id} handleMatch={this.handleMatch}/>)
+                    : <h2>No Open Requests found</h2>
+                }
 
+                <h1>My Open Requests</h1>
                 <MyRequest />
             </div>
         )

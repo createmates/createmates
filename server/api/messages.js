@@ -15,7 +15,6 @@ router.get('/', async (req, res, next) => {
 
 // POST /api/messages
 router.post('/', async (req, res, next) => {
-
   try {
     const message = Message.build(req.body);
     message.setUser(req.body.user.id, { save: false });
@@ -32,9 +31,9 @@ router.post('/', async (req, res, next) => {
 router.put('/:messageId', async (req, res, next) => {
   try {
     const messageId = req.params.messageId;
-    const message = await Message.findById(messageId)
+    const message = await Message.findByPk(messageId)
     await message.update(req.body);
-    res.status(204).end();
+    res.json(message);
   } catch (err) {
     next(err);
   }
