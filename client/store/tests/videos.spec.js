@@ -1,7 +1,7 @@
 import {expect} from 'chai'
 import configureMockStore from 'redux-mock-store'
 import {createStore} from 'redux'
-import videoReducer, { setMyVideo, setPartnerVideo } from './videos';
+import videoReducer, { setMyVideo, setPartnerVideo } from '../videos';
 
 
 const mockStore = configureMockStore()

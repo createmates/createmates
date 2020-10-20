@@ -7,7 +7,7 @@ import configureMockStore from 'redux-mock-store'
 import thunkMiddleware from 'redux-thunk'
 import {createStore} from 'redux'
 
-// import singleSessionReducer, { getSession, getSingleSessionThunk, getMatchedSessionThunk } from './singleSession'
+// import singleSessionReducer, { getSession, getSingleSessionThunk, getMatchedSessionThunk } from '../singleSession'
 
 
 // TODO: figure out how to mock sockets before uncommenting these tests.
