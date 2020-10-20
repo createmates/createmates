@@ -88,9 +88,12 @@ router.get('/:userId/open', async (req, res, next) => {
     }
   }
 })
+
+  if(userSession.length) {
     const session = await Session.findOne({where: {id: userSession[0].sessions[0].id}, include: [User, Tag]})
 
     res.json(session)
+  }
   } catch (err){
     next(err)
   }
