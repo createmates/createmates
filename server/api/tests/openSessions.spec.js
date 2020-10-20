@@ -1,9 +1,9 @@
 
 const {expect} = require('chai')
 const request = require('supertest')
-const db = require('../db')
-const app = require('../index')
-const {Session, User} = require('../db/models')
+const db = require('../../db')
+const app = require('../../index')
+const {Session, User} = require('../../db/models')
 const {v4: uuidv4} = require('uuid')
 
 
