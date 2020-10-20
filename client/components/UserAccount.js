@@ -21,7 +21,7 @@ class UserAccount extends React.Component {
 
   render() {
     const user = this.props.profile
-    
+
     if(user.id){
       return (
       <div>
@@ -41,13 +41,14 @@ class UserAccount extends React.Component {
               {user.id === this.props.user.id &&
               <div>
                 <UpdateUserForm user={user}/>
-                <MyRequest />
+
               </div>
               }
+               <MyRequest />
             </div>
           </div>
-          
-        
+
+
       </div>
       )
     } else {

@@ -34,7 +34,8 @@ class MyRequest extends React.Component {
         })
     }
 
-    handleSubmit() {
+    handleSubmit(event) {
+      event.preventDefault();
         const tags = this.state.tags.split(' ')
         const updatedSession = {
             blurb: this.state.blurb,
@@ -55,8 +56,6 @@ class MyRequest extends React.Component {
 
     render() {
       const myOpenSession = this.props.myOpenSession
-      console.log('myOpenSession: ', myOpenSession)
-
 
       return (
         <div>
@@ -82,7 +81,7 @@ class MyRequest extends React.Component {
               </div>
             }
             {this.state.updating &&
-              <form onSubmit={this.handleSubmit}>
+              <form onSubmit={() => this.handleSubmit}>
                 <select name="category" onChange={this.handleChange} value={this.state.category}>
               {categories.map(category => (
                   <option value={category} key={category}>{category}</option>
