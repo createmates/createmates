@@ -2,6 +2,9 @@ import React from "react";
 import {connect} from 'react-redux';
 import {addSessionThunk} from '../store/openSessions'
 import profile, {getProfileThunk} from '../store/profile'
+import {toast} from 'react-toastify'
+import "react-toastify/dist/ReactToastify.css";
+import "../../client/App.css"
 
 export const categories = ['Categories', 'Music', 'Poem', 'Dance', 'Painting', 'Drawing', 'Joke', 'Scene', 'Script', 'Theater Improv', 'Comedy']
 class Form extends React.Component {
@@ -30,6 +33,16 @@ class Form extends React.Component {
    this.props.findUserProfile(this.props.user.id);
   }
 
+  deniedToast = () => {
+    toast('YOU MAY NOT OPEN MORE THAN ONE SESSION', {
+      className: "custom_toast",
+      toastClassName: 'toast',
+      closeOnClick: true,
+      position: toast.POSITION.TOP_CENTER,
+      autoClose: false,
+    })
+  }
+
   handleSubmit = async (event) => {
     event.preventDefault();
     let unmatchedCount = 0
@@ -40,7 +53,7 @@ class Form extends React.Component {
       }
     }
     if(unmatchedCount){
-       alert('YOU MAY NOT OPEN MORE THAN ONE SESSION');
+       this.deniedToast()
     } else {
       const tags = this.state.tags.split(' ')
       const newSession = {

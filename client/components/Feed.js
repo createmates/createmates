@@ -7,6 +7,9 @@ import {getSingleSessionThunk} from "../store/singleSession"
 import {categories} from './Form'
 import MyRequest from './MyRequest';
 import OpenRequestCard from './OpenRequestCard'
+import {toast} from 'react-toastify'
+import "react-toastify/dist/ReactToastify.css";
+import "../../client/App.css"
 
 class Feed extends React.Component {
     constructor() {
@@ -52,6 +55,16 @@ class Feed extends React.Component {
         })
     }
 
+  deniedToast = () => {
+        toast('YOU MUST DELETE YOUR OPEN REQUEST BEFORE MATCHING WITH ANOTHER USER\'S REQUEST', {
+          className: "custom_toast",
+          toastClassName: 'toast',
+          closeOnClick: true,
+          position: toast.POSITION.TOP_CENTER,
+          autoClose: false,
+        })
+      }
+
     async handleMatch(session){
         let mySessions = this.props.openSessions.filter(session => this.props.user.id === session.users[0].id)
         if (!mySessions.length) {
@@ -69,7 +82,7 @@ class Feed extends React.Component {
             //starting the room in the socket connection
             socket.emit('create or join', roomId)
         } else {
-            alert('YOU MUST DELETE YOUR OPEN REQUEST BEFORE MATCHING WITH ANOTHER USER\'S REQUEST');
+            this.deniedToast();
         }
     }
 
@@ -93,6 +106,7 @@ class Feed extends React.Component {
         }
         return (
             <div>
+
 
                 <MyRequest />
 
