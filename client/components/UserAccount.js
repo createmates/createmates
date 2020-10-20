@@ -33,6 +33,7 @@ class UserAccount extends React.Component {
 
           <div className="card">
             <div className="card-body">
+              <ProfilePhoto />
             <h6 className="card-title text-center text-dark">Username: {user.username}</h6>
             <p className="card-text text-center text-dark">{user.firstName}</p>
             <p className="card-text text-center text-dark">{user.lastName}</p>

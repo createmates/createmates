@@ -12,6 +12,7 @@ const app = express();
 const socketio = require("socket.io");
 module.exports = app;
 
+
 // This is a global Mocha hook, used for resource cleanup.
 // Otherwise, Mocha v4+ never quits after tests.
 // if (process.env.NODE_ENV === "test") {
@@ -68,6 +69,7 @@ const createApp = () => {
   // auth and api routes
   app.use("/auth", require("./auth"));
   app.use("/api", require("./api"));
+  // app.use('/digitalOcean', require("./digitalOcean"));
 
   // static file-serving middleware
   app.use(express.static(path.join(__dirname, "..", "public")));
