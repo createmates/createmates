@@ -11,6 +11,7 @@ const initialVideo = {
 const SET_MY_VIDEO = "SET_MY_VIDEO"
 const SET_PARTNERS_VIDEO = 'SET_PARTNERS_VIDEO'
 const FINISH_SESSION = 'FINISH_SESSION'
+export const RESET_VIDEO = 'RESET_VIDEO'
 
 export const setMyVideo = (localStream) => {
     return {
@@ -27,12 +28,16 @@ export const setPartnerVideo = (remoteStream) => {
 }
 
 export const finishSession = () => {
-    console.log('step4')
     return {
         type: FINISH_SESSION
     }
 }
 
+export const resetVideo = () => {
+    return {
+        type: RESET_VIDEO
+    }
+}
 
 
 const videoReducer = (video = initialVideo, action) => {
@@ -43,6 +48,8 @@ const videoReducer = (video = initialVideo, action) => {
             return {...video, partnersVideo: action.partnersVideo}
         case FINISH_SESSION:
             return {...video, finishSession: true}
+        case RESET_VIDEO:
+            return initialVideo
         default:
            return video
     }

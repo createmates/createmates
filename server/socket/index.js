@@ -43,6 +43,12 @@ module.exports = io => {
       socket.on('finishSession', function(roomId){
         socket.broadcast.to(roomId).emit('finishSession')
       })
+      socket.on('summaryUpdate', function(summaryMessage){
+        socket.broadcast.to(summaryMessage.roomId).emit('summaryUpdate', summaryMessage)
+      })
+      socket.on('closeSession', function(roomId){
+        socket.broadcast.to(roomId).emit('closeSession')
+      })
      socket.on('disconnect', () => {
       console.log(`${socket.id} has left the building`)
     })
