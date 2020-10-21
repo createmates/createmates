@@ -131,8 +131,8 @@ socket.on('offer', async function(event) { //accepting and answering the offer
     }
   }
 })
-socket.on('finishSession', function(){
-  dispatch(finishSession())
+socket.on('finishSession', function(event){
+  store.dispatch(finishSession())
 })
 socket.on('answer', function(event) {
   rtcPeerConnection.setRemoteDescription(new RTCSessionDescription(event))

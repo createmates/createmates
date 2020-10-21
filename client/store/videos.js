@@ -4,7 +4,8 @@ import socket from "../socket"
 const initialVideo = {
     myVideo: {},
     partnersVideo: {},
-    finishSession: false
+    finishSession: false,
+    summary: ''
 }
 
 const SET_MY_VIDEO = "SET_MY_VIDEO"
@@ -26,10 +27,13 @@ export const setPartnerVideo = (remoteStream) => {
 }
 
 export const finishSession = () => {
+    console.log('step4')
     return {
         type: FINISH_SESSION
     }
 }
+
+
 
 const videoReducer = (video = initialVideo, action) => {
     switch (action.type){

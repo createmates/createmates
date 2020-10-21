@@ -35,6 +35,11 @@ const Session = (props) => {
     }
   })
 
+  const getSummaryForm = () => {
+    socket.emit('finishSession', roomId); 
+    props.finishSession()
+  }
+
     return (
     //render two videos
 
@@ -62,7 +67,7 @@ const Session = (props) => {
       <MessagesList />
       {props.videos.finishSession 
       ? <Summary history={history}/>
-      : <button className="btn btn-info btn-md" onClick={() => { socket.emit('sessionFinished', roomId); props.finishSession()}}>Finish Session</button>}
+      : <button className="btn btn-info btn-md" onClick={() => getSummaryForm()}>Finish Session</button>}
     </div>
   );
 

@@ -6,7 +6,7 @@ import socket from '../socket';
  * ACTION TYPES
  */
 const GET_SESSION = 'GET_SESSION';
-
+const SESSION_SUMMARY = 'SESSION_SUMMARY'
 
 /**
  * INITIAL STATE
@@ -17,7 +17,7 @@ const defaultSession = {}
  * ACTION CREATORS
  */
 export const getSession = session => ({type: GET_SESSION, session})
-
+export const sessionSummary = summary => ({type: SESSION_SUMMARY, summary})
 
 /**
  * THUNK CREATORS
@@ -64,7 +64,9 @@ export const getSession = session => ({type: GET_SESSION, session})
  const singleSessionReducer = (state = defaultSession, action) => {
   switch (action.type) {
     case GET_SESSION:
-      return action.session
+      return action.session;
+    case SESSION_SUMMARY:
+          return {...state, summary: action.summary}
     default:
       return state
   }

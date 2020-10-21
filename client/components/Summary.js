@@ -1,5 +1,6 @@
 import React from "react";
 import {connect} from 'react-redux';
+import { sessionSummary } from "../store";
 import {updateSessionThunk} from '../store/openSessions'
 
 class Summary extends React.Component {
@@ -13,16 +14,17 @@ class Summary extends React.Component {
     }
 
     handleChange = event => {
-        this.setState({
-            [event.target.name] : event.target.value
-        })    
+        // this.setState({
+        //     [event.target.name] : event.target.value
+        // })    
+this.props.sessionSummary(event.target.value)
     }
 
     handleSubmit() {
         const updatedSesson = {
             id: this.props.session.id,
             status: 'closed',
-            summary: this.state.summary
+            summary: this.props.session.summary
         }
         this.props.updateSession(updatedSesson);
         this.props.history.push('/feed')
@@ -51,6 +53,7 @@ const mapState = state => {
   const mapDispatch = dispatch => {
     return {
         updateSession: (updatedSession) => dispatch(updateSessionThunk(updatedSession)),
+        sessionSummary: (summary) => dispatch(sessionSummary(summary))
     }
   }
   
