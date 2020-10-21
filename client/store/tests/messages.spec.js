@@ -6,7 +6,7 @@ import MockAdapter from 'axios-mock-adapter'
 import configureMockStore from 'redux-mock-store'
 import thunkMiddleware from 'redux-thunk'
 import {createStore} from 'redux'
-// import messagesReducer, { gotNewMessage,  fetchMessages, sendMessage} from '../messages'
+import messagesReducer, { gotNewMessage,  fetchMessages, sendMessage} from '../messages'
 
 
 // TODO: figure out how to mock sockets before uncommenting these tests.
@@ -15,7 +15,7 @@ import {createStore} from 'redux'
 const middlewares = [thunkMiddleware]
 const mockStore = configureMockStore(middlewares)
 
-describe.skip('Redux - messages', () => {
+describe('Redux - messages', () => {
   let store
   let mockAxios
 

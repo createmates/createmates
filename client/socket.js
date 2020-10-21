@@ -4,6 +4,13 @@ import { gotNewMessage } from './store/messages'
 import {roomId} from './components/Session'
 import { setMyVideo, setPartnerVideo } from './store/videos'
 
+
+if (process.env.NODE_ENV === "test") {
+  global.window = {location: {origin : ''}}
+}
+
+
+
 const socket = io(window.location.origin)
 let localStream;
 let isCaller = false
