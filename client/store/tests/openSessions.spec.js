@@ -73,19 +73,20 @@ describe('Redux - OpenSession', () => {
         mockAxios.onGet('/api/openSessions').replyOnce(200, testSessions)
         await store.dispatch(updateSessionThunk(testSession1))
         const actions = store.getActions()
-        
+        console.log(actions)
         expect(actions[1].type).to.be.equal('GET_OPEN_SESSIONS')
         expect(actions[1].sessions).to.be.deep.equal(testSessions)
       })
-      xit('deleteSessionThunk eventually dispatches the Get SESSIONs action', async () => {
+      it('deleteSessionThunk eventually dispatches the Get SESSION action', async () => {
         mockAxios.onDelete('/api/openSessions/1').replyOnce(204)
         mockAxios.onGet('/api/openSessions').replyOnce(200, testSessions)
         await store.dispatch(deleteSessionThunk(testSession1))
         const actions = store.getActions()
-        console.log(actions)
+        
 
-        expect(actions[0].type).to.be.equal('GET_OPEN_SESSIONS')
-        expect(actions[0].sessions).to.be.deep.equal(testSessions)
+        expect(actions[0].type).to.be.equal('GET_SESSION')
+        expect(actions[0].session).to.be.deep.equal({})
+        expect(actions[0]).to.not.equal(testSession1)
       })
   })
   describe('openSession Reducer', () => {

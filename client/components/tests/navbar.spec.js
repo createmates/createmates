@@ -22,6 +22,7 @@ import SignUpFeedGuide from '../SignUpFeedGuide';
 
 
 describe('NavBar/Routes', () => {
+
     const fakeUser = {email: 'chad@email.com', id: 1}
     const testSession = {
         id: 1,

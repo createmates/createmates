@@ -1,4 +1,5 @@
 const { JSDOM } = require('jsdom');
+
 import Enzyme from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import store from './store';
@@ -6,6 +7,8 @@ import waitForExpect from 'wait-for-expect';
 import chai from 'chai';
 import sinonChai from 'sinon-chai';
 import chaiEnzyme from 'chai-enzyme';
+
+require('mocha-suppress-logs')()
 
 Enzyme.configure({ adapter: new Adapter() });
 
