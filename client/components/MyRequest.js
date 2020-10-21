@@ -67,7 +67,7 @@ class MyRequest extends React.Component {
             <h3>{myOpenSession.users[0].username} writes: </h3>
             <p>{myOpenSession.blurb}</p>
             <div>
-                {myOpenSession.tags.filter(tag => tag.name !== '').map(tag => (<span key={tag.id}>#{tag.name} </span>))}
+                {myOpenSession.tags && myOpenSession.tags.filter(tag => tag.name !== '').map(tag => (<span key={tag.id}>#{tag.name} </span>))}
             </div>
             {myOpenSession.status === "unmatched" ?
             <div>

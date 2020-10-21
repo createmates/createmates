@@ -52,7 +52,7 @@ const Session = (props) => {
             <h3>Medium: {session.users[0].medium}</h3>
           </div>
           <div>
-          <div className="card" style={{width: "18rem"}}>
+          <div className="card d-flex justify-content" style={{width: "18rem"}}>
             <h3><Link to={`/${session.users[1].id}`}>{session.users[1].username}</Link></h3>
             <h3>Medium: {session.users[1].medium}</h3>
           </div>
