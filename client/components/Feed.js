@@ -106,7 +106,7 @@ class Feed extends React.Component {
         }
         return (
             <div>
-
+                <h1>My Open Request</h1>
 
                 <MyRequest />
 

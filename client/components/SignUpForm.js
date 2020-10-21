@@ -17,7 +17,7 @@ import {signup} from '../store/user'
  }
  render() {
    return (
-     <form onSubmit={this.handleSubmit}>
+     <form onSubmit={this.handleSubmit} className="text-center border border-light p-5">
         <h3>Sign Up</h3>
 
         <div className="form-group">
@@ -41,7 +41,7 @@ import {signup} from '../store/user'
         </div>
 
         <button type="submit" className="btn btn-primary btn-block">Sign Up</button>
-        <p className="forgot-password text-right">
+        <p className="forgot-password text-center">
           Already registered <a href="/login">sign in?</a>
         </p>
      </form>
