@@ -1,6 +1,6 @@
 const {expect} = require('chai')
-const db = require('../index')
-const Session = require('./session')
+const db = require('../../index')
+const Session = require('../session')
 
 describe('session model', () => {
     let session
