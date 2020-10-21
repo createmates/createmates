@@ -59,7 +59,7 @@ class Form extends React.Component {
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
-      <label for="exampleFormControlSelect1">Choose Your Practice</label>
+      <label htmlFor="exampleFormControlSelect1">Choose Your Practice</label>
         <select className="form-control" id="exampleFormControlSelect1" name="category" onChange={this.handleChange}>
           {categories.map(category => (
             <option value={category} key={category}>{category}</option>

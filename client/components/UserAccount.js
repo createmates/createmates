@@ -3,14 +3,11 @@ import {connect} from 'react-redux'
 import {getProfileThunk} from '../store/profile'
 import UpdateUserForm from './UpdateUserForm'
 import ProfilePhoto from './ProfilePhoto'
+import MyRequest from './MyRequest'
 
 
 
 class UserAccount extends React.Component {
-  constructor(props) {
-    super(props)
-
-  }
 
   componentDidMount() {
     if (this.props.match.params.userId) {
@@ -22,35 +19,41 @@ class UserAccount extends React.Component {
   }
 
 
-
-
-
   render() {
     const user = this.props.profile
-    return (
+    
+    if(user.id){
+      return (
       <div>
-          {user.id &&
+
 
           <div className="card">
             <div className="card-body">
               <ProfilePhoto />
-            <h6 className="card-title text-center text-dark">Username: {user.username}</h6>
-            <p className="card-text text-center text-dark">{user.firstName}</p>
-            <p className="card-text text-center text-dark">{user.lastName}</p>
-            <p className="card-text text-center text-dark">Email: {user.email}</p>
-            <p className="card-text text-center text-dark">City: {user.city}</p>
-            <p className="card-text text-center text-dark">State: {user.state}</p>
-            <p className="card-text text-center text-dark">Bio: {user.bio}</p>
+              <h6 className="card-title text-center text-dark">Username: {user.username}</h6>
+              <p className="card-text text-center text-dark">Medium: {user.medium}</p>
+              <p className="card-text text-center text-dark">First Name: {user.firstName}</p>
+              <p className="card-text text-center text-dark">Last Name: {user.lastName}</p>
+              <p className="card-text text-center text-dark">Email: {user.email}</p>
+              <p className="card-text text-center text-dark">City: {user.city}</p>
+              <p className="card-text text-center text-dark">State: {user.state}</p>
+              <p className="card-text text-center text-dark">Bio: {user.bio}</p>
 
-            {user.id === this.props.user.id ?
-            <UpdateUserForm user={user}/>
-            : ''}
+              {user.id === this.props.user.id &&
+              <div>
+                <UpdateUserForm user={user}/>
+                <MyRequest />
+              </div>
+              }
             </div>
-            </div>
-
-          }
+          </div>
+          
+        
       </div>
-    )
+      )
+    } else {
+      return <div>Loading</div>
+    }
   }
 }
 

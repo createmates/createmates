@@ -15,9 +15,9 @@ module.exports = app;
 
 // This is a global Mocha hook, used for resource cleanup.
 // Otherwise, Mocha v4+ never quits after tests.
-// if (process.env.NODE_ENV === "test") {
-//   after("close the session store", () => sessionStore.stopExpiringSessions());
-// }
+if (process.env.NODE_ENV === "test") {
+  after("close the session store", () => sessionStore.stopExpiringSessions());
+}
 
 /**
  * In your development environment, you can keep all of your
@@ -27,7 +27,7 @@ module.exports = app;
  * keys as environment variables, so that they can still be read by the
  * Node process on process.env
  */
-if (process.env.NODE_ENV !== "production") require("../secrets");
+if (process.env.NODE_ENV === "development") require("../secrets");
 
 // passport registration
 passport.serializeUser((user, done) => done(null, user.id));
@@ -64,12 +64,10 @@ const createApp = () => {
   app.use(passport.initialize());
   app.use(passport.session());
 
-
-
   // auth and api routes
   app.use("/auth", require("./auth"));
   app.use("/api", require("./api"));
-  // app.use('/digitalOcean', require("./digitalOcean"));
+  app.use('/spaces', require("./digitalOcean/spaces"));
 
   // static file-serving middleware
   app.use(express.static(path.join(__dirname, "..", "public")));

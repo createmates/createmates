@@ -16,7 +16,7 @@ const defaultSession = {}
 /**
  * ACTION CREATORS
  */
-const getSession = session => ({type: GET_SESSION, session})
+export const getSession = session => ({type: GET_SESSION, session})
 
 
 /**
@@ -44,6 +44,17 @@ const getSession = session => ({type: GET_SESSION, session})
        console.error(error)
      }
     }
+ }
+
+ export const getMyOpenSessionThunk = (userId) => {
+   return async (dispatch) => {
+     try {
+       const myOpenSession = await axios.get(`/api/openSessions/${userId}/open`);
+       dispatch(getSession(myOpenSession.data));
+     } catch (error) {
+       console.error(error)
+     }
+   }
  }
 
 
