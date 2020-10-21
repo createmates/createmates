@@ -69,9 +69,13 @@ router.get('/:userId/matched', async (req, res, next) => {
   try {
     const userSession = await User.findAll({where: {id: req.params.userId}, include: {
       model: Session, where: {status: 'matched'}}})
-    const session = await Session.findOne({where: {id: userSession[0].sessions[0].id}, include: [User]})
-
-    res.json(session)
+      if(userSession.length) {
+        const session = await Session.findOne({where: {id: userSession[0].sessions[0].id}, include: [User, Tag]})
+    
+        res.json(session)
+      } else {
+        res.sendStatus(404)
+      }
   } catch (err){
     next(err)
   }
@@ -93,6 +97,8 @@ router.get('/:userId/open', async (req, res, next) => {
     const session = await Session.findOne({where: {id: userSession[0].sessions[0].id}, include: [User, Tag]})
 
     res.json(session)
+  } else {
+    res.sendStatus(404)
   }
   } catch (err){
     next(err)
