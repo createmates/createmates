@@ -1,7 +1,7 @@
 const {expect} = require('chai')
-const db = require('../index')
-const Message = require('./message')
-const User = require('./user')
+const db = require('../../index')
+const Message = require('../message')
+const User = require('../user')
 
 describe('Message Model', () => {
     before(() => {

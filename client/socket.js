@@ -1,8 +1,15 @@
 import io from 'socket.io-client'
-import store from './store'
+import store, { sessionSummary } from './store'
 import { gotNewMessage } from './store/messages'
 import {roomId} from './components/Session'
-import { setMyVideo, setPartnerVideo } from './store/videos'
+import { finishSession, resetVideo, setMyVideo, setPartnerVideo } from './store/videos'
+
+
+if (process.env.NODE_ENV === "test") {
+  global.window = {location: {origin : ''}}
+}
+
+
 
 const socket = io(window.location.origin)
 let localStream;
@@ -124,7 +131,17 @@ socket.on('offer', async function(event) { //accepting and answering the offer
     }
   }
 })
-
+socket.on('finishSession', function(event){
+  store.dispatch(finishSession())
+})
+socket.on('summaryUpdate', function(summaryMessage){
+  store.dispatch(sessionSummary(summaryMessage.content))
+})
+socket.on('closeSession', function(){
+  console.log('redirect')
+  store.dispatch(resetVideo())
+  window.location = '/feed'
+})
 socket.on('answer', function(event) {
   rtcPeerConnection.setRemoteDescription(new RTCSessionDescription(event))
 })

@@ -16,7 +16,7 @@ class Feed extends React.Component {
         super()
         this.state = {
             filter: false,
-            filterCategory: 'Choose a Category',
+            filterCategory: 'Categories',
             filterUser: '',
             filterTag: ''
         }
@@ -49,7 +49,7 @@ class Feed extends React.Component {
     undoFilter(){
         this.setState({
             filter: false,
-            filterCategory: 'Choose a Category',
+            filterCategory: 'Categories',
             filterUser: '',
             filterTag: ''
         })
@@ -91,7 +91,7 @@ class Feed extends React.Component {
         if(openSessions && openSessions.length && openSessions[openSessions.length -1].users[0]){
             openSessions = openSessions.filter(session => this.props.user.id !== session.users[0].id)
         }
-        if(this.state.filterCategory !== 'Choose a Category'){
+        if(this.state.filterCategory !== 'Categories'){
             openSessions = openSessions.filter(session => session.category === this.state.filterCategory)
         }
         if(this.state.filterUser !== ''){

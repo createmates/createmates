@@ -10,7 +10,8 @@ import messagesReducer from './messages'
 import videoReducer from './videos'
 import closedSessionsReducer from './closedSessions'
 
-const reducer = combineReducers({
+//exporting for Mocha Test usage
+export const reducer = combineReducers({
     user: user,
     singleSession: singleSessionReducer,
     openSessions: openSessionsReducer,
