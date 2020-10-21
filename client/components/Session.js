@@ -1,8 +1,11 @@
 import React, { useEffect, useRef, useState } from "react";
 import { connect } from "react-redux";
-import {Link} from 'react-router-dom'
+import {Link, useHistory} from 'react-router-dom'
 import MessagesList from './MessagesList';
 import { getMatchedSessionThunk } from "../store";
+import Summary from "./Summary";
+import socket from '../socket'
+import {finishSession} from '../store/videos'
 
 
 export let roomId;
@@ -14,7 +17,7 @@ const Session = (props) => {
   const session = props.session
   const userVideo = useRef();
   const partnerVideo = useRef();
-
+  const history = useHistory()
   roomId = session.roomId
 
   useEffect(() => {
@@ -57,7 +60,9 @@ const Session = (props) => {
       <video ref={partnerVideo} autoPlay style={{marginTop: '200px', marginLeft: '600px'}}></video>
 
       <MessagesList />
-      <Link to="/sessionSummary"><button className="btn btn-info btn-md">Finish Session</button></Link>
+      {props.videos.finishSession 
+      ? <Summary history={history}/>
+      : <button className="btn btn-info btn-md" onClick={() => { socket.emit('sessionFinished', roomId); props.finishSession()}}>Finish Session</button>}
     </div>
   );
 
@@ -73,7 +78,8 @@ const mapState = (state) => {
 
 const mapDispatch = dispatch => {
   return {
-    getSession: (userId) => dispatch(getMatchedSessionThunk(userId))
+    getSession: (userId) => dispatch(getMatchedSessionThunk(userId)),
+    finishSession: ()=> dispatch(finishSession())
   }
 }
 

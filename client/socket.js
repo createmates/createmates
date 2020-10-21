@@ -2,7 +2,7 @@ import io from 'socket.io-client'
 import store from './store'
 import { gotNewMessage } from './store/messages'
 import {roomId} from './components/Session'
-import { setMyVideo, setPartnerVideo } from './store/videos'
+import { finishSession, setMyVideo, setPartnerVideo } from './store/videos'
 
 
 if (process.env.NODE_ENV === "test") {
@@ -131,7 +131,9 @@ socket.on('offer', async function(event) { //accepting and answering the offer
     }
   }
 })
-
+socket.on('finishSession', function(){
+  dispatch(finishSession())
+})
 socket.on('answer', function(event) {
   rtcPeerConnection.setRemoteDescription(new RTCSessionDescription(event))
 })

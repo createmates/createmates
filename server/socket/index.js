@@ -38,6 +38,11 @@ module.exports = io => {
       socket.on('answer', function(event){
         socket.broadcast.to(event.room).emit('answer', event.sdp)
       })
+      socket.on('finishSession', function(event){
+        console.log('sdp',event.sdp)
+        console.log('room', event.room)
+        socket.broadcast.to(event.room).emit('finishSession')
+      })
      socket.on('disconnect', () => {
       console.log(`${socket.id} has left the building`)
     })
