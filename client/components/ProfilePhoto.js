@@ -1,114 +1,68 @@
 import React from 'react'
+import axios from 'axios'
+import {updateUserThunk} from '../store/user'
 import {connect} from 'react-redux'
-import {savePhotoThunk} from '../store/user'
+const aws = require('aws-sdk');
+if (process.env.NODE_ENV === "development") require('../../secrets');
 
- class ProfilePhoto extends React.Component {
-   constructor() {
-     super()
+const spacesEndpoint = new aws.Endpoint('nyc3.digitaloceanspaces.com');
+const s3 = new aws.S3({
+    endpoint: spacesEndpoint,
+    accessKeyId: process.env.DIGITAL_OCEAN_SPACES_API_ACCESS_KEY,
+    secretAccessKey: process.env.DIGITAL_OCEAN_SPACES_SECRET,
+    region: 'nyc3'
+});
 
-     this.state = {
-       profilePhoto: '',
-       fileName: ""
-     }
-
-     this.handleSubmit = this.handleSubmit.bind(this)
-   }
-   
-
-
-  componentDidMount() {
-    this.setState({
-      profilePhoto: this.props.user.profilePhoto
-
-    })
+class ProfilePhoto extends React.Component {
+  constructor() {
+    super()
+    this.handleSubmit = this.handleSubmit.bind(this)
   }
 
-uploadedImage = React.createRef(null);
-imageUploader = React.createRef(null);
-
-
-
-  handleImageUpload = event => {
-    const [file] = event.target.files;
-
-    if(file) {
-       this.setState({
-        fileName: file.name
-       })
-
-      const reader = new FileReader();
-      const {current} = this.uploadedImage;
-      current.file = file;
-      reader.onload = (e) => {
-        current.src = e.target.result
-      }
-      reader.readAsDataURL(file)
-    }
-  }
-
-  // handleChange (event) {
-  //   this.setState({
-  //     file: URL.createObjectURL(event.target.files[0])
-  //   })
-  // }
-
-  handleSubmit(event) {
+  handleSubmit = async (event) => {
     event.preventDefault()
-    const userPhoto = this.state.fileName
-    const userId = this.props.user.id
-    this.props.savePhoto({profilePhoto: userPhoto}, userId)
-  }
-
-render (){
-  return (
-    <div style={{
-      display: "flex",
-      flexDirection: "column",
-      alignItems: "center",
-      justifyContent: "center"
-    }}
-    >
-    <div>
-      <button onClick={this.handleSubmit}>Save Photo</button>
-    </div>
-      <input type="file" name="image" id="file" accept=".jpeg, .png, .jpg" onChange={this.handleImageUpload} ref={this.imageUploader}  style={{
-        display: "none"
-      }}
-      />
-
-      <div
-        style={{
-          height: "60px",
-          width: "60px",
-          border: "1px dashed black"
-        }}
-        onClick={() => this.imageUploader.current.click()}
-      >
-      <img ref={this.uploadedImage} style={{
-        width: "100px", height: "100px", position: "absolute"
-      }}
-      />
-      </div>
-      Click to upload Image
-    </div>
-  )
-}
-}
-
-const mapState = (state) => {
-  return {
-    user: state.user
-  }
-}
-
-const mapDispatch = (dispatch) => {
-  return {
-    savePhoto: (userPhoto, userId) => {
-      dispatch(savePhotoThunk(userPhoto, userId))
+    const selectedFile = document.getElementById('file').files[0]
+    console.log("selected file: ", selectedFile)
+    console.log("selected file.name: ", selectedFile.name)
+    try {
+      const params = {
+        Bucket: "createmates",
+        Key: selectedFile.name,
+        Body: selectedFile,
+        ACL: 'public-read'
+      };
+      await s3.putObject(params, function(err, data) {
+        if (err) console.log(err, err.stack);
+        else     console.log(data);
+      });
+      // this.props.updateUser(this.props.user.id, {profilePhoto: `https://createmates.nyc3.digitaloceanspaces.com/${selectedFile.name}`})
+    } catch (err) {
+      console.error(err)
     }
+    // await axios.post('/spaces/upload', selectedFile)
+  }
+
+render () {
+  return (
+    <form method="post" encType="multipart/form-data" onSubmit={this.handleSubmit}>
+      <label htmlFor="file">Upload file</label>
+      <input id="file" type="file" name="upload" />
+      <button type="submit">Submit</button>
+    </form>
+    )
   }
 }
 
+const mapState = state => {
+  return {
+    user: state.profile
+  }
+}
 
+const mapDispatch = dispatch => {
+  return {
+    updateUser: (userId, obj) => dispatch(updateUserThunk(userId, obj))
+  }
+}
 
-export default connect(mapState, mapDispatch)(ProfilePhoto)
+export default connect(mapState, mapDispatch)(ProfilePhoto);

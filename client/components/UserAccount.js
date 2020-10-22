@@ -32,6 +32,7 @@ class UserAccount extends React.Component {
     if(user.id){
       return (
           <div className="row py-5 px-4">
+            <ProfilePhoto />
             <div className="col-md-5 mx-auto">
               <div className="bg-white shadow rounded overflow-hidden">
                 <div className="px-4 pt-0 pb-4 cover">

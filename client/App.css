@@ -18,6 +18,12 @@ video {
   object-fit: cover;
 }
 
+label,
+input {
+  display: block;
+  margin: 5px 0;
+}
+
 .main-container {
   background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.418)),
     url("https://cdm.link/app/uploads/2019/03/John-Coltrane-Tone-Circle-o.jpg");
