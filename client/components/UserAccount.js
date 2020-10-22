@@ -6,6 +6,8 @@ import ProfilePhoto from './ProfilePhoto'
 import MyRequest from './MyRequest'
 import PastCreations from './PastCreations' 
 import {getClosedSessionsThunk} from '../store/closedSessions'
+import './UserAccount.css'
+
 
 
 class UserAccount extends React.Component {
@@ -26,29 +28,49 @@ class UserAccount extends React.Component {
 
     if(user.id){
       return (
-      <div>
-
-
-          <div className="card">
-            <div className="card-body">
-              <h6 className="card-title text-center text-dark">Username: {user.username}</h6>
-              <p className="card-text text-center text-dark">Medium: {user.medium}</p>
-              <p className="card-text text-center text-dark">First Name: {user.firstName}</p>
-              <p className="card-text text-center text-dark">Last Name: {user.lastName}</p>
-              <p className="card-text text-center text-dark">Email: {user.email}</p>
-              <p className="card-text text-center text-dark">City: {user.city}</p>
-              <p className="card-text text-center text-dark">State: {user.state}</p>
-              <p className="card-text text-center text-dark">Bio: {user.bio}</p>
-
+          <div className="row py-5 px-4">
+            <div className="col-md-5 mx-auto">
+              <div className="bg-white shadow rounded overflow-hidden">
+                <div className="px-4 pt-0 pb-4 cover">
+                  <div className="media align-items-end profile-head">
+                    <div className="profile mr-3"><img src="https://assets.vogue.com/photos/5a906834966d3031b95ca0fe/master/pass/01-Austyn.jpg" width="130" className="rounded mb-2 img-thumbnail"/><a className="btn btn-outline-dark btn-sm btn-block"><UpdateUserForm user={user}/></a></div>
+                    <div className="media-body mb-5 text-white">
+                      <h4 className="mt-0 mb-0">{user.firstName} {user.lastName}</h4>
+                      <p className="small mb-4"><i className="fas fa-map-marker-alt mr-2"></i>{user.city}, {user.state}</p>
+                    </div>
+                  </div>
+                </div>
+                <div className="bg-light p-4 d-flex justify-content-end text-center">
+                <ul className="list-inline mb-0">
+                    <li className="list-inline-item">
+                        <small className="text-muted"> <i className="fas fa-image mr-1"></i>{user.email}</small>
+                    </li>
+                </ul>
+            </div>
+            <div className="px-4 py-3">
+            <h5 className="mb-0">Artist Bio</h5>
+            <div className="p-4 rounded shadow-sm bg-light">
+              <p className="font-italic mb-0">Username:{user.username}</p>
+                <p className="font-italic mb-0">{user.medium}</p>
+                <p className="font-italic mb-0">{user.bio}</p>
+            </div>
+        </div>
               {user.id === this.props.user.id &&
-              <div>
+
+                <div className="px-4 py-3">
+                <div>
                 <UpdateUserForm user={user}/>
 
               </div>
+                <div className="p-4 rounded shadow-sm bg-light">
+                    <p>
+                   <MyRequest />
+                   </p>
+
+                </div>
+                </div>
               }
-               <MyRequest />
-               <PastCreations user={user} sessions={this.props.sessions} />
-            </div>
+              <PastCreations user={user} sessions={this.props.sessions} /></div>
           </div>
 
 

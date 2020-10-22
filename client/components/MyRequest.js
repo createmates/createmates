@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import {deleteSessionThunk, updateSessionThunk} from '../store/openSessions'
 import {getMyOpenSessionThunk} from '../store/singleSession'
 import {categories} from './Form'
+import "./MyRequest.css"
 
 class MyRequest extends React.Component {
   constructor() {
@@ -57,31 +58,32 @@ class MyRequest extends React.Component {
   render() {
     const myOpenSession = this.props.myOpenSession
 
+
     if(myOpenSession && myOpenSession.users && myOpenSession.status !== 'closed'){
       return(
         <div>
-          <h1>My Session</h1>
-          <h3>Status: {myOpenSession.status} </h3>
-          <h2>{myOpenSession.category}</h2>
-          <h3>{myOpenSession.users[0].username} writes: </h3>
-          <p>{myOpenSession.blurb}</p>
-          <div>
-              {myOpenSession.tags && myOpenSession.tags.filter(tag => tag.name !== '').map(tag => (<span key={tag.id}>#{tag.name} </span>))}
-          </div>
-          {myOpenSession.status === "unmatched" 
-          ?
-          <div>
-            <button onClick={() => this.props.deleteSession(myOpenSession)}>Delete</button>
-            <button onClick={() => this.handleUpdate(myOpenSession)}>Update</button>
-          </div>
-          :
+          <h5 className="mb-0">My Session</h5>
+          <div className="p-4 rounded shadow-sm bg-light">
+            <p className="mb-0">Status: {myOpenSession.status} </p>
+            <p className="mb-0">Medium: {myOpenSession.category}</p>
+            <p className="mb-0">{myOpenSession.users[0].username} writes: </p>
+            <p>{myOpenSession.blurb}</p>
             <div>
+                {myOpenSession.tags.filter(tag => tag.name !== '').map(tag => (<span key={tag.id}>#{tag.name} </span>))}
+            </div>
+            {myOpenSession.status === "unmatched" ?
+            <div>
+            <button className="btn btn-sm btn-danger" onClick={() => this.props.deleteSession(myOpenSession)}>Delete</button>
+            <button className="btn btn-sm btn-light" onClick={() => this.handleUpdate(myOpenSession)}>Update</button>
+            </div>
+            :
+              <div>
               <h2 style={{color: 'red'}}>SESSION MATCHED!</h2>
               <a className="nav-link" href="/session">Join Room</a>
-            </div>
+              </div>
           }
           {this.state.updating &&
-            <form onSubmit={() => this.handleSubmit}>
+            <form onSubmit={this.handleSubmit}>
               <select name="category" onChange={this.handleChange} value={this.state.category}>
                 {categories.map(category => (
                     <option value={category} key={category}>{category}</option>
@@ -108,6 +110,7 @@ class MyRequest extends React.Component {
           </form>
           }
         </div>
+      </div>
       )
     } else {
       return <div></div>
