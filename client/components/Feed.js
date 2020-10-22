@@ -110,10 +110,9 @@ class Feed extends React.Component {
                 return matchs.length > 0})
             openSessions = tagSessions
         }
+        console.log(openSessions)
         return (
             <div>
-
-
                 <MyRequest />
 
                 <h1>Other Artists Open Requests</h1>
@@ -140,8 +139,6 @@ class Feed extends React.Component {
                     ? openSessions.map(session => <OpenRequestCard session={session} key={session.id} handleMatch={this.handleMatch}/>)
                     : <h2>No Open Requests found</h2>
                 }
-
-
             </div>
         )
     }
