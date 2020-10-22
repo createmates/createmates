@@ -42,6 +42,7 @@ class ProfilePhoto extends React.Component {
     } catch (err) {
       console.error(err)
     }
+    // await axios.post('/spaces/upload', selectedFile)
   }
 
 render () {
