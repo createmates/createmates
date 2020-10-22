@@ -11,9 +11,6 @@ import {getClosedSessionsThunk} from '../store/closedSessions'
 import './UserAccount.css'
 
 
-import PastCreations from './PastCreations' 
-import {getClosedSessionsThunk} from '../store/closedSessions'
-
 
 
 class UserAccount extends React.Component {
