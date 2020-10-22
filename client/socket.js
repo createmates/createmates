@@ -1,9 +1,9 @@
 import io from 'socket.io-client'
-import store, { sessionSummary } from './store'
+import store, { getSingleSessionThunk, sessionSummary } from './store'
 import { gotNewMessage } from './store/messages'
 import {roomId} from './components/Session'
 import { finishSession, resetVideo, setMyVideo, setPartnerVideo } from './store/videos'
-
+import {toast} from 'react-toastify'
 
 if (process.env.NODE_ENV === "test") {
   global.window = {location: {origin : ''}}
@@ -48,13 +48,44 @@ function onAddStream(event){
   store.dispatch(setPartnerVideo(remoteVideo))
 }
 
+const matchedToast = (matchedMessage) => {
+  console.log('did this work?')
+  toast(`${matchedMessage.matcherNmae} has matched with your open request`, {
+    className: "custom_toast",
+    toastClassName: 'toast',
+    closeOnClick: true,
+    position: toast.POSITION.TOP_CENTER,
+    autoClose: false,
+  })
+}
+const newRequestToast = (newSession) => {
+  console.log('did this work?')
+  toast(`${newSession.user.username} has openned a new ${newSession.category} request`, {
+    className: "custom_toast",
+    toastClassName: 'toast',
+    closeOnClick: true,
+    position: toast.POSITION.TOP_CENTER,
+    autoClose: 5000,
+  })
+}
+
 socket.on('connect', () => {
     console.log('Connected!')
   })
-
+socket.on('newRequest', newSession => {
+  newRequestToast(newSession)
+})
+socket.on('matched', matchedMessage => {
+ const state = store.getState()
+ if(state.user.id === matchedMessage.requesterId){
+   matchedToast(matchedMessage)
+   state.dispatch(getSingleSessionThunk(matchedMessage.sessionId))
+ }
+})
 socket.on('new-message', (message) => { //messages for the chat box
     store.dispatch(gotNewMessage(message))
   })
+
 
 socket.on('created', async function(room){ //will run for the first person in the room
   try{
@@ -131,6 +162,7 @@ socket.on('offer', async function(event) { //accepting and answering the offer
     }
   }
 })
+
 socket.on('finishSession', function(event){
   store.dispatch(finishSession())
 })

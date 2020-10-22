@@ -25,6 +25,12 @@ module.exports = io => {
 
 
       //relay only handlers
+      socket.on('newRequest', newSession => {
+        socket.broadcast.emit('newRequest', newSession)
+      })
+      socket.on('matched', matchMessage => {
+        socket.broadcast.emit('matched', matchMessage)
+      })
       socket.on('new-message', message => {
         socket.broadcast.emit('new-message', message);
       });

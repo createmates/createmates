@@ -1,17 +1,15 @@
-import { roomId } from "../components/Session"
-import socket from "../socket"
+
 
 const initialVideo = {
     myVideo: {},
     partnersVideo: {},
     finishSession: false,
-    summary: ''
 }
 
 const SET_MY_VIDEO = "SET_MY_VIDEO"
 const SET_PARTNERS_VIDEO = 'SET_PARTNERS_VIDEO'
 const FINISH_SESSION = 'FINISH_SESSION'
-export const RESET_VIDEO = 'RESET_VIDEO'
+const RESET_VIDEO = 'RESET_VIDEO'
 
 export const setMyVideo = (localStream) => {
     return {

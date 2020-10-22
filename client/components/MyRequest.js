@@ -23,98 +23,100 @@ class MyRequest extends React.Component {
     this.props.getMyOpenSession(this.props.user.id)
   }
 
-   handleUpdate(sessionToUpdate){
-        const tags = sessionToUpdate.tags.reduce((str, tag) => {
-            return str += tag.name + " "
-        }, '')
-        this.setState({
-            updating: true,
-            category: sessionToUpdate.category,
-            blurb: sessionToUpdate.blurb,
-            tags: tags
-        })
-    }
-
-    handleSubmit(event) {
-      event.preventDefault();
-        const tags = this.state.tags.split(' ')
-        const updatedSession = {
-            blurb: this.state.blurb,
-            category: this.state.category,
-            tags: tags,
-            id: this.props.myOpenSession.id
-        }
-        this.props.updateSession(updatedSession)
-    }
-
-    handleChange = event => {
-      const currentKey = event.target.name;
-      let value = event.target.value
+  handleUpdate(sessionToUpdate){
+      const tags = sessionToUpdate.tags.reduce((str, tag) => {
+          return str += tag.name + " "
+      }, '')
       this.setState({
-        [currentKey]: value
-      });
-    };
+          updating: true,
+          category: sessionToUpdate.category,
+          blurb: sessionToUpdate.blurb,
+          tags: tags
+      })
+  }
 
-    render() {
-      const myOpenSession = this.props.myOpenSession
+  handleSubmit(event) {
+    event.preventDefault();
+      const tags = this.state.tags.split(' ')
+      const updatedSession = {
+          blurb: this.state.blurb,
+          category: this.state.category,
+          tags: tags,
+          id: this.props.myOpenSession.id
+      }
+      this.props.updateSession(updatedSession)
+  }
 
-      return (
-        <div className="px-4 py-3">
-          {myOpenSession && myOpenSession.users &&
-            <div className="p-4 rounded shadow-sm bg-light">
-            <p className="mb-0">Status: {myOpenSession.status} </p>
-            <p className="mb-0">Medium: {myOpenSession.category}</p>
-            <p className="mb-0">{myOpenSession.users[0].username} writes: </p>
-            <p>{myOpenSession.blurb}</p>
+  handleChange = event => {
+    const currentKey = event.target.name;
+    let value = event.target.value
+    this.setState({
+      [currentKey]: value
+    });
+  };
+
+  render() {
+    const myOpenSession = this.props.myOpenSession
+
+
+    if(myOpenSession && myOpenSession.users && myOpenSession.status !== 'closed'){
+      return(
+        <div>
+          <h1>My Session</h1>
+          <h3>Status: {myOpenSession.status} </h3>
+          <h2>{myOpenSession.category}</h2>
+          <h3>{myOpenSession.users[0].username} writes: </h3>
+          <p>{myOpenSession.blurb}</p>
+          <div>
+              {myOpenSession.tags && myOpenSession.tags.filter(tag => tag.name !== '').map(tag => (<span key={tag.id}>#{tag.name} </span>))}
+          </div>
+          {myOpenSession.status === "unmatched" 
+          ?
+          <div>
+            <button onClick={() => this.props.deleteSession(myOpenSession)}>Delete</button>
+            <button onClick={() => this.handleUpdate(myOpenSession)}>Update</button>
+          </div>
+          :
             <div>
-                {myOpenSession.tags && myOpenSession.tags.filter(tag => tag.name !== '').map(tag => (<span key={tag.id}>#{tag.name} </span>))}
-            </div>
-            {myOpenSession.status === "unmatched" ?
-            <div>
-            <button className="btn btn-sm btn-danger" onClick={() => this.props.deleteSession(myOpenSession)}>Delete</button>
-            <button className="btn btn-sm btn-light" onClick={() => this.handleUpdate(myOpenSession)}>Update</button>
-            </div>
-            :
-              <div>
               <h2 style={{color: 'red'}}>SESSION MATCHED!</h2>
               <a className="nav-link" href="/session">Join Room</a>
-              </div>
-            }
+            </div>
+          }
+          {this.state.updating &&
+            <form onSubmit={() => this.handleSubmit}>
+              <select name="category" onChange={this.handleChange} value={this.state.category}>
+                {categories.map(category => (
+                    <option value={category} key={category}>{category}</option>
+                ))}
+            </select>
+            <div>
+                <label htmlFor="blurb">Write a couple of sentences about what you would like to create: </label>
+                <input
+                type="textarea"
+                name="blurb"
+                value={this.state.blurb}
+                maxLength="75"
+                onChange={this.handleChange}
+                />
+                <label htmlFor="tags">Tags: </label>
+                <input
+                type="text"
+                name="tags"
+                value={this.state.tags}
+                onChange={this.handleChange}
+                />
+                <button type="submit">Go</button>
+            </div>
+          </form>
 
-
-            {this.state.updating &&
-              <form onSubmit={() => this.handleSubmit}>
-                <select name="category" onChange={this.handleChange} value={this.state.category}>
-              {categories.map(category => (
-                  <option value={category} key={category}>{category}</option>
-              ))}
-              </select>
-              <div>
-                  <label htmlFor="blurb">Write a couple of sentences about what you would like to create: </label>
-                  <input
-                  type="textarea"
-                  name="blurb"
-                  value={this.state.blurb}
-                  maxLength="75"
-                  onChange={this.handleChange}
-                  />
-                  <label htmlFor="tags">Tags: </label>
-                  <input
-                  type="text"
-                  name="tags"
-                  value={this.state.tags}
-                  onChange={this.handleChange}
-                  />
-                  <button type="submit">Go</button>
-              </div>
-            </form>
-            }
-           </div>
           }
         </div>
 
       )
+    } else {
+      return <div></div>
     }
+  }
 }
 
 const mapState = state => {
