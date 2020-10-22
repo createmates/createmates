@@ -6,7 +6,9 @@ import store from '../../store';
 
 import Navbar from '../navbar';
         
+
 describe.skip('not logged in', () => {
+
         let navBar;
     beforeEach(() => {
         navBar = mount(<Provider store={store}><Navbar /></Provider>)

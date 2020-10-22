@@ -4,9 +4,15 @@ import {getProfileThunk} from '../store/profile'
 import UpdateUserForm from './UpdateUserForm'
 import ProfilePhoto from './ProfilePhoto'
 import MyRequest from './MyRequest'
+
 import PastCreations from './PastCreations' 
 import {getClosedSessionsThunk} from '../store/closedSessions'
+
 import './UserAccount.css'
+
+
+import PastCreations from './PastCreations' 
+import {getClosedSessionsThunk} from '../store/closedSessions'
 
 
 
@@ -68,13 +74,16 @@ class UserAccount extends React.Component {
                    </p>
 
                 </div>
+
                 </div>
               }
               <PastCreations user={user} sessions={this.props.sessions} /></div>
+
           </div>
 
 
       </div>
+
       )
     } else {
       return <div>Loading</div>

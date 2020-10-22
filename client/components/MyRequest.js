@@ -62,28 +62,33 @@ class MyRequest extends React.Component {
     if(myOpenSession && myOpenSession.users && myOpenSession.status !== 'closed'){
       return(
         <div>
+
           <h5 className="mb-0">My Session</h5>
           <div className="p-4 rounded shadow-sm bg-light">
             <p className="mb-0">Status: {myOpenSession.status} </p>
             <p className="mb-0">Medium: {myOpenSession.category}</p>
             <p className="mb-0">{myOpenSession.users[0].username} writes: </p>
             <p>{myOpenSession.blurb}</p>
+
+          //is this needed did i delete something?
+          <div>
+              {myOpenSession.tags && myOpenSession.tags.filter(tag => tag.name !== '').map(tag => (<span key={tag.id}>#{tag.name} </span>))}
+          </div>
+          {myOpenSession.status === "unmatched" 
+          ?
+          <div>
+            <button onClick={() => this.props.deleteSession(myOpenSession)}>Delete</button>
+            <button onClick={() => this.handleUpdate(myOpenSession)}>Update</button>
+          </div>
+          :
+//it stopped here
             <div>
-                {myOpenSession.tags.filter(tag => tag.name !== '').map(tag => (<span key={tag.id}>#{tag.name} </span>))}
-            </div>
-            {myOpenSession.status === "unmatched" ?
-            <div>
-            <button className="btn btn-sm btn-danger" onClick={() => this.props.deleteSession(myOpenSession)}>Delete</button>
-            <button className="btn btn-sm btn-light" onClick={() => this.handleUpdate(myOpenSession)}>Update</button>
-            </div>
-            :
-              <div>
               <h2 style={{color: 'red'}}>SESSION MATCHED!</h2>
               <a className="nav-link" href="/session">Join Room</a>
-              </div>
+            </div>
           }
           {this.state.updating &&
-            <form onSubmit={this.handleSubmit}>
+            <form onSubmit={() => this.handleSubmit}>
               <select name="category" onChange={this.handleChange} value={this.state.category}>
                 {categories.map(category => (
                     <option value={category} key={category}>{category}</option>
@@ -107,7 +112,9 @@ class MyRequest extends React.Component {
                 />
                 <button type="submit">Go</button>
             </div>
+
           </form>
+
           }
         </div>
       </div>
