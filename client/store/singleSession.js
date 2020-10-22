@@ -1,6 +1,5 @@
 import axios from 'axios'
 import socket from '../socket';
-import {RESET_VIDEO} from './videos'
 
 /**
  * ACTION TYPES
@@ -69,8 +68,6 @@ export const sessionSummary = summary => ({type: SESSION_SUMMARY, summary})
       return action.session;
     case SESSION_SUMMARY:
           return {...state, summary: action.summary}
-    case RESET_VIDEO:
-      return {...state, summary: ''}
     default:
       return state
   }

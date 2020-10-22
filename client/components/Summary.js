@@ -16,13 +16,9 @@ class Summary extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this)
     }
 
-    handleChange = event => {
-        // this.setState({
-        //     [event.target.name] : event.target.value
-        // })    
+    handleChange = event => { 
         const summaryMessage = {content: event.target.value, roomId}
         this.props.sessionSummary(summaryMessage.content)
-console.log('step1')
         socket.emit('summaryUpdate', summaryMessage)
     }
 
