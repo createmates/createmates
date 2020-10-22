@@ -34,7 +34,7 @@ class Form extends React.Component {
   }
 
   deniedToast = () => {
-    toast('YOU MAY NOT OPEN MORE THAN ONE SESSION', {
+    toast('You may not open more than one session', {
       className: "custom_toast",
       toastClassName: 'toast',
       closeOnClick: true,

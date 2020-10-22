@@ -13,6 +13,7 @@ import {savePhotoThunk} from '../store/user'
 
      this.handleSubmit = this.handleSubmit.bind(this)
    }
+   
 
 
   componentDidMount() {
