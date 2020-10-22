@@ -114,9 +114,6 @@ class Feed extends React.Component {
         return (
             <div>
 
-         
-
-
                 <MyRequest />
 
                 <h1>Other Artists Open Requests</h1>

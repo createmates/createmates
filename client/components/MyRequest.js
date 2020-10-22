@@ -62,11 +62,15 @@ class MyRequest extends React.Component {
     if(myOpenSession && myOpenSession.users && myOpenSession.status !== 'closed'){
       return(
         <div>
-          <h1>My Session</h1>
-          <h3>Status: {myOpenSession.status} </h3>
-          <h2>{myOpenSession.category}</h2>
-          <h3>{myOpenSession.users[0].username} writes: </h3>
-          <p>{myOpenSession.blurb}</p>
+
+          <h5 className="mb-0">My Session</h5>
+          <div className="p-4 rounded shadow-sm bg-light">
+            <p className="mb-0">Status: {myOpenSession.status} </p>
+            <p className="mb-0">Medium: {myOpenSession.category}</p>
+            <p className="mb-0">{myOpenSession.users[0].username} writes: </p>
+            <p>{myOpenSession.blurb}</p>
+
+          //is this needed did i delete something?
           <div>
               {myOpenSession.tags && myOpenSession.tags.filter(tag => tag.name !== '').map(tag => (<span key={tag.id}>#{tag.name} </span>))}
           </div>
@@ -77,6 +81,7 @@ class MyRequest extends React.Component {
             <button onClick={() => this.handleUpdate(myOpenSession)}>Update</button>
           </div>
           :
+//it stopped here
             <div>
               <h2 style={{color: 'red'}}>SESSION MATCHED!</h2>
               <a className="nav-link" href="/session">Join Room</a>
@@ -107,11 +112,12 @@ class MyRequest extends React.Component {
                 />
                 <button type="submit">Go</button>
             </div>
+
           </form>
 
           }
         </div>
-
+      </div>
       )
     } else {
       return <div></div>

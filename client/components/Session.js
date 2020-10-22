@@ -4,6 +4,12 @@ import {Link, useHistory} from 'react-router-dom'
 import MessagesList from './MessagesList';
 import { getMatchedSessionThunk } from "../store";
 
+import Summary from "./Summary";
+import socket from '../socket'
+import {finishSession} from '../store/videos'
+import SessionVideo from './Videos'
+
+
 import UserSession from './UserSession'
 import UserSummary from './UserSummary'
 
@@ -11,6 +17,7 @@ import Summary from "./Summary";
 import socket from '../socket'
 import {finishSession} from '../store/videos'
 import SessionVideo from './Videos'
+
 
 
 
@@ -36,13 +43,18 @@ const Session = (props) => {
     return (
     //render two videos
 
+
     <div>
       <UserSession />
-        
-      </div>
+
+      
       <SessionVideo />
 
-      <UserSummary />
+      <MessagesList />
+      {props.videos.finishSession 
+      ? <Summary history={history}/>
+      : <button className="btn btn-info btn-md" onClick={() => getSummaryForm()}>Finish Session</button>}
+
 
     </div>
   );

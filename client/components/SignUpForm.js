@@ -42,6 +42,7 @@ import {signup} from '../store/user'
 
         <button type="submit" className="btn btn-primary btn-block">Sign Up</button>
 
+
         <p className="forgot-password text-center">
           Already registered? <a href="/login">sign in</a>
 

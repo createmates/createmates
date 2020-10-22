@@ -5,6 +5,9 @@ import UpdateUserForm from './UpdateUserForm'
 import ProfilePhoto from './ProfilePhoto'
 import MyRequest from './MyRequest'
 
+import PastCreations from './PastCreations' 
+import {getClosedSessionsThunk} from '../store/closedSessions'
+
 import './UserAccount.css'
 
 
@@ -61,7 +64,10 @@ class UserAccount extends React.Component {
               {user.id === this.props.user.id &&
 
                 <div className="px-4 py-3">
-                <h5 className="mb-0">My Session</h5>
+                <div>
+                <UpdateUserForm user={user}/>
+
+              </div>
                 <div className="p-4 rounded shadow-sm bg-light">
                     <p>
                    <MyRequest />
@@ -69,16 +75,10 @@ class UserAccount extends React.Component {
 
                 </div>
 
-
-              {user.id === this.props.user.id &&
-              <div>
-                <UpdateUserForm user={user}/>
-
-              </div>
+                </div>
               }
-               <MyRequest />
-               <PastCreations user={user} sessions={this.props.sessions} />
-            </div>
+              <PastCreations user={user} sessions={this.props.sessions} /></div>
+
           </div>
 
 
