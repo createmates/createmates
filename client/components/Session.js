@@ -4,10 +4,7 @@ import {Link, useHistory} from 'react-router-dom'
 import MessagesList from './MessagesList';
 import { getMatchedSessionThunk } from "../store";
 
-import Summary from "./Summary";
-import socket from '../socket'
-import {finishSession} from '../store/videos'
-import SessionVideo from './Videos'
+
 
 
 import UserSession from './UserSession'
