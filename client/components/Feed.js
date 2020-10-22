@@ -7,13 +7,16 @@ import {getSingleSessionThunk} from "../store/singleSession"
 import {categories} from './Form'
 import MyRequest from './MyRequest';
 import OpenRequestCard from './OpenRequestCard'
+import {toast} from 'react-toastify'
+import "react-toastify/dist/ReactToastify.css";
+import "../../client/App.css"
 
 class Feed extends React.Component {
     constructor() {
         super()
         this.state = {
             filter: false,
-            filterCategory: 'Choose a Category',
+            filterCategory: 'Categories',
             filterUser: '',
             filterTag: ''
         }
@@ -46,11 +49,21 @@ class Feed extends React.Component {
     undoFilter(){
         this.setState({
             filter: false,
-            filterCategory: 'Choose a Category',
+            filterCategory: 'Categories',
             filterUser: '',
             filterTag: ''
         })
     }
+
+  deniedToast = () => {
+        toast('YOU MUST DELETE YOUR OPEN REQUEST BEFORE MATCHING WITH ANOTHER USER\'S REQUEST', {
+          className: "custom_toast",
+          toastClassName: 'toast',
+          closeOnClick: true,
+          position: toast.POSITION.TOP_CENTER,
+          autoClose: false,
+        })
+      }
 
     async handleMatch(session){
         let mySessions = this.props.openSessions.filter(session => this.props.user.id === session.users[0].id)
@@ -65,11 +78,17 @@ class Feed extends React.Component {
 
             await this.props.updateSession(updatedSession)
             this.props.history.push(`/session`)
+            const matchedMessage = {
+                sessionId: session.id,
+                requesterId: session.users[0].id,
+                matcherName: this.props.user.username
+            }
+            socket.emit('matched', matchedMessage)
 
             //starting the room in the socket connection
             socket.emit('create or join', roomId)
         } else {
-            alert('YOU MUST DELETE YOUR OPEN REQUEST BEFORE MATCHING WITH ANOTHER USER\'S REQUEST');
+            this.deniedToast();
         }
     }
 
@@ -78,7 +97,7 @@ class Feed extends React.Component {
         if(openSessions && openSessions.length && openSessions[openSessions.length -1].users[0]){
             openSessions = openSessions.filter(session => this.props.user.id !== session.users[0].id)
         }
-        if(this.state.filterCategory !== 'Choose a Category'){
+        if(this.state.filterCategory !== 'Categories'){
             openSessions = openSessions.filter(session => session.category === this.state.filterCategory)
         }
         if(this.state.filterUser !== ''){
@@ -91,6 +110,7 @@ class Feed extends React.Component {
                 return matchs.length > 0})
             openSessions = tagSessions
         }
+        console.log(openSessions)
         return (
             <div>
 
@@ -120,8 +140,6 @@ class Feed extends React.Component {
                     ? openSessions.map(session => <OpenRequestCard session={session} key={session.id} handleMatch={this.handleMatch}/>)
                     : <h2>No Open Requests found</h2>
                 }
-
-
             </div>
         )
     }

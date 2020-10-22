@@ -123,3 +123,12 @@ p {
 #new-message-form.btn {
   border-width: 3px;
 }
+
+.custom_toast {
+  background-color: red;
+  font-size: 20px;
+}
+
+.toast {
+  background-color: red;
+}

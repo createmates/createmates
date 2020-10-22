@@ -16,9 +16,6 @@ const s3 = new aws.S3({
 class ProfilePhoto extends React.Component {
   constructor() {
     super()
-    this.state = {
-      fileName: ''
-    }
     this.handleSubmit = this.handleSubmit.bind(this)
   }
 
@@ -64,7 +61,7 @@ const mapState = state => {
 
 const mapDispatch = dispatch => {
   return {
-    updateUser: (userId, obj) => dispatch(userId, updateUserThunk())
+    updateUser: (userId, obj) => dispatch(updateUserThunk(userId, obj))
   }
 }
 

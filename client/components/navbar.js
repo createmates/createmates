@@ -20,7 +20,6 @@ const Navbar = ({ handleClick, handleClickAccount, isLoggedIn, isAdmin, user }) 
           {/* The navbar will show these links after you log in */}
 
 
-
              <a className="nav-link active" href="/create">Create<span className="sr-only">(current)</span></a>
 
              <a className="nav-link" href="/myAccount" onClick={handleClickAccount(user.id)}>My Account<span className="sr-only">(current)</span></a>
@@ -34,7 +33,11 @@ const Navbar = ({ handleClick, handleClickAccount, isLoggedIn, isAdmin, user }) 
         </div>
         </div>
       ) : (
-        <div>{/* The navbar will show these links before you log in */}</div>
+        <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div className="navbar-nav">
+          <a className="nav-link active" href="/login">Login/SignUp<span className="sr-only">(current)</span></a>
+          </div>
+        </div>
       )}
     </nav>
 

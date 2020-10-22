@@ -12,27 +12,43 @@ const AuthForm = (props) => {
 
   return (
     <div>
-      <form onSubmit={handleSubmit} name={name}>
+      <form onSubmit={handleSubmit} className="text-center border border-light p-5" name={name}>
+        <p className="h4 mb-4">Sign in</p>
         <div>
           <label htmlFor="email">
-            <small>Email</small>
           </label>
-          <input name="email" type="text" />
+          <input type="email" name="email" id="defaultLoginFormEmail" className="form-control mb-4" type="text" placeholder="E-mail" />
         </div>
         <div>
           <label htmlFor="password">
             <small>Password</small>
           </label>
-          <input name="password" type="password" />
+          <input type="password" name="password" id="defaultLoginPassword" className="form-control mb-4" placeholder="Password" />
         </div>
-        <div>
-          <button type="submit">{displayName}</button>
+        <div className="d-flex justify-content-around">
+          <div>
+            <div className="custom-control custom-checkbox">
+              <input type="checkbox" className="custom-control-input" id="defaultLoginFormRemember"/>
+              <label className="custom-control-label" htmlFor="defaultLoginFormRemember">Remember me</label>
+            </div>
+          </div>
+          <div>
+            <a href="">Forgot password?</a>
+          </div>
+          </div>
+          <button className="btn btn-info btn-block my-4" type="submit">{displayName}</button>
+          <p>Not a member?
           <Link to="/signup">Sign Up</Link>
-        </div>
-        {error && error.response && <div> {error.response.data} </div>}
+          </p>
+          {error && error.response && <div> {error.response.data} </div>}
+          <button type="button" className="btn btn-info btn-google btn-block btn-outline my-4"><Link to="/auth/google"><img src="https://img.icons8.com/color/16/000000/google-logo.png"/>{displayName}with Google</Link></button>
+
+
+
+
       </form>
 
-      <a href="/auth/google">{displayName} with Google</a>
+
     </div>
   );
 };
