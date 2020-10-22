@@ -16,7 +16,7 @@ class Feed extends React.Component {
         super()
         this.state = {
             filter: false,
-            filterCategory: 'Choose a Category',
+            filterCategory: 'Categories',
             filterUser: '',
             filterTag: ''
         }
@@ -49,7 +49,7 @@ class Feed extends React.Component {
     undoFilter(){
         this.setState({
             filter: false,
-            filterCategory: 'Choose a Category',
+            filterCategory: 'Categories',
             filterUser: '',
             filterTag: ''
         })
@@ -91,7 +91,7 @@ class Feed extends React.Component {
         if(openSessions && openSessions.length && openSessions[openSessions.length -1].users[0]){
             openSessions = openSessions.filter(session => this.props.user.id !== session.users[0].id)
         }
-        if(this.state.filterCategory !== 'Choose a Category'){
+        if(this.state.filterCategory !== 'Categories'){
             openSessions = openSessions.filter(session => session.category === this.state.filterCategory)
         }
         if(this.state.filterUser !== ''){
@@ -104,9 +104,12 @@ class Feed extends React.Component {
                 return matchs.length > 0})
             openSessions = tagSessions
         }
+        console.log(openSessions)
         return (
             <div>
-                <h1>My Open Request</h1>
+
+         
+
 
                 <MyRequest />
 
@@ -134,8 +137,6 @@ class Feed extends React.Component {
                     ? openSessions.map(session => <OpenRequestCard session={session} key={session.id} handleMatch={this.handleMatch}/>)
                     : <h2>No Open Requests found</h2>
                 }
-
-
             </div>
         )
     }

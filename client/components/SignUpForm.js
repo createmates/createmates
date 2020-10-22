@@ -41,8 +41,10 @@ import {signup} from '../store/user'
         </div>
 
         <button type="submit" className="btn btn-primary btn-block">Sign Up</button>
+
         <p className="forgot-password text-center">
-          Already registered <a href="/login">sign in?</a>
+          Already registered? <a href="/login">sign in</a>
+
         </p>
      </form>
    )

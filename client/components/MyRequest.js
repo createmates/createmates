@@ -35,7 +35,8 @@ class MyRequest extends React.Component {
         })
     }
 
-    handleSubmit() {
+    handleSubmit(event) {
+      event.preventDefault();
         const tags = this.state.tags.split(' ')
         const updatedSession = {
             blurb: this.state.blurb,
@@ -56,8 +57,6 @@ class MyRequest extends React.Component {
 
     render() {
       const myOpenSession = this.props.myOpenSession
-      console.log('myOpenSession: ', myOpenSession)
-
 
       return (
         <div className="px-4 py-3">
@@ -68,7 +67,7 @@ class MyRequest extends React.Component {
             <p className="mb-0">{myOpenSession.users[0].username} writes: </p>
             <p>{myOpenSession.blurb}</p>
             <div>
-                {myOpenSession.tags.filter(tag => tag.name !== '').map(tag => (<span key={tag.id}>#{tag.name} </span>))}
+                {myOpenSession.tags && myOpenSession.tags.filter(tag => tag.name !== '').map(tag => (<span key={tag.id}>#{tag.name} </span>))}
             </div>
             {myOpenSession.status === "unmatched" ?
             <div>
@@ -84,7 +83,7 @@ class MyRequest extends React.Component {
 
 
             {this.state.updating &&
-              <form onSubmit={this.handleSubmit}>
+              <form onSubmit={() => this.handleSubmit}>
                 <select name="category" onChange={this.handleChange} value={this.state.category}>
               {categories.map(category => (
                   <option value={category} key={category}>{category}</option>

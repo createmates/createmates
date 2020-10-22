@@ -14,7 +14,10 @@ function CardItem(props) {
             />
           </figure>
           <div className='cards__item__info'>
-            <h5 className='cards__item__text'>{props.text}</h5>
+            <h6 className='cards__item__text'><Link to={`/${props.users[0].id}`}>{props.users[0].username}</Link> • • • <Link to={`/${props.users[1].id}`}>{props.users[1].username}</Link></h6>
+            <h5 className='cards__item__text'>"{props.text}"</h5>
+            {props.tags.map(tag => <span id={tag.id}>#{tag.name} </span>)}
+            <p>{props.date}</p>
           </div>
         </Link>
       </li>

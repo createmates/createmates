@@ -8,14 +8,17 @@ import openSessionsReducer from './openSessions'
 import profile from './profile'
 import messagesReducer from './messages'
 import videoReducer from './videos'
+import closedSessionsReducer from './closedSessions'
 
-const reducer = combineReducers({
+//exporting for Mocha Test usage
+export const reducer = combineReducers({
     user: user,
     singleSession: singleSessionReducer,
     openSessions: openSessionsReducer,
     profile: profile,
     messages: messagesReducer,
-    videos: videoReducer
+    videos: videoReducer,
+    closedSessions: closedSessionsReducer
   })
 
   const middleware = composeWithDevTools(

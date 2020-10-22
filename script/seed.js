@@ -1,3 +1,4 @@
+const { session } = require("passport");
 const db = require("../server/db");
 const { User, Tag, Session } = require("../server/db/models");
 // const Session = require("../server/db/models/session");
@@ -5,6 +6,8 @@ const { User, Tag, Session } = require("../server/db/models");
 const users = [
   {
     username: "danceswithwolves",
+    firstName: 'Nancy',
+    lastName: 'Smith',
     city: "Brooklyn",
     state: "NY",
     bio: "just a small town girl",
@@ -14,6 +17,8 @@ const users = [
   },
   {
     username: "guitargod",
+    firstName: 'Chester',
+    lastName: 'Jones',
     city: "Brooklyn",
     state: "NY",
     bio: "Love my mom's basement",
@@ -23,6 +28,8 @@ const users = [
   },
   {
     username: "welcometodrama",
+    firstName: 'Rebecca',
+    lastName: 'Goldberg',
     city: "Brooklyn",
     state: "NY",
     bio: "I'm LOUD",
@@ -32,6 +39,8 @@ const users = [
   },
   {
     username: "hecklersbeware",
+    firstName: 'Garth',
+    lastName: 'Holder',
     city: "Brooklyn",
     state: "NY",
     bio: "looking for a laugh",
@@ -42,6 +51,8 @@ const users = [
   {
     username: "doyouevenliftbro",
     city: "Brooklyn",
+    firstName: 'Janine',
+    lastName: 'Howell',
     state: "NY",
     bio: "you could say I have a trust fund",
     medium: "graphic design",
@@ -50,6 +61,8 @@ const users = [
   },
   {
     username: "treegirl",
+    firstName: 'John',
+    lastName: 'Bauer',
     city: "Paris",
     state: "Texas",
     bio: "I'm a major treehugger, what can I say?",
@@ -59,6 +72,8 @@ const users = [
   },
   {
     username: "iloveart",
+    firstName: 'Ana', 
+    lastName: 'Roth',
     city: "Columbus",
     state: "Ohio",
     bio: "Moved to Columbus two years ago and looking to collab",
@@ -68,13 +83,92 @@ const users = [
   },
   {
     username: "michelangelo100",
+    firstName: 'Jamaal',
+    lastName: 'Holland',
     city: "Portland",
     state: "Oregon",
     bio: "You might know me for my statue of David",
     medium: "Sculpture",
     email: "michaelangelo@gmail.com",
     password: "12345"
-  }
+  },
+  {
+    username: "evelynsosa",
+    firstName: 'Stacey',
+    lastName: 'White',
+    city: "Chicago",
+    state: "Illinois",
+    bio: "An Award winning photographer, Evelyn Sosa Rojas was born in 1989 in Havana, Cuba, where she still lives and work. In her practice, since 2008, Sosa specializes in amazingly soulful portraits. Sosa shows the power of femininity through photos of women in different familiar or intimate settings. In 2016, Sosa was the winner of the Herman Puig Prize, awarded yearly to the best artist of the Body Photography Salon in Havana.",
+    medium: "Photography",
+    email: "evelyn@mail.com",
+    password: "12345"
+  },
+  {
+    username: "joseph200",
+    firstName: 'Eugenia',
+    lastName: 'Joseph',
+    city: "Cleveland",
+    state: "Ohio",
+    bio: "Born in Sydney in 1972, Rolella completed a Bachelor of Visual Arts (Honours) in 1994 and went on to obtain a Masters in Visual Arts at the University of Western Sydney in 1998. Joseph Rolella has exhibited consistently for the past twelve years both nationally and internationally.",
+    medium: "Drawing",
+    email: "rolella22@email.com",
+    password: "12345"
+  },
+  {
+    username: "painter4lyfe",
+    firstName: 'Laura',
+    lastName: 'Cummings',
+    city: "Los Angeles",
+    state: "California",
+    bio: "Begins her studies 1979 at the Hertfordshire College of Art and Design in St Albans, UK. In Portugal she studied etching and painting at Ar.Co. (Art and Visual Communication Center). Her first group exhibition was in 1982 at the 1ª Mostra de Artes in Lagos, Portugal and her first solo show was in 1990 at Galeria Alda Cortez, Lisbon. Since then, Sofia has exhibited in various countries individually and collectively.",
+    medium: "etching",
+    email: "painter@gmail.com",
+    password: "12345"
+  },
+  {
+    username: "lilianna95",
+    firstName: 'Lilianna',
+    lastName: 'Kane',
+    city: "Brooklyn",
+    state: "New York",
+    bio: "I am an improviser, primarily working though dancing and cooking.  My mission: to invigorate humans to love themselves, collaborate and cooperate with one another, indulge in pleasure and joy, and engage in dynamic experience.  I have shared my practice and my creative work internationally.  I currently live in Lunow-Stolzenhagen, Germany, where I am a resident artist and chef at Ponderosa Movement and Discovery.",
+    medium: "Dance",
+    email: "lily@email.com",
+    password: "12345"
+  },
+  {
+    username: "lottiestickles",
+    firstName: 'Charlotte',
+    lastName: 'Stickles',
+    city: "Bellingham",
+    state: "Washington",
+    bio: "Charlotte Stickles is a freelance movement artist currently based in Skagit Valley, Washington. She graduated from The Ohio State University Department of Dance in 2017 with a BFA in Dance and distinction in artistic research. Prior to OSU, Charlotte attended Manhattan Youth Ballet, and trained at various festivals and programs including Bates Dance Festival in Maine, Dance Exchange in Washington D.C., and at the New York State Summer School for the Arts in Saratoga Springs. During her time at school, Charlotte performed, taught, choreographed, and received academic funding to conduct research and perform internationally.",
+    medium: "Dance",
+    email: "lottie@mail.com",
+    password: "12345"
+  },
+  {
+    username: "val27",
+    firstName: 'Valerie',
+    lastName: 'June',
+    city: "Memphis",
+    state: "Tennessee",
+    bio: "Valerie June Hockett, known as Valerie June, is an American singer, songwriter, and multi-instrumentalist from Memphis, Tennessee, United States. Her sound encompasses a mixture of folk, blues, gospel, soul, country, Appalachian and bluegrass. She is signed to Concord Music Group worldwide.",
+    medium: "Music",
+    email: "valeriejune@email.com",
+    password: "12345"
+  },
+  {
+    username: "katieceramics",
+    firstName: 'Katie',
+    lastName: 'Coughlin',
+    city: "Brooklyn",
+    state: "New York",
+    bio: "Katie Coughlin received her MFA from The Ohio State University(2018) and her BFA from Alfred University(2010). Katie has been an Artist in Resident at Red Lodge Clay Center and Watershed Center for the Ceramic Arts. She has most recently received the Outstanding Student Achievement in Contemporary Sculpture Award from the International Sculpture Center as well as the Warren Mackenzie Advancement Award from Northern Clay Center. A native New Yorker, Katie returned to the city in 2018 and lives and works in Brooklyn.",
+    medium: "Ceramics",
+    email: "katie@mail.com",
+    password: "12345"
+  },
 ];
 
 const exampleTags = [
@@ -100,19 +194,22 @@ const exampleTags = [
 
 const exampleSessions = [
   {
-    status: 'unmatched',
+    status: 'closed',
     category: 'Dance',
     blurb: 'Would love some eyes on a new 30 second phrase I just came up with',
+    summary: 'Got some great feedback from this session. Thanks partner!'
   },
   {
-    status: 'unmatched',
+    status: 'closed',
     category: 'Joke',
-    blurb: 'Need some help wording a joke'
+    blurb: 'Need some help wording a joke',
+    summary: 'OMG that was hilarious! We had so much fun.'
   },
   {
-    status: 'matched',
+    status: 'closed',
     category: 'Painting',
-    blurb: 'Who wants to paint the sunset?'
+    blurb: 'Who wants to paint the sunset?',
+    summary: 'A lovely experience, co-painting tonight\'s sunset'
   },
   {
     status: 'closed',
@@ -121,59 +218,70 @@ const exampleSessions = [
     summary: 'We wrote a beautiful sonnet'
   },
   {
-    status: 'unmatched',
+    status: 'closed',
     category: 'Music',
-    blurb: 'I just wanna jam bro'
+    blurb: 'I just wanna jam bro',
+    summary: 'We had such a sweet jam sesh.'
   },
   {
-    status: 'unmatched',
+    status: 'closed',
     category: 'Theater improv',
-    blurb: 'Looking to do some fun theater improv games'
+    blurb: 'Looking to do some fun theater improv games',
+    summary: 'That was the first time in months that I was able to do theater improv games with someone. Had such a blast!'
   },
   {
-    status: 'unmatched',
+    status: 'closed',
     category: 'Drawing',
-    blurb: 'Can anyone model for me? I want to draw a portrait. You can keep the finished product!'
+    blurb: 'Can anyone model for me? I want to draw a portrait. You can keep the finished product!',
+    summary: 'I had never modeled for an artist before but it was so cool to watch the process!'
   },
   {
-    status: 'unmatched',
+    status: 'closed',
     category: 'Scene',
-    blurb: 'Doing a reading of a new scene and would love some outside perspective.'
+    blurb: 'Doing a reading of a new scene and would love some outside perspective.',
+    summary: 'I loved practicing providing constructive feedback. Plus it was cool to watch actors in their element.'
   },
   {
-    status: 'unmatched',
+    status: 'closed',
     category: 'Script',
-    blurb: "Is anyone available to read over my new screenplay? I don't know if I like the ending"
+    blurb: "Is anyone available to read over my new screenplay? I don't know if I like the ending",
+    summary: 'Provided some tips for their screenplay\'s ending. I hope they appreciated my opinion!'
   },
   {
-    status: 'unmatched',
+    status: 'closed',
     category: 'Music',
-    blurb: 'I just wanna jam bro'
+    blurb: 'Ukelele duet anyone?',
+    summary: 'Really cool to duet over video conference.'
   },
   {
-    status: 'unmatched',
+    status: 'closed',
     category: 'Comedy',
-    blurb: 'What is humor? Would love to discuss.'
+    blurb: 'What is humor? Would love to discuss.',
+    summary: 'We had a really nice discussion about humor.'
   },
   {
-    status: 'unmatched',
+    status: 'closed',
     category: 'Music',
-    blurb: 'Anyone play guitar? I would like to try a duet.'
+    blurb: 'Anyone play guitar? I would like to try a duet.',
+    summary: 'I wish we\'d had more time! Can\'t wait for my next createmates session!.'
   },
   {
-    status: 'unmatched',
+    status: 'closed',
     category: 'Poem',
-    blurb: 'Does anyone want to brainstorm words that rhyme with "toast"? Trying to write a poem about breakfast'
+    blurb: 'Does anyone want to brainstorm words that rhyme with "toast"? Trying to write a poem about breakfast',
+    summary: 'Finished the poem I have been working on for weeks!'
   },
   {
-    status: 'unmatched',
+    status: 'closed',
     category: 'Music',
-    blurb: "Let's singggggggggg"
+    blurb: "Let's singggggggggg",
+    summary: 'Wow, found a new singing friend. So much fun!'
   },
   {
-    status: 'unmatched',
+    status: 'closed',
     category: 'Dance',
-    blurb: 'Looking to improvise with a partner. The prompt is: "Be Water"'
+    blurb: 'Looking to improvise with a partner. The prompt is: "Be Water"',
+    summary: 'Such a pleasure to improvise with another dancer while remaining in the safety of our homes.'
   },
   {
     status: 'unmatched',
@@ -260,6 +368,8 @@ const seed = async () => {
       users.map((user) =>
          User.create({
           username: user.username,
+          firstName: user.firstName,
+          lastName: user.lastName,
           city: user.city,
           state: user.state,
           bio: user.bio,
@@ -288,8 +398,21 @@ const seed = async () => {
       )
     )
 
-    for (let i = 0; i < 30; i++) {
-      await sessions[i].addUser(artists[Math.floor(Math.random() * artists.length)])
+    for (let i = 0; i < 15; i++) {
+      await sessions[i].addUser(artists[i])
+      if (i === 14) {
+        await sessions[i].addUser(artists[0])
+      } else {
+        await sessions[i].addUser(artists[i + 1])
+      }  
+      let finish = Math.ceil(Math.random() * 3)
+      for (let j = 0; j < finish; j++) {
+        await sessions[i].addTag(tags[Math.floor(Math.random() * tags.length)])
+      }
+    }
+
+    for (let i = 15; i < 30; i++) {
+      await sessions[i].addUser(artists[i - 15])
       let finish = Math.ceil(Math.random() * 3)
       for (let j = 0; j < finish; j++) {
         await sessions[i].addTag(tags[Math.floor(Math.random() * tags.length)])

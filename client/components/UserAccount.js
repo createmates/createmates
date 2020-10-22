@@ -4,7 +4,12 @@ import {getProfileThunk} from '../store/profile'
 import UpdateUserForm from './UpdateUserForm'
 import ProfilePhoto from './ProfilePhoto'
 import MyRequest from './MyRequest'
+
 import './UserAccount.css'
+
+
+import PastCreations from './PastCreations' 
+import {getClosedSessionsThunk} from '../store/closedSessions'
 
 
 
@@ -17,6 +22,7 @@ class UserAccount extends React.Component {
     } else {
       this.props.getProfile(this.props.user.id)
     }
+    this.props.getSessions();
   }
 
 
@@ -63,11 +69,21 @@ class UserAccount extends React.Component {
 
                 </div>
 
+
+              {user.id === this.props.user.id &&
+              <div>
+                <UpdateUserForm user={user}/>
+
               </div>
               }
-              </div>
+               <MyRequest />
+               <PastCreations user={user} sessions={this.props.sessions} />
             </div>
           </div>
+
+
+      </div>
+
       )
     } else {
       return <div>Loading</div>
@@ -78,7 +94,8 @@ class UserAccount extends React.Component {
 const mapState = (state) => {
   return {
     user: state.user,
-    profile: state.profile
+    profile: state.profile,
+    sessions: state.closedSessions
   }
 }
 
@@ -86,8 +103,8 @@ const mapDispatch = (dispatch) => {
   return {
     getProfile: (userId) => {
       dispatch(getProfileThunk(userId))
-
-    }
+    },
+    getSessions: () => dispatch(getClosedSessionsThunk())
   }
 }
 

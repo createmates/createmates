@@ -17,7 +17,7 @@ const Session = db.define("session", {
     },
     summary: {
         type: Sequelize.STRING(200)
-    } 
+    },  
 })
 
 module.exports = Session;

@@ -20,7 +20,6 @@ const Navbar = ({ handleClick, handleClickAccount, isLoggedIn, isAdmin, user }) 
           {/* The navbar will show these links after you log in */}
 
 
-
              <a className="nav-link active" href="/create">Create<span className="sr-only">(current)</span></a>
 
              <a className="nav-link" href="/myAccount" onClick={handleClickAccount(user.id)}>My Account<span className="sr-only">(current)</span></a>
