@@ -1,5 +1,5 @@
 import io from 'socket.io-client'
-import store, { sessionSummary } from './store'
+import store, { getSingleSessionThunk, sessionSummary } from './store'
 import { gotNewMessage } from './store/messages'
 import {roomId} from './components/Session'
 import { finishSession, resetVideo, setMyVideo, setPartnerVideo } from './store/videos'
@@ -52,9 +52,16 @@ socket.on('connect', () => {
     console.log('Connected!')
   })
 
+socket.on('matched', matchedMessage => {
+ const state = store.getState()
+ if(state.user.id === matchedMessage.requestUserId){
+   state.dispatch(getSingleSessionThunk(matchedMessage.sessionId))
+ }
+})
 socket.on('new-message', (message) => { //messages for the chat box
     store.dispatch(gotNewMessage(message))
   })
+
 
 socket.on('created', async function(room){ //will run for the first person in the room
   try{
@@ -131,6 +138,7 @@ socket.on('offer', async function(event) { //accepting and answering the offer
     }
   }
 })
+
 socket.on('finishSession', function(event){
   store.dispatch(finishSession())
 })
