@@ -48,7 +48,7 @@ describe('Redux - Profile', () => {
       expect(actions[0].profile).to.be.deep.equal(fakeUser)
     })
   })
-  describe('singleSession Reducer', () => {
+  describe('Profile Reducer', () => {
     let testStore;
     
     beforeEach(()=>{

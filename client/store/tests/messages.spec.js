@@ -15,7 +15,7 @@ import messagesReducer, { gotNewMessage,  fetchMessages, sendMessage} from '../m
 const middlewares = [thunkMiddleware]
 const mockStore = configureMockStore(middlewares)
 
-describe('Redux - messages', () => {
+describe('Redux - Messages', () => {
   let store
   let mockAxios
 
@@ -47,12 +47,12 @@ describe('Redux - messages', () => {
       expect(actions[0].type).to.be.equal('GOT_MESSAGES_FROM_SERVER')
       expect(actions[0].messages).to.be.deep.equal(messages)
     })
-    xit('sendMessage eventually dispatches the GOT NEW MESSAGE action', async () => {
+    it('sendMessage eventually dispatches the GOT NEW MESSAGE action', async () => {
         mockAxios.onPost('/api/messages').replyOnce(200, message)
         await store.dispatch(sendMessage(message))
         const actions = store.getActions()
         expect(actions[0].type).to.be.equal('GOT_NEW_MESSAGE')
-        expect(actions[0].message).to.be.deep.equal(message)
+        expect(actions[0].message).to.be.deep.equal({ content: 'hello'})
       })
   })
   describe('openSession Reducer', () => {
