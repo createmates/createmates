@@ -5,6 +5,7 @@ import profile, {getProfileThunk} from '../store/profile'
 import {toast} from 'react-toastify'
 import "react-toastify/dist/ReactToastify.css";
 import "../../client/App.css"
+import socket from "../socket";
 
 export const categories = ['Categories', 'Music', 'Poem', 'Dance', 'Painting', 'Drawing', 'Joke', 'Scene', 'Script', 'Theater Improv', 'Comedy']
 class Form extends React.Component {
@@ -65,6 +66,7 @@ class Form extends React.Component {
       }
       this.props.addSession(newSession);
       this.props.history.push('/feed')
+      socket.emit('newRequest', newSession)
     }
   }
 
