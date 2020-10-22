@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import {deleteSessionThunk, updateSessionThunk} from '../store/openSessions'
 import {getMyOpenSessionThunk} from '../store/singleSession'
 import {categories} from './Form'
+import "./MyRequest.css"
 
 class MyRequest extends React.Component {
   constructor() {
@@ -57,6 +58,7 @@ class MyRequest extends React.Component {
   render() {
     const myOpenSession = this.props.myOpenSession
 
+
     if(myOpenSession && myOpenSession.users && myOpenSession.status !== 'closed'){
       return(
         <div>
@@ -106,8 +108,10 @@ class MyRequest extends React.Component {
                 <button type="submit">Go</button>
             </div>
           </form>
+
           }
         </div>
+
       )
     } else {
       return <div></div>

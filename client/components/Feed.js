@@ -113,6 +113,10 @@ class Feed extends React.Component {
         console.log(openSessions)
         return (
             <div>
+
+         
+
+
                 <MyRequest />
 
                 <h1>Other Artists Open Requests</h1>

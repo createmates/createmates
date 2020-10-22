@@ -3,10 +3,15 @@ import { connect } from "react-redux";
 import {Link, useHistory} from 'react-router-dom'
 import MessagesList from './MessagesList';
 import { getMatchedSessionThunk } from "../store";
+
+import UserSession from './UserSession'
+import UserSummary from './UserSummary'
+
 import Summary from "./Summary";
 import socket from '../socket'
 import {finishSession} from '../store/videos'
 import SessionVideo from './Videos'
+
 
 
 export let roomId;
@@ -31,30 +36,14 @@ const Session = (props) => {
     return (
     //render two videos
 
-    <div id="video-grid">
-      {session.users && session.users[1]
-       ?<div>
-          <h2>{session.blurb}</h2>
-          <div className="card d-flex justify-content" style={{width: "18rem"}}>
-            <h3><Link to={`/${session.users[0].id}`}>{session.users[0].username}</Link></h3>
-            <h3>Medium: {session.users[0].medium}</h3>
-          </div>
-          <div>
-          <div className="card d-flex justify-content" style={{width: "18rem"}}>
-            <h3><Link to={`/${session.users[1].id}`}>{session.users[1].username}</Link></h3>
-            <h3>Medium: {session.users[1].medium}</h3>
-          </div>
-          </div>
-        </div>
-        : ''}
-        <div>
+    <div>
+      <UserSession />
+        
       </div>
       <SessionVideo />
 
-      <MessagesList />
-      {props.videos.finishSession 
-      ? <Summary history={history}/>
-      : <button className="btn btn-info btn-md" onClick={() => getSummaryForm()}>Finish Session</button>}
+      <UserSummary />
+
     </div>
   );
 
