@@ -78,10 +78,10 @@ class Feed extends React.Component {
 
             await this.props.updateSession(updatedSession)
             this.props.history.push(`/session`)
-            console.log(session.users)
             const matchedMessage = {
-                sessionid: session.id,
-                requestUserId: session.users[0].id
+                sessionId: session.id,
+                requesterId: session.users[0].id,
+                matcherName: this.props.user.username
             }
             socket.emit('matched', matchedMessage)
 

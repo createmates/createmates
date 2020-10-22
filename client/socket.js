@@ -3,7 +3,7 @@ import store, { getSingleSessionThunk, sessionSummary } from './store'
 import { gotNewMessage } from './store/messages'
 import {roomId} from './components/Session'
 import { finishSession, resetVideo, setMyVideo, setPartnerVideo } from './store/videos'
-
+import {toast} from 'react-toastify'
 
 if (process.env.NODE_ENV === "test") {
   global.window = {location: {origin : ''}}
@@ -48,13 +48,25 @@ function onAddStream(event){
   store.dispatch(setPartnerVideo(remoteVideo))
 }
 
+const deniedToast = (matchedMessage) => {
+  console.log('did this work?')
+  toast(`${matchedMessage.matcherNmae} has matched with your open request`, {
+    className: "custom_toast",
+    toastClassName: 'toast',
+    closeOnClick: true,
+    position: toast.POSITION.TOP_CENTER,
+    autoClose: false,
+  })
+}
+
 socket.on('connect', () => {
     console.log('Connected!')
   })
 
 socket.on('matched', matchedMessage => {
  const state = store.getState()
- if(state.user.id === matchedMessage.requestUserId){
+ if(state.user.id === matchedMessage.requesterId){
+   deniedToast(matchedMessage)
    state.dispatch(getSingleSessionThunk(matchedMessage.sessionId))
  }
 })
