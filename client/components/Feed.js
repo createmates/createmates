@@ -95,11 +95,7 @@ class Feed extends React.Component {
     render() {
         let openSessions = this.props.openSessions
         if(openSessions && openSessions.length && openSessions[openSessions.length -1].users[0]){
-            console.log(openSessions)
-            console.log(this.props.user.id)
-            openSessions = openSessions.filter((session,idx) => {
-                console.log(session.users[0].id, ' at index', idx)
-               return  this.props.user.id !== session.users[0].id})
+            openSessions = openSessions.filter(session => this.props.user.id !== session.users[0].id)
         }
         if(this.state.filterCategory !== 'Categories'){
             openSessions = openSessions.filter(session => session.category === this.state.filterCategory)
@@ -114,7 +110,6 @@ class Feed extends React.Component {
                 return matchs.length > 0})
             openSessions = tagSessions
         }
-        console.log(openSessions)
         return (
             <div>
 

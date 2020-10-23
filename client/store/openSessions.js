@@ -18,12 +18,13 @@ export const getOpenSessionsThunk = () => {
     }
 }
 
-export const addSessionThunk = (newSession) => {
+export const addSessionThunk = (newSession, history) => {
   return async (dispatch) => {
     try {
       const session = await axios.post('/api/openSessions', newSession)
       dispatch(getSession(session.data))
       dispatch(getOpenSessionsThunk())
+      history.push('/feed')
     } catch (error) {
       console.error(error)
     }
