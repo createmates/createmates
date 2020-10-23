@@ -7,6 +7,7 @@ export class NewMessageEntry extends Component {
   constructor () {
     super()
     this.handleSubmit = this.handleSubmit.bind(this)
+    this.onKeyUp = this.onKeyUp.bind(this)
   }
 
   handleSubmit (event) {
@@ -19,10 +20,23 @@ export class NewMessageEntry extends Component {
     event.target.content.value = '';
   }
 
+  onKeyUp(event) {
+
+    if(event.charCode === 13) {
+      const message = event.target.value
+      this.props.submitMessage({
+      content: message,
+      sessionId: this.props.sessionId
+   })
+   event.target.value = ''
+    }
+  }
+
   render () {
+
     return (
       <div className="form-group">
-      <form id="new-message-form" onSubmit={this.handleSubmit}>
+      <form id="new-message-form" onSubmit={this.handleSubmit} onKeyPress={this.onKeyUp}>
         <div className="input-group input-group-lg w-50 p-3">
           <textarea
             className="form-control"

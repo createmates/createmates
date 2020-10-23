@@ -3,7 +3,7 @@ import CardItem from './CardItem'
 
 function PastCreations(props) {
     const user = props.user;
-    const myClosedSessions = 
+    const myClosedSessions =
         props.sessions.filter(session => {
             const userIds = session.users.map(user => user.id);
             return userIds.includes(user.id)
@@ -13,9 +13,9 @@ function PastCreations(props) {
         <div className='cards__container'>
         <div className='cards__wrapper'>
           <ul className='cards__items'>
-              {myClosedSessions.map(session => 
-              <CardItem 
-              src='https://kilkennynow.ie/wp-content/uploads/Rock-for-teac-1.jpeg'
+              {myClosedSessions.map(session =>
+              <CardItem
+              src={session.image}
               text={session.summary}
               label={session.category}
               users={session.users}
@@ -24,7 +24,7 @@ function PastCreations(props) {
               />)}
           </ul>
         </div>
-        </div>      
+        </div>
     )
 }
 
