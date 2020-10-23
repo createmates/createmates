@@ -70,7 +70,7 @@ class MyRequest extends React.Component {
             <p className="mb-0">{myOpenSession.users[0].username} writes: </p>
             <p>{myOpenSession.blurb}</p>
 
-          //is this needed did i delete something?
+          
           <div>
               {myOpenSession.tags && myOpenSession.tags.filter(tag => tag.name !== '').map(tag => (<span key={tag.id}>#{tag.name} </span>))}
           </div>
@@ -81,7 +81,7 @@ class MyRequest extends React.Component {
             <button onClick={() => this.handleUpdate(myOpenSession)}>Update</button>
           </div>
           :
-//it stopped here
+
             <div>
               <h2 style={{color: 'red'}}>SESSION MATCHED!</h2>
               <a className="nav-link" href="/session">Join Room</a>

@@ -7,7 +7,7 @@ const {Op} = require("sequelize");
 router.get('/', async (req, res, next) => {
     try {
         const sessions = await Session.findAll({
-          where: {status: 'unmatched'},
+          where: {status: 'unmatched' },
           include: [User, Tag]
         });
         res.json(sessions)
@@ -74,7 +74,7 @@ router.get('/:userId/matched', async (req, res, next) => {
     
         res.json(session)
       } else {
-        res.sendStatus(404)
+        res.sendStatus(204)
       }
   } catch (err){
     next(err)
@@ -98,7 +98,7 @@ router.get('/:userId/open', async (req, res, next) => {
 
     res.json(session)
   } else {
-    res.sendStatus(404)
+    res.sendStatus(204)
   }
   } catch (err){
     next(err)
