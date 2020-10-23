@@ -69,12 +69,10 @@ class MyRequest extends React.Component {
             <p className="mb-0">Medium: {myOpenSession.category}</p>
             <p className="mb-0">{myOpenSession.users[0].username} writes: </p>
             <p>{myOpenSession.blurb}</p>
-
-          
           <div>
               {myOpenSession.tags && myOpenSession.tags.filter(tag => tag.name !== '').map(tag => (<span key={tag.id}>#{tag.name} </span>))}
           </div>
-          {myOpenSession.status === "unmatched" 
+          {myOpenSession.status === "unmatched"
           ?
           <div>
             <button onClick={() => this.props.deleteSession(myOpenSession)}>Delete</button>

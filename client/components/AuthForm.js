@@ -21,7 +21,6 @@ const AuthForm = (props) => {
         </div>
         <div>
           <label htmlFor="password">
-            <small>Password</small>
           </label>
           <input type="password" name="password" id="defaultLoginPassword" className="form-control mb-4" placeholder="Password" />
         </div>
@@ -38,7 +37,7 @@ const AuthForm = (props) => {
           </div>
           <button className="btn btn-info btn-block my-4" type="submit">{displayName}</button>
           <p>Not a member?
-          <Link to="/signup">Sign Up</Link>
+          <Link to="/signup">   Sign Up   </Link>
           </p>
           {error && error.response && <div> {error.response.data} </div>}
           <button type="button" className="btn btn-info btn-google btn-block btn-outline my-4"><Link to="/auth/google"><img src="https://img.icons8.com/color/16/000000/google-logo.png"/>{displayName}with Google</Link></button>
