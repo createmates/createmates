@@ -58,7 +58,7 @@ class Summary extends React.Component {
                     value={this.props.session.summary}
                     />
                     }
-                    <button type="submit">Save Session</button>
+                    <button className="btn btn-info btn-md" type="submit">Save Session</button>
                 </form>
             </div>
         )
