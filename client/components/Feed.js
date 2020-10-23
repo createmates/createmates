@@ -110,7 +110,6 @@ class Feed extends React.Component {
                 return matchs.length > 0})
             openSessions = tagSessions
         }
-        console.log(openSessions)
         return (
             <div>
 

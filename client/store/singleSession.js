@@ -10,7 +10,12 @@ const SESSION_SUMMARY = 'SESSION_SUMMARY'
 /**
  * INITIAL STATE
  */
-const defaultSession = {}
+const defaultSession = {
+  summary: '',
+  roomId: null,
+  blob: '',
+  category: '',
+}
 
 /**
  * ACTION CREATORS
@@ -48,8 +53,13 @@ export const sessionSummary = summary => ({type: SESSION_SUMMARY, summary})
  export const getMyOpenSessionThunk = (userId) => {
    return async (dispatch) => {
      try {
-       const myOpenSession = await axios.get(`/api/openSessions/${userId}/open`);
-       dispatch(getSession(myOpenSession.data));
+       const response = await axios.get(`/api/openSessions/${userId}/open`);
+       const myOpenSession = response.data
+       if(myOpenSession === ''){
+         dispatch(getSession({}))
+       } else {
+          dispatch(getSession(myOpenSession));
+       }
      } catch (error) {
        console.error(error)
      }
