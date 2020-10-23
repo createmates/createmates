@@ -79,7 +79,7 @@ class MyRequest extends React.Component {
             <button onClick={() => this.handleUpdate(myOpenSession)}>Update</button>
           </div>
           :
-//it stopped here
+
             <div>
               <h2 style={{color: 'red'}}>SESSION MATCHED!</h2>
               <a className="nav-link" href="/session">Join Room</a>

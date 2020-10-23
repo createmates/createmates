@@ -120,7 +120,7 @@ describe('OpenSessions routes', () => {
         await testSession1.update({status: 'closed'})
         const res = await request(app)
         .get('/api/openSessions/1/open')
-        .expect(404)
+        .expect(204)
     })
     it('GET /api/openSessions/:userId/open can return only one matched session', async () =>{
         await request(app)
@@ -141,13 +141,13 @@ describe('OpenSessions routes', () => {
    it('GET /api/openSessions/:userId/matched cannot return an unmatched session', async () =>{
         const res = await request(app)
         .get('/api/openSessions/1/matched')
-        .expect(404)
+        .expect(204)
     })
    it('GET /api/openSessions/:userId/matched cannot return a closed session', async () =>{
        await testSession1.update({status: 'closed'})
        const res = await request(app)
        .get('/api/openSessions/1/matched')
-       .expect(404)
+       .expect(204)
    })
     
 

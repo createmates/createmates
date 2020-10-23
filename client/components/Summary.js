@@ -42,11 +42,25 @@ class Summary extends React.Component {
                 <h1>What did you create today?</h1>
                 <form onSubmit={this.handleSubmit}>
                     <label htmlFor="summary">Summary: </label>
-                    {!this.props.session.summary
-                    ?<input onChange={this.handleChange} type="textarea" name="summary" placeholder="Write a couple of sentences about what you created"/>
-                    :<input onChange={this.handleChange} type="textarea" name="summary" value={this.props.session.summary} />
+                    {!this.props.session.summary 
+                    ?
+                    <textarea
+                    onChange={this.handleChange}
+                    className="form-control"
+                    type="text"
+                    name="summary"
+                    placeholder="Write a couple of sentences about what you created"
+                    />
+                    :
+                    <textarea
+                    onChange={this.handleChange}
+                    className="form-control"
+                    type="text"
+                    name="summary"
+                    value={this.props.session.summary}
+                    />
                     }
-                    <button type="submit">Save Session</button>
+                    <button className="btn btn-info btn-md" type="submit">Save Session</button>
                 </form>
             </div>
         )
