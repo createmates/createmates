@@ -52,7 +52,7 @@ const matchedToast = (matchedMessage) => {
 
   console.log('did this work? - name')
 
-  toast(`${matchedMessage.matcherNmae} has matched with your open request`, {
+  toast(`${matchedMessage.matcherName} has matched with your open request`, {
     className: "custom_toast",
     toastClassName: 'toast',
     closeOnClick: true,
@@ -60,6 +60,7 @@ const matchedToast = (matchedMessage) => {
     autoClose: false,
   })
 }
+
 const newRequestToast = (newSession) => {
 
   console.log('did this work? - new request')
@@ -72,6 +73,8 @@ const newRequestToast = (newSession) => {
     autoClose: 5000,
   })
 }
+
+
 
 socket.on('connect', () => {
     console.log('Connected!')

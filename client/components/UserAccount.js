@@ -43,10 +43,9 @@ class UserAccount extends React.Component {
                     <a className="btn btn-outline-dark btn-sm btn-block"><UpdateUserForm user={user}/></a>
                     }
                     </div>
-
                     <div className="media-body mb-5 text-white">
                       <h4 className="mt-0 mb-0">{user.firstName} {user.lastName}</h4>
-                      <p className="small mb-4"><i className="fas fa-map-marker-alt mr-2"></i>{user.city}, {user.state}</p>
+                      <p className="small mb-4"><i className="fas fa-map-marker-alt mr-2"></i>@{user.username}</p>
                     </div>
                   </div>
                 </div>
@@ -58,11 +57,11 @@ class UserAccount extends React.Component {
                 </ul>
             </div>
             <div className="px-4 py-3">
-            <h5 className="mb-0">Artist Bio</h5>
+            <h5 className="mb-0">Artist Information</h5>
             <div className="p-4 rounded shadow-sm bg-light">
-              <p className="font-italic mb-0">Username:{user.username}</p>
-                <p className="font-italic mb-0">{user.medium}</p>
-                <p className="font-italic mb-0">{user.bio}</p>
+              <p className="font-italic mb-0">Location: {user.city}, {user.state}</p>
+                <p className="font-italic mb-0">Medium: {user.medium}</p>
+                <p className="font-italic mb-0">Bio: {user.bio}</p>
             </div>
         </div>
               <PastCreations user={user} sessions={this.props.sessions} /></div>
