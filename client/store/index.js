@@ -18,7 +18,7 @@ export const reducer = combineReducers({
     profile: profile,
     messages: messagesReducer,
     videos: videoReducer,
-    closedSessions: closedSessionsReducer
+    closedSessions: closedSessionsReducer,
   })
 
   const middleware = composeWithDevTools(

@@ -82,11 +82,13 @@ export const updateUserThunk = (userFormData, userId) => {
   }
 }
 
-export const savePhotoThunk = (userPhoto, userId) => {
+export const savePhotoThunk = (selectedFile, userId) => {
   return async dispatch => {
-
     try {
-      const userRes = await axios.put(`/api/users/${userId}`, userPhoto)
+      const formData = new FormData()
+      formData.append('uploadImage', selectedFile)
+      
+      const userRes =  await axios.post(`/spaces/upload/${userId}`, formData, { headers: {'Content-Type': 'multipart/form-data'}})
       dispatch(getUser(userRes.data))
       dispatch(getProfile(userRes.data))
 

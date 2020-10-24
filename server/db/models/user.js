@@ -55,6 +55,12 @@ const User = db.define("user", {
   },
   profilePhoto: {
     type: Sequelize.STRING,
+  },
+  photoPath: {
+    type: Sequelize.STRING,
+  },
+  photoEtag: {
+    type: Sequelize.STRING,
   }
 });
 

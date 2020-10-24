@@ -1,5 +1,6 @@
 import axios from 'axios'
-import {getSession} from './singleSession'
+import { getProfile, getProfileThunk } from './profile';
+import {getMyOpenSessionThunk, getSession} from './singleSession'
 
 const GET_OPEN_SESSIONS = 'GET_OPEN_SESSIONS';
 
@@ -46,11 +47,15 @@ export const updateSessionThunk = (updatedSession) => {
 export const deleteSessionThunk = (sessionToDelete) => {
   return async (dispatch) => {
     try {
+      console.log(sessionToDelete)
+      const userId = sessionToDelete.users[0].id
       await axios.delete(`/api/openSessions/${sessionToDelete.id}`)
 
       dispatch(getSession({}));
 
       dispatch(getOpenSessionsThunk())
+
+      dispatch(getProfileThunk(userId))
 
     } catch (error) {
       console.error(error)
