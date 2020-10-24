@@ -7,6 +7,19 @@ import { roomId } from "./Session";
 import {resetVideo} from '../store/videos'
 
 
+export const sessionEndedToast = (partners) => {
+
+    toast(`The session between ${partners[0].username} and ${partners[1].username} has ended`, {
+      className: "custom_toast",
+      toastClassName: 'toast',
+      closeOnClick: true,
+      position: toast.POSITION.TOP_CENTER,
+      autoClose: false,
+    })
+  }
+
+
+
 class Summary extends React.Component {
     constructor() {
         super();
@@ -24,16 +37,22 @@ class Summary extends React.Component {
     }
 
     handleSubmit() {
+        const categoryName = this.props.session.category.split(' ').join('-')
         const updatedSesson = {
             id: this.props.session.id,
             status: 'closed',
-            summary: this.props.session.summary
+            summary: this.props.session.summary,
+            image: `/images/${categoryName}.jpg`
         }
         this.props.updateSession(updatedSesson);
         this.props.history.push('/feed')
-
-        socket.emit('closeSession', roomId)
+        const infoToEmit = {
+            roomId: roomId,
+            partners: this.props.session.users
+        }
+        socket.emit('closeSession', infoToEmit)
        this.props.resetVideo()
+       sessionEndedToast(this.props.session.users)
     }
 
     render() {

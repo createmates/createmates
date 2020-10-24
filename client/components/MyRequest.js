@@ -36,7 +36,6 @@ class MyRequest extends React.Component {
   }
 
   handleSubmit(event) {
-    event.preventDefault();
       const tags = this.state.tags.split(' ')
       const updatedSession = {
           blurb: this.state.blurb,
@@ -44,8 +43,8 @@ class MyRequest extends React.Component {
           tags: tags,
           id: this.props.myOpenSession.id
       }
+      console.log(updatedSession)
       this.props.updateSession(updatedSession)
-      this.props.getOpenSessions();
   }
 
   handleChange = event => {
@@ -85,12 +84,13 @@ class MyRequest extends React.Component {
               <a className="nav-link" href="/session">Join Room</a>
             </div>
           }
-          {this.state.updating &&
-            <form onSubmit={() => this.handleSubmit}>
+          {!this.state.updating ? '' :
+            <form onSubmit={this.handleSubmit}>
               <select name="category" onChange={this.handleChange} value={this.state.category}>
                 {categories.map(category => (
                     <option value={category} key={category}>{category}</option>
                 ))}
+
             </select>
             <div>
                 <label htmlFor="blurb">Write a couple of sentences about what you would like to create: </label>
@@ -112,6 +112,7 @@ class MyRequest extends React.Component {
             </div>
 
           </form>
+
 
           }
         </div>

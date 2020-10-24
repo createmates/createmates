@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
 function Home(props) {
-  if(props.user && !props.user.username) {
+  if(props.user.id && !props.user.username) {
     return <Redirect to="/startMyAccount" />
   } else {
     return (

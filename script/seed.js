@@ -5,26 +5,28 @@ const { User, Tag, Session } = require("../server/db/models");
 
 const users = [
   {
-    username: "danceswithwolves",
+    username: "nancystarksmith",
     firstName: 'Nancy',
     lastName: 'Smith',
     city: "Brooklyn",
     state: "NY",
-    bio: "just a small town girl",
-    medium: "painting",
+    bio: "Nancy Stark Smith first trained as an athlete and gymnast, leading her to study and perform modern and postmodern dance in the early 1970s, greatly influenced by the dance/theater improvisation group the Grand Union and the Judson Dance Theater breakthroughs of the 1960s in NYC. She graduated from Oberlin College with a degree in dance and writing. In 1972, she danced in the first performances of Contact Improvisation in NYC with Steve Paxton and others and had continued to be central to its development as a dancer, teacher, performer, organizer, and writer/publisher, working extensively over the years with Paxton and others.",
+    medium: "dance",
     email: "nancybepainting@gmail.com",
     password: "12345",
+    photoPath: "https://createmates.nyc3.digitaloceanspaces.com/21starkssmith1-mobileMasterAt3x.jpg"
   },
   {
-    username: "guitargod",
+    username: "chesterguitar",
     firstName: 'Chester',
     lastName: 'Jones',
     city: "Brooklyn",
     state: "NY",
-    bio: "Love my mom's basement",
+    bio: "Blues rock guitar virtuoso, singer-songwriter and producer, Chester Jones, is hailed the world over as a master guitarist with raw talent and power to spare. Blending his signature mix of blues, rock and jazz into dynamic original songs, Jones is known for his incendiary live performances, whether at the Grammy Awards or the Kennedy Center Honors with Mick Jagger, Raphael Saadiq and others. ",
     medium: "music",
-    email: "iwannarocknrollallnight@gmail.com",
+    email: "iwannarocknroll@gmail.com",
     password: "12345",
+    photoPath: "https://createmates.nyc3.digitaloceanspaces.com/Dollarphotoclub_89401063-Edited-1024x745.jpg"
   },
   {
     username: "welcometodrama",
@@ -32,65 +34,72 @@ const users = [
     lastName: 'Goldberg',
     city: "Brooklyn",
     state: "NY",
-    bio: "I'm LOUD",
+    bio: "I focus on the process of theatre creation and character embodiment and work in a cyclical fashion to analyze, research, and connect my findings to my practice. My work is in a constant state of process and evaluation as a performer and theatre educator. I am a firm believer that there is an inherent need for live theatre in our genetic makeup and seek to appease this hunger through a study of genre, disciplines, and action.",
     medium: "theater",
-    email: "alltheworldsastage@gmail.com",
+    email: "rebeccaworld@gmail.com",
     password: "12345",
+    photoPath: "https://createmates.nyc3.digitaloceanspaces.com/smash-tv-monroe-om01.jpg"
   },
   {
-    username: "hecklersbeware",
-    firstName: 'Garth',
-    lastName: 'Holder',
-    city: "Brooklyn",
-    state: "NY",
-    bio: "looking for a laugh",
+    username: "sofiacomedy",
+    firstName: 'Sofia',
+    lastName: 'Javed',
+    city: "D.C.",
+    state: "USA",
+    bio: "Sofia Javed is a Washington, DC-based comedian. She hones her skills on unsuspecting co-workers and metro riders for an undisclosed amount of time before taking them to the stage to wow audiences. She delivers tightly-worded, thought-provoking jokes around the DC area and has also performed in Seattle, Boston, Chicago, Los Angeles, and New York. Sofia’s comedy is inspired by her life as a woman of color in America and her side hustle as a cubicle bureaucrat. She enjoys steak.",
     medium: "comedy",
-    email: "lolololol@gmail.com",
+    email: "sofia@gmail.com",
     password: "12345",
+    photoPath: "https://createmates.nyc3.digitaloceanspaces.com/rs=h_1000,cg_true.webp"
   },
   {
-    username: "doyouevenliftbro",
+    username: "janine20",
     city: "Brooklyn",
     firstName: 'Janine',
     lastName: 'Howell',
     state: "NY",
-    bio: "you could say I have a trust fund",
-    medium: "graphic design",
-    email: "chad@gmail.com",
+    bio: "Janine Howell is a Spanish painter, sculptor, printmaker, ceramicist and theatre designer who spent most of her adult life in France. Regarded as one of the most influential artists of the 20th century, she is known for co-founding the Cubist movement, the invention of constructed sculpture,[6][7] the co-invention of collage, and for the wide variety of styles that he helped develop and explore. Among her most famous works are the proto-Cubist Les Demoiselles d'Avignon (1907), and Guernica (1937), a dramatic portrayal of the bombing of Guernica by German and Italian air forces during the Spanish Civil War.",
+    medium: "painting",
+    email: "janine@gmail.com",
     password: "12345",
+    photoPath: "https://createmates.nyc3.digitaloceanspaces.com/GettyImages-922707682-5b90467bc9e77c0025931eef.jpg"
   },
   {
-    username: "treegirl",
-    firstName: 'John',
-    lastName: 'Bauer',
+    username: "watercoloryourlife",
+    firstName: 'Aubrey',
+    lastName: 'Williams',
     city: "Paris",
     state: "Texas",
-    bio: "I'm a major treehugger, what can I say?",
+    bio: "Moving to London in 1952, Aubrey Williams gained valuable distance on the Amerindian petroglyphs that inspired his abstract painting. But as he deepened his engagement with the indigenous cultures of the precolonial Caribbean during the 1970s—working in studios in Jamaica and in Florida—Williams was edged out of late modernism’s narrative of abstraction. While retrospective exhibitions highlight the Olmec-Maya and Now series and the Shostakovich series produced during William’s circumatlantic journeys, both of which heighten abstraction as a medium of cross-cultural translation, the scholarship has left Williams isolated. Approaching Williams’s abstraction in the interpretive context of diasporic “ancestralism,” a distinctive framework addressing the diaspora’s unrecoverable past, I suggest his Amerindian focus is best understood in terms of a “hauntological” mode of abstraction critically responsive to the moment of decolonisation in which boundaries that once defined the national, the international, and the transnational were being thrown into crisis.",
     medium: "Water color",
     email: "treegirl98@gmail.com",
-    password: "12345"
+    password: "12345",
+    photoPath: "https://createmates.nyc3.digitaloceanspaces.com/GettyImages-922707682-5b90467bc9e77c0025931eef.jpg"
+
   },
   {
-    username: "iloveart",
-    firstName: 'Ana',
-    lastName: 'Roth',
+    username: "mylifeinfilm",
+    firstName: 'Karin',
+    lastName: 'Connolly',
     city: "Columbus",
     state: "Ohio",
-    bio: "Moved to Columbus two years ago and looking to collab",
-    medium: "Dance",
-    email: "ryan447@gmail.com",
-    password: "12345"
+    bio: "Nature photographer Karin Connolly was born in Queens New York in 1968. In 1973 Connolly’s family moved to the small town of New Paltz in upstate New York, where he was allowed to play in the woods, jump from rocks and generally explore his environment. It is said that his love of nature, which is now evident in her work is a result of these experiences he had a child.",
+    medium: "photography",
+    email: "karinphoto@gmail.com",
+    password: "12345",
+    photoPath: "https://createmates.nyc3.digitaloceanspaces.com/photo-1498830923224-e1c12d1564a6.webp"
   },
   {
-    username: "michelangelo100",
+    username: "sculptorjamaal",
     firstName: 'Jamaal',
     lastName: 'Holland',
     city: "Portland",
     state: "Oregon",
-    bio: "You might know me for my statue of David",
+    bio: "Award winning sculptor, Jamaal Holland, a native of Dayton, Ohio, has been a professional artist since 1990. He is best known for his realistic bronze creations of both animal and human subjects. After attending art classes at the University of Dayton and studying with several well- known painters and sculptors, such as Lincoln Fox, Veryl Goodnight, Guy Coheleach, and John Seerey-Lester, Jamaal found his true love in sculpture.",
     medium: "Sculpture",
-    email: "michaelangelo@gmail.com",
-    password: "12345"
+    email: "jamaal@gmail.com",
+    password: "12345",
+    photoPath: "https://createmates.nyc3.digitaloceanspaces.com/man-wearing-grey-shirt-doing-sculpture.jpg"
   },
   {
     username: "evelynsosa",
@@ -101,7 +110,9 @@ const users = [
     bio: "An Award winning photographer, Evelyn Sosa Rojas was born in 1989 in Havana, Cuba, where she still lives and work. In her practice, since 2008, Sosa specializes in amazingly soulful portraits. Sosa shows the power of femininity through photos of women in different familiar or intimate settings. In 2016, Sosa was the winner of the Herman Puig Prize, awarded yearly to the best artist of the Body Photography Salon in Havana.",
     medium: "Photography",
     email: "evelyn@mail.com",
-    password: "12345"
+    password: "12345",
+    photoPath: "https://createmates.nyc3.digitaloceanspaces.com/photo-1551592398-c320012bc1c6.jpg"
+
   },
   {
     username: "joseph200",
@@ -112,7 +123,8 @@ const users = [
     bio: "Born in Sydney in 1972, Rolella completed a Bachelor of Visual Arts (Honours) in 1994 and went on to obtain a Masters in Visual Arts at the University of Western Sydney in 1998. Joseph Rolella has exhibited consistently for the past twelve years both nationally and internationally.",
     medium: "Drawing",
     email: "rolella22@email.com",
-    password: "12345"
+    password: "12345",
+    photoPath: "https://createmates.nyc3.digitaloceanspaces.com/download.jpg"
   },
   {
     username: "painter4lyfe",
@@ -134,7 +146,8 @@ const users = [
     bio: "I am an improviser, primarily working though dancing and cooking.  My mission: to invigorate humans to love themselves, collaborate and cooperate with one another, indulge in pleasure and joy, and engage in dynamic experience.  I have shared my practice and my creative work internationally.  I currently live in Lunow-Stolzenhagen, Germany, where I am a resident artist and chef at Ponderosa Movement and Discovery.",
     medium: "Dance",
     email: "lily@email.com",
-    password: "12345"
+    password: "12345",
+    photoPath: "https://createmates.nyc3.digitaloceanspaces.com/03D4E2C6-0292-427C-9BE9-72AF968B7811.jpg"
   },
   {
     username: "lottiestickles",
@@ -145,7 +158,8 @@ const users = [
     bio: "Charlotte Stickles is a freelance movement artist currently based in Skagit Valley, Washington. She graduated from The Ohio State University Department of Dance in 2017 with a BFA in Dance and distinction in artistic research. Prior to OSU, Charlotte attended Manhattan Youth Ballet, and trained at various festivals and programs including Bates Dance Festival in Maine, Dance Exchange in Washington D.C., and at the New York State Summer School for the Arts in Saratoga Springs. During her time at school, Charlotte performed, taught, choreographed, and received academic funding to conduct research and perform internationally.",
     medium: "Dance",
     email: "lottie@mail.com",
-    password: "12345"
+    password: "12345",
+    photoPath: "https://createmates.nyc3.digitaloceanspaces.com/pp+uas+1.jpg"
   },
   {
     username: "val27",
@@ -156,7 +170,8 @@ const users = [
     bio: "Valerie June Hockett, known as Valerie June, is an American singer, songwriter, and multi-instrumentalist from Memphis, Tennessee, United States. Her sound encompasses a mixture of folk, blues, gospel, soul, country, Appalachian and bluegrass. She is signed to Concord Music Group worldwide.",
     medium: "Music",
     email: "valeriejune@email.com",
-    password: "12345"
+    password: "12345",
+    photoPath: "https://createmates.nyc3.digitaloceanspaces.com/NEW-PRESS-SHOT_6203936-3870009.jpg"
   },
   {
     username: "katieceramics",
@@ -167,7 +182,8 @@ const users = [
     bio: "Katie Coughlin received her MFA from The Ohio State University(2018) and her BFA from Alfred University(2010). Katie has been an Artist in Resident at Red Lodge Clay Center and Watershed Center for the Ceramic Arts. She has most recently received the Outstanding Student Achievement in Contemporary Sculpture Award from the International Sculpture Center as well as the Warren Mackenzie Advancement Award from Northern Clay Center. A native New Yorker, Katie returned to the city in 2018 and lives and works in Brooklyn.",
     medium: "Ceramics",
     email: "katie@mail.com",
-    password: "12345"
+    password: "12345",
+    photoPath: "https://createmates.nyc3.digitaloceanspaces.com/CoughlinK01.jpg"
   },
 ];
 
@@ -405,6 +421,7 @@ const seed = async () => {
           email: user.email,
           password: user.password,
           isAdmin: user.isAdmin,
+          photoPath: user.photoPath
         })
       )
     );
