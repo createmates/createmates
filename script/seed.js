@@ -225,19 +225,22 @@ const exampleSessions = [
     status: 'closed',
     category: 'Music',
     blurb: 'I just wanna jam bro',
-    summary: 'We had such a sweet jam sesh.'
+    summary: 'We had such a sweet jam sesh.',
+    image: '/images/Music.jpg'
   },
   {
     status: 'closed',
     category: 'Theater improv',
     blurb: 'Looking to do some fun theater improv games',
-    summary: 'That was the first time in months that I was able to do theater improv games with someone. Had such a blast!'
+    summary: 'That was the first time in months that I was able to do theater improv games with someone. Had such a blast!',
+    image: '/images/Theater-improv.jpg'
   },
   {
     status: 'closed',
     category: 'Drawing',
     blurb: 'Can anyone model for me? I want to draw a portrait. You can keep the finished product!',
-    summary: 'I had never modeled for an artist before but it was so cool to watch the process!'
+    summary: 'I had never modeled for an artist before but it was so cool to watch the process!',
+    image: '/images/Drawing.jpg'
   },
   {
     status: 'closed',
@@ -255,19 +258,22 @@ const exampleSessions = [
     status: 'closed',
     category: 'Music',
     blurb: 'Ukelele duet anyone?',
-    summary: 'Really cool to duet over video conference.'
+    summary: 'Really cool to duet over video conference.',
+    image: '/images/Music.jpg'
   },
   {
     status: 'closed',
     category: 'Comedy',
     blurb: 'What is humor? Would love to discuss.',
-    summary: 'We had a really nice discussion about humor.'
+    summary: 'We had a really nice discussion about humor.',
+    image: '/images/Comedy.jpg'
   },
   {
     status: 'closed',
     category: 'Music',
     blurb: 'Anyone play guitar? I would like to try a duet.',
-    summary: 'I wish we\'d had more time! Can\'t wait for my next createmates session!.'
+    summary: 'I wish we\'d had more time! Can\'t wait for my next createmates session!.',
+    image: '/images/Music.jpg'
   },
   {
     status: 'closed',
@@ -280,7 +286,8 @@ const exampleSessions = [
     status: 'closed',
     category: 'Music',
     blurb: "Let's singggggggggg",
-    summary: 'Wow, found a new singing friend. So much fun!'
+    summary: 'Wow, found a new singing friend. So much fun!',
+    image: '/images/Music.jpg'
   },
   {
     status: 'closed',
@@ -311,37 +318,37 @@ const exampleSessions = [
     status: 'unmatched',
     category: 'Music',
     blurb: 'Anyone good with lyrics?',
-    image: './images/Music.jpg'
+    image: '/images/Music.jpg'
   },
   {
     status: 'unmatched',
     category: 'Theater improv',
     blurb: 'Beginner improviser. Looking to chat with someone with more experience and get some tips.',
-    image: './images/Theater-improv.jpg'
+    image: '/images/Theater-improv.jpg'
   },
   {
     status: 'unmatched',
     category: 'Drawing',
     blurb: "Let's share each other's work and give each other constructive feedback!",
-    image: './images/Drawing.jpg'
+    image: '/images/Drawing.jpg'
   },
   {
     status: 'unmatched',
     category: 'Scene',
     blurb: 'Any actors that would like to act out this scene with me?',
-    image: './images/Scene.jpg'
+    image: '/images/Scene.jpg'
   },
   {
     status: 'unmatched',
     category: 'Scene',
     blurb: "I need help crying on demand for this scene I'm rehearsing. Anyone got tips?",
-    image: './images/Scene.jpg'
+    image: '/images/Scene.jpg'
   },
   {
     status: 'unmatched',
     category: 'Script',
     blurb: 'Anyone want to brainstorm screenplay ideas?',
-    image: './images/Script.jpg'
+    image: '/images/Script.jpg'
   },
   {
     status: 'unmatched',
@@ -359,7 +366,7 @@ const exampleSessions = [
     status: 'unmatched',
     category: 'Music',
     blurb: 'Anyone want to do a vocal warmup?',
-    image: './images/Music.jpg'
+    image: '/images/Music.jpg'
   },
   {
     status: 'unmatched',

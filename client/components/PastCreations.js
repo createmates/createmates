@@ -1,6 +1,32 @@
 import React from 'react';
 import CardItem from './CardItem'
 
+
+const months = {
+    1: "January",
+    2: "February",
+    3: "March",
+    4: "April",
+    5: "May",
+    6: "June",
+    7: "July",
+    8: "August",
+    9: "September",
+    10: "October",
+    11: "November",
+    12: "December"
+}
+
+
+function convertDate(sessionDate) {
+    var date = new Date(sessionDate)
+    var year = date.getFullYear()
+    var month = months[date.getMonth()]
+    var day = date.getDate();
+    var creationDate = month + ' ' + day + ', ' + year;
+    return creationDate;
+  }
+
 function PastCreations(props) {
     const user = props.user;
     const myClosedSessions =
@@ -15,12 +41,14 @@ function PastCreations(props) {
           <ul className='cards__items'>
               {myClosedSessions.map(session =>
               <CardItem
+
               src={session.image}
+
               text={session.summary}
               label={session.category}
               users={session.users}
               tags={session.tags}
-              date={session.updatedAt}
+              date={convertDate(session.updatedAt)}
               />)}
           </ul>
         </div>
@@ -29,3 +57,4 @@ function PastCreations(props) {
 }
 
 export default PastCreations;
+

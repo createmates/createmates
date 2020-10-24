@@ -2,7 +2,7 @@ import React from 'react'
 import axios from 'axios'
 import {updateUserThunk} from '../store/user'
 import {connect} from 'react-redux'
-const aws = require('aws-sdk');
+import * as aws from 'aws-sdk';
 if (process.env.NODE_ENV === "development") require('../../secrets');
 
 const spacesEndpoint = new aws.Endpoint('nyc3.digitaloceanspaces.com');

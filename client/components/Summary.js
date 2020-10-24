@@ -6,6 +6,7 @@ import {updateSessionThunk} from '../store/openSessions'
 import { roomId } from "./Session";
 import {resetVideo} from '../store/videos'
 
+
 class Summary extends React.Component {
     constructor() {
         super();
@@ -16,7 +17,7 @@ class Summary extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this)
     }
 
-    handleChange = event => { 
+    handleChange = event => {
         const summaryMessage = {content: event.target.value, roomId}
         this.props.sessionSummary(summaryMessage.content)
         socket.emit('summaryUpdate', summaryMessage)
@@ -30,6 +31,7 @@ class Summary extends React.Component {
         }
         this.props.updateSession(updatedSesson);
         this.props.history.push('/feed')
+
         socket.emit('closeSession', roomId)
        this.props.resetVideo()
     }
@@ -41,10 +43,24 @@ class Summary extends React.Component {
                 <form onSubmit={this.handleSubmit}>
                     <label htmlFor="summary">Summary: </label>
                     {!this.props.session.summary 
-                    ?<input onChange={this.handleChange} type="textarea" name="summary" placeholder="Write a couple of sentences about what you created"/>
-                    :<input onChange={this.handleChange} type="textarea" name="summary" value={this.props.session.summary} />
+                    ?
+                    <textarea
+                    onChange={this.handleChange}
+                    className="form-control"
+                    type="text"
+                    name="summary"
+                    placeholder="Write a couple of sentences about what you created"
+                    />
+                    :
+                    <textarea
+                    onChange={this.handleChange}
+                    className="form-control"
+                    type="text"
+                    name="summary"
+                    value={this.props.session.summary}
+                    />
                     }
-                    <button type="submit">Save Session</button>
+                    <button className="btn btn-info btn-md" type="submit">Save Session</button>
                 </form>
             </div>
         )
@@ -56,7 +72,7 @@ const mapState = state => {
       session: state.singleSession
     }
   }
-  
+
   const mapDispatch = dispatch => {
     return {
         updateSession: (updatedSession) => dispatch(updateSessionThunk(updatedSession)),
@@ -64,5 +80,5 @@ const mapState = state => {
         resetVideo: () => dispatch(resetVideo())
     }
   }
-  
+
   export default connect(mapState, mapDispatch)(Summary);

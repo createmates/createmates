@@ -59,6 +59,7 @@ const matchedToast = (matchedMessage) => {
     autoClose: false,
   })
 }
+
 const newRequestToast = (newSession) => {
 
 
@@ -70,6 +71,8 @@ const newRequestToast = (newSession) => {
     autoClose: 5000,
   })
 }
+
+
 
 socket.on('connect', () => {
     console.log('Connected!')

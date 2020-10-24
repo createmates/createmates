@@ -62,10 +62,10 @@ class Form extends React.Component {
         status: 'unmatched',
         blurb: this.state.blurb,
         user: this.props.user,
-        tags: tags
+        tags: tags,
       }
-      this.props.addSession(newSession);
-      this.props.history.push('/feed')
+      this.props.addSession(newSession, this.props.history);
+      // this.props.history.push('/feed')
       socket.emit('newRequest', newSession)
     }
   }
@@ -122,7 +122,7 @@ const mapState = state => {
 
 const mapDispatch = dispatch => {
   return {
-    addSession: (newSession) => dispatch(addSessionThunk(newSession)),
+    addSession: (newSession, history) => dispatch(addSessionThunk(newSession, history)),
     findUserProfile: (userId) => dispatch(getProfileThunk(userId))
   }
 }

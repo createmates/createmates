@@ -39,7 +39,7 @@ class Cards extends React.Component {
     return (
       closedSessions && closedSessions.length && closedSessions[closedSessions.length -1].users[0] ?
     <div className='cards'>
-      <h1>Check Out What's Been Created So Far!</h1>
+      <h1>Check out what's been created so far!'</h1>
       <div className='cards__container'>
         <div className='cards__wrapper'>
           <ul className='cards__items'>

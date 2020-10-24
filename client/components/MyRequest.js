@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {deleteSessionThunk, updateSessionThunk} from '../store/openSessions'
+import {deleteSessionThunk, updateSessionThunk, getOpenSessionsThunk} from '../store/openSessions'
 import {getMyOpenSessionThunk} from '../store/singleSession'
 import {categories} from './Form'
 import "./MyRequest.css"
@@ -45,6 +45,7 @@ class MyRequest extends React.Component {
           id: this.props.myOpenSession.id
       }
       this.props.updateSession(updatedSession)
+      this.props.getOpenSessions();
   }
 
   handleChange = event => {
@@ -69,19 +70,17 @@ class MyRequest extends React.Component {
             <p className="mb-0">Medium: {myOpenSession.category}</p>
             <p className="mb-0">{myOpenSession.users[0].username} writes: </p>
             <p>{myOpenSession.blurb}</p>
-
-          //is this needed did i delete something?
           <div>
               {myOpenSession.tags && myOpenSession.tags.filter(tag => tag.name !== '').map(tag => (<span key={tag.id}>#{tag.name} </span>))}
           </div>
-          {myOpenSession.status === "unmatched" 
+          {myOpenSession.status === "unmatched"
           ?
           <div>
             <button onClick={() => this.props.deleteSession(myOpenSession)}>Delete</button>
             <button onClick={() => this.handleUpdate(myOpenSession)}>Update</button>
           </div>
           :
-//it stopped here
+
             <div>
               <h2 style={{color: 'red'}}>SESSION MATCHED!</h2>
               <a className="nav-link" href="/session">Join Room</a>
@@ -135,6 +134,7 @@ const mapState = state => {
 const mapDispatch = dispatch => {
   return {
       getMyOpenSession: (userId) => dispatch(getMyOpenSessionThunk(userId)),
+      getOpenSessions: () => dispatch(getOpenSessionsThunk()),
       updateSession: (updatedSession) => dispatch(updateSessionThunk(updatedSession)),
       deleteSession: (sessionToDelete) => dispatch(deleteSessionThunk(sessionToDelete))
   }

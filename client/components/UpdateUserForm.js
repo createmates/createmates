@@ -68,8 +68,9 @@ class UpdateUserForm extends React.Component {
       </div>
 
       <label htmlFor="bio">Bio</label>
-      <input name="bio" type="text" onChange={this.handleChange} value={this.state.bio} />
-      <button className="btn btn-info btn-sm" type="submit">Save Changes</button>
+      <textarea name="bio" type="text" rows="4" cols="50" onChange={this.handleChange} value={this.state.bio}></textarea>
+      <br></br>
+      <button className="btn btn-info btn-sm" type="submit" data-toggle="collapse" data-target="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">Save Changes</button>
       </form>
 
       </div>

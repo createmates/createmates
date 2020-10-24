@@ -5,7 +5,7 @@ import UpdateUserForm from './UpdateUserForm'
 import ProfilePhoto from './ProfilePhoto'
 import MyRequest from './MyRequest'
 
-import PastCreations from './PastCreations' 
+import PastCreations from './PastCreations'
 import {getClosedSessionsThunk} from '../store/closedSessions'
 
 import './UserAccount.css'
@@ -38,10 +38,14 @@ class UserAccount extends React.Component {
               <div className="bg-white shadow rounded overflow-hidden">
                 <div className="px-4 pt-0 pb-4 cover">
                   <div className="media align-items-end profile-head">
-                    <div className="profile mr-3"><img src="https://assets.vogue.com/photos/5a906834966d3031b95ca0fe/master/pass/01-Austyn.jpg" width="130" className="rounded mb-2 img-thumbnail"/><a className="btn btn-outline-dark btn-sm btn-block"><UpdateUserForm user={user}/></a></div>
+                    <div className="profile mr-3"><img src="https://assets.vogue.com/photos/5a906834966d3031b95ca0fe/master/pass/01-Austyn.jpg" width="130" className="rounded mb-2 img-thumbnail"/>
+                    {user.id === this.props.user.id &&
+                    <a className="btn btn-outline-dark btn-sm btn-block"><UpdateUserForm user={user}/></a>
+                    }
+                    </div>
                     <div className="media-body mb-5 text-white">
                       <h4 className="mt-0 mb-0">{user.firstName} {user.lastName}</h4>
-                      <p className="small mb-4"><i className="fas fa-map-marker-alt mr-2"></i>{user.city}, {user.state}</p>
+                      <p className="small mb-4"><i className="fas fa-map-marker-alt mr-2"></i>@{user.username}</p>
                     </div>
                   </div>
                 </div>
@@ -53,31 +57,21 @@ class UserAccount extends React.Component {
                 </ul>
             </div>
             <div className="px-4 py-3">
-            <h5 className="mb-0">Artist Bio</h5>
+            <h5 className="mb-0">Artist Information</h5>
             <div className="p-4 rounded shadow-sm bg-light">
-              <p className="font-italic mb-0">Username:{user.username}</p>
-                <p className="font-italic mb-0">{user.medium}</p>
-                <p className="font-italic mb-0">{user.bio}</p>
+              <p className="font-italic mb-0">Location: {user.city}, {user.state}</p>
+                <p className="font-italic mb-0">Medium: {user.medium}</p>
+                <p className="font-italic mb-0">Bio: {user.bio}</p>
             </div>
         </div>
-              {user.id === this.props.user.id &&
+              <PastCreations user={user} sessions={this.props.sessions} /></div>
 
-                <div className="px-4 py-3">
-                <div>
-                <UpdateUserForm user={user}/>
-
-              </div>
-                <div className="p-4 rounded shadow-sm bg-light">
+              <div className="p-4 rounded shadow-sm bg-light">
                     <p>
                    <MyRequest />
                    </p>
 
                 </div>
-
-                </div>
-              }
-              <PastCreations user={user} sessions={this.props.sessions} /></div>
-
           </div>
 
 
