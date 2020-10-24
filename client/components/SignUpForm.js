@@ -44,7 +44,7 @@ import {signup} from '../store/user'
 
 
         <p className="forgot-password text-center">
-          Already registered? <a href="/login">sign in</a>
+          Already registered? <a href="/login">Log in</a>
 
         </p>
      </form>
