@@ -51,12 +51,12 @@ describe('Redux - OpenSession', () => {
         expect(actions[0].type).to.be.equal('GET_SESSION')
         expect(actions[0].session).to.be.deep.equal(testSession1)
       })
+       //test not passing - test probably written incorrectly
     xit('addSessionThunk eventually dispatches the Get SESSIONS action', async () => {
         mockAxios.onPost('/api/openSessions', testSession1).replyOnce(200, testSession1)
         mockAxios.onGet('/api/openSessions').replyOnce(200, testSessions)
         await store.dispatch(addSessionThunk(testSession1))
         const actions = store.getActions()
-        console.log(store)
         expect(actions[1].type).to.be.equal('GET_OPEN_SESSIONS')
         expect(actions[1].sessions).to.be.deep.equal(testSessions)
       })
@@ -68,12 +68,12 @@ describe('Redux - OpenSession', () => {
         expect(actions[0].type).to.be.equal('GET_SESSION')
         expect(actions[0].session).to.be.deep.equal(testSession1)
       })
+      //test not passing - test probably written incorrectly
     xit('updateSessionThunk eventually dispatches the Get SESSIONS action', async () => {
         mockAxios.onPut('/api/openSessions/1', testSession1).replyOnce(200, testSession1)
         mockAxios.onGet('/api/openSessions').replyOnce(200, testSessions)
         await store.dispatch(updateSessionThunk(testSession1))
         const actions = store.getActions()
-        console.log(actions)
         expect(actions[1].type).to.be.equal('GET_OPEN_SESSIONS')
         expect(actions[1].sessions).to.be.deep.equal(testSessions)
       })
