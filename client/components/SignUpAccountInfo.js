@@ -50,14 +50,14 @@ class SignUpAccountPage extends React.Component {
             <h2>Let others know what know more about you by filling out your user profile.</h2>
 
             <div>
-        <ProfilePhoto />
         <form className="form-group" onSubmit={this.handleSubmit}>
           <div className="row py-5 px-4">
             <div className="col-md-5 mx-auto">
               <div className="bg-white shadow rounded overflow-hidden">
                 <div className="px-4 pt-0 pb-4 cover">
                   <div className="media align-items-end profile-head">
-                    <div className="profile mr-3"><img src="https://assets.vogue.com/photos/5a906834966d3031b95ca0fe/master/pass/01-Austyn.jpg" width="130" className="rounded mb-2 img-thumbnail"/>
+                    <div className="profile mr-3"><img src={user.photoPath ? user.photoPath : "https://assets.vogue.com/photos/5a906834966d3031b95ca0fe/master/pass/01-Austyn.jpg"} width="130" className="rounded mb-2 img-thumbnail"/>
+                    <ProfilePhoto />
 
                     </div>
                     <div className="media-body mb-5 text-white">
