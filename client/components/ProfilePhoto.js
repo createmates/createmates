@@ -28,7 +28,7 @@ class ProfilePhoto extends React.Component {
       const formData = new FormData()
       formData.append('uploadImage', selectedFile)
       console.log(formData)
-     const res =  await axios.post('/spaces/upload', formData, { headers: {'Content-Type': 'multipart/form-data'}})
+     const res =  await axios.post(`/spaces/upload/${this.props.user.id}`, formData, { headers: {'Content-Type': 'multipart/form-data'}})
      console.log(res.data)
     //   const params = {
     //     Bucket: "createmates",
