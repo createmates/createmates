@@ -2,7 +2,7 @@ import io from 'socket.io-client'
 import store, { getMyOpenSessionThunk, getSingleSessionThunk, sessionSummary } from './store'
 import { gotNewMessage } from './store/messages'
 import {roomId} from './components/Session'
-
+import {sessionEndedToast} from './components/Summary'
 import { finishSession, resetVideo, setMyVideo, setPartnerVideo } from './store/videos'
 import {toast} from 'react-toastify'
 import { getOpenSessionsThunk } from './store/openSessions'
@@ -74,6 +74,8 @@ const newRequestToast = (newSession) => {
     autoClose: 5000,
   })
 }
+
+
 
 socket.on('connect', () => {
     console.log('Connected!')
@@ -182,9 +184,10 @@ socket.on('summaryUpdate', function(summaryMessage){
   store.dispatch(sessionSummary(summaryMessage.content))
 })
 
-socket.on('closeSession', function(){
+socket.on('closeSession', function(parnters){
   store.dispatch(resetVideo())
   window.location = '/feed'
+  sessionEndedToast(parnters)
 })
 
 socket.on('answer', function(event) {
