@@ -10,8 +10,6 @@ import OpenRequestCard from './OpenRequestCard'
 import {toast} from 'react-toastify'
 import "react-toastify/dist/ReactToastify.css";
 import "../../client/App.css"
-import user from '../store/user'
-import { Redirect } from 'react-router-dom'
 
 class Feed extends React.Component {
     constructor() {
@@ -149,7 +147,7 @@ class Feed extends React.Component {
 const mapState = state => {
     return {
         openSessions: state.openSessions,
-        user: state.user
+        user: state.user,
     }
 }
 
@@ -157,7 +155,7 @@ const mapDispatch = dispatch => {
     return {
         getOpenSessions: () => dispatch(getOpenSessionsThunk()),
         getSession: (sessionId) =>  dispatch(getSingleSessionThunk(sessionId)),
-        updateSession: (updatedSession) => dispatch(updateSessionThunk(updatedSession))
+        updateSession: (updatedSession) => dispatch(updateSessionThunk(updatedSession)),
     }
 }
 
