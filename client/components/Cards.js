@@ -5,9 +5,14 @@ import {connect} from 'react-redux';
 import {getClosedSessionsThunk} from '../store/closedSessions'
 
 class Cards extends React.Component {
+  constructor() {
+    super()
+    this.whichSession = this.whichSession.bind(this)
+  }
 
   componentDidMount() {
     this.props.getClosedSessions();
+
   }
 
   whichSession(index) {
@@ -29,6 +34,8 @@ class Cards extends React.Component {
 
   render() {
     const closedSessions = this.props.closedSessions
+    console.log('cards', this.whichSession(1))
+
     return (
       closedSessions && closedSessions.length && closedSessions[closedSessions.length -1].users[0] ?
     <div className='cards'>
@@ -36,16 +43,16 @@ class Cards extends React.Component {
       <div className='cards__container'>
         <div className='cards__wrapper'>
           <ul className='cards__items'>
-            <CardItem
-              src='https://cms.qz.com/wp-content/uploads/2019/12/The-power-of-dance-e1575906582595.jpg?quality=75&strip=all&w=1600&h=900&crop=1'
+            <CardItem key={1}
+              src={this.whichSession(1).image}
               text={this.whichSession(1).summary}
               label={this.whichSession(1).category}
               users={this.whichSession(1).users}
               tags={this.whichSession(1).tags}
               date={this.convertDate(this.whichSession(1).updatedAt)}
             />
-            <CardItem
-              src='https://kilkennynow.ie/wp-content/uploads/Rock-for-teac-1.jpeg'
+            <CardItem key={2}
+            src={this.whichSession(2).image}
               text={this.whichSession(2).summary}
               label={this.whichSession(2).category}
               users={this.whichSession(2).users}
@@ -54,24 +61,24 @@ class Cards extends React.Component {
             />
           </ul>
           <ul className='cards__items'>
-            <CardItem
-              src='https://images.unsplash.com/photo-1473186505569-9c61870c11f9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80'
+            <CardItem key={3}
+              src={this.whichSession(3).image}
               text={this.whichSession(3).summary}
               label={this.whichSession(3).category}
               users={this.whichSession(3).users}
               tags={this.whichSession(3).tags}
               date={this.convertDate(this.whichSession(3).updatedAt)}
             />
-            <CardItem
-              src='https://www.outdoorpainter.com/wp-content/uploads/2020/07/how-to-paint-landscapes-Christine-Lashley-072720a.jpg'
+            <CardItem key={4}
+              src={this.whichSession(4).image}
               text={this.whichSession(4).summary}
               label={this.whichSession(4).category}
               users={this.whichSession(4).users}
               tags={this.whichSession(4).tags}
               date={this.convertDate(this.whichSession(4).updatedAt)}
             />
-            <CardItem
-              src='https://d26oc3sg82pgk3.cloudfront.net/files/media/edit/image/40115/article_full%401x.jpg'
+            <CardItem key={5}
+              src={this.whichSession(5).image}
               text={this.whichSession(5).summary}
               label={this.whichSession(5).category}
               users={this.whichSession(5).users}
