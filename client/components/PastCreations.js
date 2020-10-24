@@ -41,7 +41,9 @@ function PastCreations(props) {
           <ul className='cards__items'>
               {myClosedSessions.map(session =>
               <CardItem
-              src='https://kilkennynow.ie/wp-content/uploads/Rock-for-teac-1.jpeg'
+
+              src={session.image}
+
               text={session.summary}
               label={session.category}
               users={session.users}

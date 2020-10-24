@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {deleteSessionThunk, updateSessionThunk} from '../store/openSessions'
+import {deleteSessionThunk, updateSessionThunk, getOpenSessionsThunk} from '../store/openSessions'
 import {getMyOpenSessionThunk} from '../store/singleSession'
 import {categories} from './Form'
 import "./MyRequest.css"
@@ -45,6 +45,7 @@ class MyRequest extends React.Component {
           id: this.props.myOpenSession.id
       }
       this.props.updateSession(updatedSession)
+      this.props.getOpenSessions();
   }
 
   handleChange = event => {
@@ -133,6 +134,7 @@ const mapState = state => {
 const mapDispatch = dispatch => {
   return {
       getMyOpenSession: (userId) => dispatch(getMyOpenSessionThunk(userId)),
+      getOpenSessions: () => dispatch(getOpenSessionsThunk()),
       updateSession: (updatedSession) => dispatch(updateSessionThunk(updatedSession)),
       deleteSession: (sessionToDelete) => dispatch(deleteSessionThunk(sessionToDelete))
   }

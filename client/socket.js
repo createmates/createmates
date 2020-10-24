@@ -1,15 +1,15 @@
 import io from 'socket.io-client'
-import store, { getSingleSessionThunk, sessionSummary } from './store'
+import store, { getMyOpenSessionThunk, getSingleSessionThunk, sessionSummary } from './store'
 import { gotNewMessage } from './store/messages'
 import {roomId} from './components/Session'
+
 import { finishSession, resetVideo, setMyVideo, setPartnerVideo } from './store/videos'
 import {toast} from 'react-toastify'
+import { getOpenSessionsThunk } from './store/openSessions'
 
 if (process.env.NODE_ENV === "test") {
   global.window = {location: {origin : ''}}
 }
-
-
 
 const socket = io(window.location.origin)
 let localStream;
@@ -48,9 +48,9 @@ function onAddStream(event){
   store.dispatch(setPartnerVideo(remoteVideo))
 }
 
+//toast notifications
 const matchedToast = (matchedMessage) => {
 
-  console.log('did this work? - name')
 
   toast(`${matchedMessage.matcherName} has matched with your open request`, {
     className: "custom_toast",
@@ -63,9 +63,10 @@ const matchedToast = (matchedMessage) => {
 
 const newRequestToast = (newSession) => {
 
-  console.log('did this work? - new request')
 
-  toast(`${newSession.user.username} has openned a new ${newSession.category} request`, {
+
+  toast(`${newSession.user.username} has opened a new ${newSession.category} request`, {
+
     className: "custom_toast",
     toastClassName: 'toast',
     closeOnClick: true,
@@ -74,21 +75,24 @@ const newRequestToast = (newSession) => {
   })
 }
 
-
-
 socket.on('connect', () => {
     console.log('Connected!')
   })
+
 socket.on('newRequest', newSession => {
   newRequestToast(newSession)
+  store.dispatch(getOpenSessionsThunk())
 })
+
 socket.on('matched', matchedMessage => {
  const state = store.getState()
  if(state.user.id === matchedMessage.requesterId){
    matchedToast(matchedMessage)
-   state.dispatch(getSingleSessionThunk(matchedMessage.sessionId))
+   store.dispatch(getSingleSessionThunk(matchedMessage.sessionId))
+   store.dispatch(getMyOpenSessionThunk(state.user.id))
  }
 })
+
 socket.on('new-message', (message) => { //messages for the chat box
     store.dispatch(gotNewMessage(message))
   })
@@ -173,14 +177,16 @@ socket.on('offer', async function(event) { //accepting and answering the offer
 socket.on('finishSession', function(event){
   store.dispatch(finishSession())
 })
+
 socket.on('summaryUpdate', function(summaryMessage){
   store.dispatch(sessionSummary(summaryMessage.content))
 })
+
 socket.on('closeSession', function(){
-  console.log('redirect')
   store.dispatch(resetVideo())
   window.location = '/feed'
 })
+
 socket.on('answer', function(event) {
   rtcPeerConnection.setRemoteDescription(new RTCSessionDescription(event))
 })

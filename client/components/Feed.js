@@ -10,6 +10,8 @@ import OpenRequestCard from './OpenRequestCard'
 import {toast} from 'react-toastify'
 import "react-toastify/dist/ReactToastify.css";
 import "../../client/App.css"
+import user from '../store/user'
+import { Redirect } from 'react-router-dom'
 
 class Feed extends React.Component {
     constructor() {

@@ -40,7 +40,11 @@ const AuthForm = (props) => {
           <Link to="/signup">   Sign Up   </Link>
           </p>
           {error && error.response && <div> {error.response.data} </div>}
-          <button type="button" className="btn btn-info btn-google btn-block btn-outline my-4"><Link to="/auth/google"><img src="https://img.icons8.com/color/16/000000/google-logo.png"/>{displayName}with Google</Link></button>
+          <a href="/auth/google"><button type="button" className="btn btn-info btn-google btn-block btn-outline my-4"><img src="https://img.icons8.com/color/16/000000/google-logo.png"/>{displayName} with Google</button></a>
+
+
+
+
       </form>
 
 
