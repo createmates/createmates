@@ -9,9 +9,6 @@ import {createStore} from 'redux'
 import openSessionsReducer, { addSessionThunk, deleteSessionThunk, getOpenSessionsThunk, updateSessionThunk } from '../openSessions'
 
 
-// TODO: figure out how to mock sockets before uncommenting these tests.
-//All tests should pass once it know what window on sockets is
-
 const middlewares = [thunkMiddleware]
 const mockStore = configureMockStore(middlewares)
 
@@ -19,13 +16,16 @@ describe('Redux - OpenSession', () => {
   let store
   let mockAxios
 
-  let initialState = {sessions: [],
-                            session: {}}
-    const testSession1 = {
-            id: 1,
-            name: 'cody'
-        }
-    const testSessions = [testSession1, {id:2, name:'jane'}]
+  let initialState = {
+    sessions: [],
+    session: {}
+  }
+  const testSession1 = {
+    id: 1,
+    name: 'cody'
+  }
+  const testSessions = [testSession1, {id:2, name:'jane'}]
+
   beforeEach(() => {
     mockAxios = new MockAdapter(axios)
     store = mockStore(initialState)
