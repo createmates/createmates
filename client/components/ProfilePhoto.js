@@ -9,7 +9,7 @@ class ProfilePhoto extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this)
   }
 
- 
+
 
   handleSubmit = async (event) => {
     event.preventDefault()
@@ -20,7 +20,7 @@ class ProfilePhoto extends React.Component {
 render () {
   return (
     <form method="post" encType="multipart/form-data" onSubmit={this.handleSubmit}>
-      <label htmlFor="file">Upload file</label>
+      <label htmlFor="file">Upload profile photo</label>
       <input id="file" type="file" name="upload" />
       <button type="submit">Submit</button>
     </form>
