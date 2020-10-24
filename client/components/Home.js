@@ -3,15 +3,26 @@ import '../App.css'
 import About from '../components/About'
 import Footer from './Footer';
 import Cards from './Cards'
+import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 
-function Home() {
-  return (
-    <React.Fragment>
-      <About />
-      <Cards />
-      <Footer />
-    </React.Fragment>
-  );
+function Home(props) {
+  if(props.user && !props.user.username) {
+    return <Redirect to="/startMyAccount" />
+  } else {
+    return (
+      <React.Fragment>
+        <About />
+        <Cards />
+        <Footer />
+      </React.Fragment>
+    );
+  }
 }
 
-export default Home;
+const mapState = state => {
+  return {
+    user: state.user
+  }
+}
+export default connect(mapState)(Home);
