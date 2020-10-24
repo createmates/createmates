@@ -1,7 +1,6 @@
 const aws = require('aws-sdk');
 const router = require("express").Router();
-// const multer = require('multer')
-// const multerS3 = require('multer-s3')
+
 const formidable = require('formidable')
 const fs = require('fs');
 
@@ -25,8 +24,9 @@ router.post('/upload/:userId',  async function(req, res, next) {
   try {
     let profileToUpdate = await User.findByPk(req.params.userId)
 
-  //formidable is middleware that can read out the formdata recieved from the front end
+    //formidable is middleware that can read out the formdata recieved from the front end - multer can do a simplier thing
     const form = new  formidable.IncomingForm();
+
     // Parse `req` and upload all associated files
     //parse req into a file object we can use
     form.parse(req,  async function(err, fields, files) {
@@ -35,31 +35,33 @@ router.post('/upload/:userId',  async function(req, res, next) {
         return res.status(400).json({ error: err.message });
       }
       const [firstFileName] = Object.keys(files);
-  //reads the file into a buffer stream
-  fs.readFile(files[firstFileName].path, async function(err, fileData){
-    const params = {
-        Bucket: "createmates",
-        Key: files[firstFileName].name,
-        Body: fileData,
-        ACL: 'public-read'
-      };
-      await s3.putObject(params , function(err, returnData) {
-        if (err) console.log(err, err.stack);
-        else    {
-          //returns an eTag
-          console.log(returnData);
-          // updating the user information in the database
-          profileToUpdate.update({
-            photoPath: `https://createmates.nyc3.digitaloceanspaces.com/${files[firstFileName].name}`,
-            photoEtag: returnData.ETag,
-            profilePhoto: files[firstFileName].name
-          })
-          res.json(profileToUpdate)
-        } 
-      });
-  })
-  
-     
+      
+      //reads the file into a buffer stream
+      fs.readFile(files[firstFileName].path, async function(err, fileData){
+        const params = {
+            Bucket: "createmates",
+            Key: files[firstFileName].name,
+            Body: fileData,
+            ACL: 'public-read'
+          };
+          await s3.putObject(params , function(err, returnData) {
+            if (err) {
+              console.log(err, err.stack);
+              throw err
+            }
+            else    {
+              //returns an eTag
+              console.log(returnData);
+              // updating the user information in the database
+              profileToUpdate.update({
+                photoPath: `https://createmates.nyc3.digitaloceanspaces.com/${files[firstFileName].name}`,
+                photoEtag: returnData.ETag,  //not sure if this is something we would ever need
+                profilePhoto: files[firstFileName].name
+              })
+              res.json(profileToUpdate)
+            } 
+          });
+      })
     });
   } catch (err){
     next(err)

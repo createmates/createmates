@@ -32,13 +32,14 @@ class UserAccount extends React.Component {
     if(user.id){
       return (
         <div>
-        <ProfilePhoto />
+       
           <div className="row py-5 px-4">
             <div className="col-md-5 mx-auto">
               <div className="bg-white shadow rounded overflow-hidden">
                 <div className="px-4 pt-0 pb-4 cover">
                   <div className="media align-items-end profile-head">
                     <div className="profile mr-3"><img src={user.photoPath ? user.photoPath : "https://assets.vogue.com/photos/5a906834966d3031b95ca0fe/master/pass/01-Austyn.jpg"} width="130" className="rounded mb-2 img-thumbnail"/>
+                    {user.id === this.props.user.id &&  <ProfilePhoto />}
                     {user.id === this.props.user.id &&
                     <a className="btn btn-outline-dark btn-sm btn-block"><UpdateUserForm user={user}/></a>
                     }

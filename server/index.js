@@ -72,6 +72,7 @@ const createApp = () => {
   app.use("/auth", require("./auth"));
   app.use("/api", require("./api"));
   app.use('/spaces', require("./digitalOcean/spaces"))
+  
   // static file-serving middleware
   app.use(express.static(path.join(__dirname, "..", "public")));
 

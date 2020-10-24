@@ -1,7 +1,6 @@
 import React from 'react'
-import axios from 'axios'
-import {updateUserThunk} from '../store/user'
 import {connect} from 'react-redux'
+import {savePhotoThunk} from '../store/user'
 
 
 class ProfilePhoto extends React.Component {
@@ -15,18 +14,10 @@ class ProfilePhoto extends React.Component {
   handleSubmit = async (event) => {
     event.preventDefault()
     const selectedFile = document.getElementById('file').files[0]
-    try {
-      const formData = new FormData()
-      formData.append('uploadImage', selectedFile)
-     const res =  await axios.post(`/spaces/upload/${this.props.user.id}`, formData, { headers: {'Content-Type': 'multipart/form-data'}})
-
-    } catch (err) {
-      console.error(err)
-    }
+   this.props.savePhoto(selectedFile, this.props.user.id)
   }
 
 render () {
-  console.log(this.props.user)
   return (
     <form method="post" encType="multipart/form-data" onSubmit={this.handleSubmit}>
       <label htmlFor="file">Upload file</label>
@@ -45,7 +36,7 @@ const mapState = state => {
 
 const mapDispatch = dispatch => {
   return {
-    updateUser: (userId, obj) => dispatch(updateUserThunk(userId, obj))
+    savePhoto: (selectedFile, userId) => dispatch(savePhotoThunk(selectedFile, userId))
   }
 }
 
