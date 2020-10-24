@@ -4,6 +4,7 @@ import {connect} from 'react-redux'
 import {getOpenSessionsThunk} from '../store/openSessions'
 import {toast} from 'react-toastify'
 import OpenRequestCard from './OpenRequestCard'
+import {Redirect} from 'react-router-dom'
 
 class SignUpFeedGuide extends React.Component {
     constructor(){
@@ -53,25 +54,8 @@ class SignUpFeedGuide extends React.Component {
                     <div>
                     <h1>Other Artists' Open Requests</h1>
 
-                    {/* {this.state.filter
-                    ? <form>
-                        <button className="btn btn-info btn-lg" type="button" onClick={this.undoFilter}>Undo Filters</button>
-                        <br />
-                        <label htmlFor="filterCategory">Filter By Category</label>
-                        <select name="filterCategory" onChange={this.handleChange}>
-                            {categories.map(category => (
-                                <option value={category} key={category}>{category}</option>
-                            ))}
-                        </select>
-                        <label htmlFor="filterUser">Search By User</label>
-                        <input type="text" name="filterUser" onChange={this.handleChange} placeholder="Enter username"/>
-                        <label htmlFor="filterTag">Filter By Tag</label>
-                        <input type="text" name="filterTag" onChange={this.handleChange} placeholder="Enter a Tag"/>
-                    </form>
-                    :  */}
-
                     <button className="btn btn-info btn-lg" type="button" onClick={this.deniedToast}>Filter</button>
-                    {/* } */}
+
 
 
                     {openSessions && openSessions.length && openSessions[openSessions.length -1].users[0]
@@ -81,8 +65,7 @@ class SignUpFeedGuide extends React.Component {
                 </div>
             </div>
 
-                : <Feed />}
-                {/* <Feed /> */}
+                : <Redirect to='/feed' />}
 
 
         )
