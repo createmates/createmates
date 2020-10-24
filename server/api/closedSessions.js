@@ -8,7 +8,8 @@ router.get('/', async (req, res, next) => {
     try {
         const sessions = await Session.findAll({
           where: {status: 'closed'},
-          include: [User, Tag]
+          include: [User, Tag],
+          order: ['updatedAt']
         });
         res.json(sessions)
     } catch(err) {
