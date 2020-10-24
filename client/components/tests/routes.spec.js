@@ -180,8 +180,8 @@ describe('NavBar/Routes', () => {
         it('renders CreateMates', () => {
             expect(navBar.find('a').at(0).text()).to.be.equal('CREATEMATES')
         })
-        it('only has five links', () => {
-            expect(navBar.find('a')).to.have.lengthOf(5)
+        it('only has six links', () => {
+            expect(navBar.find('a')).to.have.lengthOf(6)
         })
         it('renders Create', () => {
             expect(navBar.find('a').at(1).text()).to.be.equal('Create(current)')
@@ -192,8 +192,11 @@ describe('NavBar/Routes', () => {
         it('renders Match with a mate', () => {
             expect(navBar.find('a').at(3).text()).to.be.equal('Match with a Mate(current)')
         }) 
+        it('renders Match with a mate', () => {
+            expect(navBar.find('a').at(4).text()).to.be.equal('Return to Session(current)')
+        }) 
         it('renders Logout', () => {
-            expect(navBar.find('a').at(4).text()).to.be.equal('Logout(current)')
+            expect(navBar.find('a').at(5).text()).to.be.equal('Logout(current)')
         }) 
     })
 })

@@ -8,7 +8,7 @@ import chai from 'chai';
 import sinonChai from 'sinon-chai';
 import chaiEnzyme from 'chai-enzyme';
 
-// require('mocha-suppress-logs')()
+require('mocha-suppress-logs')()
 
 Enzyme.configure({ adapter: new Adapter() });
 
