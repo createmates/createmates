@@ -2,8 +2,10 @@ import io from 'socket.io-client'
 import store, { getSingleSessionThunk, sessionSummary } from './store'
 import { gotNewMessage } from './store/messages'
 import {roomId} from './components/Session'
+
 import { finishSession, resetVideo, setMyVideo, setPartnerVideo } from './store/videos'
 import {toast} from 'react-toastify'
+import { getOpenSessionsThunk } from './store/openSessions'
 
 if (process.env.NODE_ENV === "test") {
   global.window = {location: {origin : ''}}
@@ -75,6 +77,7 @@ socket.on('connect', () => {
 
 socket.on('newRequest', newSession => {
   newRequestToast(newSession)
+  store.dispatch(getOpenSessionsThunk())
 })
 
 socket.on('matched', matchedMessage => {
