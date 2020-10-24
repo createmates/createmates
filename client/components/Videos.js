@@ -15,17 +15,22 @@ const SessionVideo = (props) => {
     if(partnerVideo.current && props.videos.partnersVideo && props.videos.partnersVideo.id){
       partnerVideo.current.srcObject = props.videos.partnersVideo
     }
-    
+
   })
 
-  
+
 
     return (
     //render two videos
-
-    <div id="video-grid">
-      <video className="d-flex align-items-end" muted ref={userVideo} autoPlay style={{ margin: "200px" }}></video>
-      <video ref={partnerVideo} autoPlay style={{marginTop: '200px', marginLeft: '600px'}}></video>
+    <div>
+      <div className="d-flex flex-row bg-secondary">
+      <video muted ref={userVideo} autoPlay></video>
+      </div>
+    <div>
+        <div className="d-flex flex-row-reverse bg-secondary">
+          <video ref={partnerVideo} autoPlay></video>
+        </div>
+      </div>
     </div>
   );
 

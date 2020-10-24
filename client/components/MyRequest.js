@@ -63,9 +63,8 @@ class MyRequest extends React.Component {
     if(myOpenSession && myOpenSession.users && myOpenSession.status !== 'closed'){
       return(
         <div>
-
           <h5 className="mb-0">My Session</h5>
-          <div className="p-4 rounded shadow-sm bg-light">
+          <div className="p-4 rounded shadow-sm bg-light text-dark">
             <p className="mb-0">Status: {myOpenSession.status} </p>
             <p className="mb-0">Medium: {myOpenSession.category}</p>
             <p className="mb-0">{myOpenSession.users[0].username} writes: </p>
@@ -76,8 +75,8 @@ class MyRequest extends React.Component {
           {myOpenSession.status === "unmatched"
           ?
           <div>
-            <button onClick={() => this.props.deleteSession(myOpenSession)}>Delete</button>
-            <button onClick={() => this.handleUpdate(myOpenSession)}>Update</button>
+            <button className="btn btn-danger" onClick={() => this.props.deleteSession(myOpenSession)}>Delete</button>
+            <button className="btn btn-secondary" onClick={() => this.handleUpdate(myOpenSession)}>Update</button>
           </div>
           :
 
@@ -109,7 +108,7 @@ class MyRequest extends React.Component {
                 value={this.state.tags}
                 onChange={this.handleChange}
                 />
-                <button type="submit">Go</button>
+                <button className="btn btn-info btn-sm" type="submit">Go</button>
             </div>
 
           </form>

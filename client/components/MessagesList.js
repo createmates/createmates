@@ -14,12 +14,17 @@ export const MessagesList = props => {
 
         return (
             <div>
-                <ul className="media-list">
+                <div className="card mb-3 text-dark" style={{width: '26rem'}}>
+                     <div className="col-md-4"></div>
+                        <ul className="media-list">
                     {filteredMessages.map(message => (
                         <Message message={message} key={message.id} />
                     ))}
-                </ul>
-                <NewMessageEntry sessionId={ sessionId }/>
+                        </ul>
+                    </div>
+                <div className="position-fixed">
+                 <NewMessageEntry sessionId={ sessionId }/>
+                </div>
             </div>
         )
     } else {
