@@ -54,7 +54,7 @@ describe('NavBar/Routes', () => {
             expect(wapper.find(Login)).to.have.length(1)
             expect(wapper.find(Home)).to.have.length(0)
         })
-        it('renders <Home /> at path /home', () => {
+        xit('renders <Home /> at path /home', () => {
             const wapper = mount(
                 <Provider store={store}>
                     <rrd.MemoryRouter initialEntries={['/home']}>
