@@ -72,7 +72,7 @@ const users = [
   },
   {
     username: "iloveart",
-    firstName: 'Ana', 
+    firstName: 'Ana',
     lastName: 'Roth',
     city: "Columbus",
     state: "Ohio",
@@ -197,43 +197,50 @@ const exampleSessions = [
     status: 'closed',
     category: 'Dance',
     blurb: 'Would love some eyes on a new 30 second phrase I just came up with',
-    summary: 'Got some great feedback from this session. Thanks partner!'
+    summary: 'Got some great feedback from this session. Thanks partner!',
+    image: 'images/Dance.jpg'
   },
   {
     status: 'closed',
     category: 'Joke',
     blurb: 'Need some help wording a joke',
-    summary: 'OMG that was hilarious! We had so much fun.'
+    summary: 'OMG that was hilarious! We had so much fun.',
+    image: '/images/Joke.jpg'
   },
   {
     status: 'closed',
     category: 'Painting',
     blurb: 'Who wants to paint the sunset?',
-    summary: 'A lovely experience, co-painting tonight\'s sunset'
+    summary: 'A lovely experience, co-painting tonight\'s sunset',
+    image: '/images/Painting.jpg'
   },
   {
     status: 'closed',
     category: 'Poem',
     blurb: 'I want to write a sonnet',
-    summary: 'We wrote a beautiful sonnet'
+    summary: 'We wrote a beautiful sonnet',
+    image: '/images/Poem.jpg'
   },
   {
     status: 'closed',
     category: 'Music',
     blurb: 'I just wanna jam bro',
-    summary: 'We had such a sweet jam sesh.'
+    summary: 'We had such a sweet jam sesh.',
+    image: '/images/Music.jpg'
   },
   {
     status: 'closed',
     category: 'Theater improv',
     blurb: 'Looking to do some fun theater improv games',
-    summary: 'That was the first time in months that I was able to do theater improv games with someone. Had such a blast!'
+    summary: 'That was the first time in months that I was able to do theater improv games with someone. Had such a blast!',
+    image: '/images/Theater-improv.jpg'
   },
   {
     status: 'closed',
     category: 'Drawing',
     blurb: 'Can anyone model for me? I want to draw a portrait. You can keep the finished product!',
-    summary: 'I had never modeled for an artist before but it was so cool to watch the process!'
+    summary: 'I had never modeled for an artist before but it was so cool to watch the process!',
+    image: '/images/Drawing.jpg'
   },
   {
     status: 'closed',
@@ -251,112 +258,133 @@ const exampleSessions = [
     status: 'closed',
     category: 'Music',
     blurb: 'Ukelele duet anyone?',
-    summary: 'Really cool to duet over video conference.'
+    summary: 'Really cool to duet over video conference.',
+    image: '/images/Music.jpg'
   },
   {
     status: 'closed',
     category: 'Comedy',
     blurb: 'What is humor? Would love to discuss.',
-    summary: 'We had a really nice discussion about humor.'
+    summary: 'We had a really nice discussion about humor.',
+    image: '/images/Comedy.jpg'
   },
   {
     status: 'closed',
     category: 'Music',
     blurb: 'Anyone play guitar? I would like to try a duet.',
-    summary: 'I wish we\'d had more time! Can\'t wait for my next createmates session!.'
+    summary: 'I wish we\'d had more time! Can\'t wait for my next createmates session!.',
+    image: '/images/Music.jpg'
   },
   {
     status: 'closed',
     category: 'Poem',
     blurb: 'Does anyone want to brainstorm words that rhyme with "toast"? Trying to write a poem about breakfast',
-    summary: 'Finished the poem I have been working on for weeks!'
+    summary: 'Finished the poem I have been working on for weeks!',
+    image: '/images/Poem.jpg'
   },
   {
     status: 'closed',
     category: 'Music',
     blurb: "Let's singggggggggg",
-    summary: 'Wow, found a new singing friend. So much fun!'
+    summary: 'Wow, found a new singing friend. So much fun!',
+    image: '/images/Music.jpg'
   },
   {
     status: 'closed',
     category: 'Dance',
     blurb: 'Looking to improvise with a partner. The prompt is: "Be Water"',
-    summary: 'Such a pleasure to improvise with another dancer while remaining in the safety of our homes.'
+    summary: 'Such a pleasure to improvise with another dancer while remaining in the safety of our homes.',
+    image: '/images/Dance.jpg'
   },
   {
     status: 'unmatched',
     category: 'Joke',
-    blurb: "Knock knock. Who's there? I need help finishing this joke."
+    blurb: "Knock knock. Who's there? I need help finishing this joke.",
+    image: '/images/Joke.jpg'
   },
   {
     status: 'unmatched',
     category: 'Painting',
-    blurb: 'Would anyone like to take a look at this painting I just finished? Need feedback.'
+    blurb: 'Would anyone like to take a look at this painting I just finished? Need feedback.',
+    image: '/images/Painting.jpg'
   },
   {
     status: 'unmatched',
     category: 'Poem',
-    blurb: "Let's co-write a poem!"
+    blurb: "Let's co-write a poem!",
+    image: '/images/Poem.jpg'
   },
   {
     status: 'unmatched',
     category: 'Music',
-    blurb: 'Anyone good with lyrics?'
+    blurb: 'Anyone good with lyrics?',
+    image: '/images/Music.jpg'
   },
   {
     status: 'unmatched',
     category: 'Theater improv',
-    blurb: 'Beginner improviser. Looking to chat with someone with more experience and get some tips.'
+    blurb: 'Beginner improviser. Looking to chat with someone with more experience and get some tips.',
+    image: '/images/Theater-improv.jpg'
   },
   {
     status: 'unmatched',
     category: 'Drawing',
-    blurb: "Let's share each other's work and give each other constructive feedback!"
+    blurb: "Let's share each other's work and give each other constructive feedback!",
+    image: '/images/Drawing.jpg'
   },
   {
     status: 'unmatched',
     category: 'Scene',
-    blurb: 'Any actors that would like to act out this scene with me?'
+    blurb: 'Any actors that would like to act out this scene with me?',
+    image: '/images/Scene.jpg'
   },
   {
     status: 'unmatched',
     category: 'Scene',
-    blurb: "I need help crying on demand for this scene I'm rehearsing. Anyone got tips?"
+    blurb: "I need help crying on demand for this scene I'm rehearsing. Anyone got tips?",
+    image: '/images/Scene.jpg'
   },
   {
     status: 'unmatched',
     category: 'Script',
-    blurb: 'Anyone want to brainstorm screenplay ideas?'
+    blurb: 'Anyone want to brainstorm screenplay ideas?',
+    image: '/images/Script.jpg'
   },
   {
     status: 'unmatched',
     category: 'Dance',
-    blurb: "I'm going to do a Cunningham warmup. Anyone want to join?"
+    blurb: "I'm going to do a Cunningham warmup. Anyone want to join?",
+    image: '/images/Dance.jpg'
   },
   {
     status: 'unmatched',
     category: 'Poem',
-    blurb: 'Cannot write the last line of this poem, help!!!'
+    blurb: 'Cannot write the last line of this poem, help!!!',
+    image: '/images/Poem.jpg'
   },
   {
     status: 'unmatched',
     category: 'Music',
-    blurb: 'Anyone want to do a vocal warmup?'
+    blurb: 'Anyone want to do a vocal warmup?',
+    image: '/images/Music.jpg'
   },
   {
     status: 'unmatched',
     category: 'Joke',
-    blurb: "Can someone honestly tell me if I'm funny?"
+    blurb: "Can someone honestly tell me if I'm funny?",
+    image: '/images/Joke.jpg'
   },
   {
     status: 'unmatched',
     category: 'Theater improv',
-    blurb: 'Improv actor looking for tips on zoom performances.'
+    blurb: 'Improv actor looking for tips on zoom performances.',
+    image: './images/Theater-improv.jpg'
   },
   {
     status: 'unmatched',
     category: 'Drawing',
-    blurb: "What's your favorite pencil company? Anyone want to discuss?"
+    blurb: "What's your favorite pencil company? Anyone want to discuss?",
+    image: './images/Drawing.jpg'
   },
 ]
 
@@ -393,7 +421,8 @@ const seed = async () => {
           status: session.status,
           category: session.category,
           blurb: session.blurb,
-          summary: session.summary
+          summary: session.summary,
+          image: session.image,
         })
       )
     )
@@ -404,7 +433,7 @@ const seed = async () => {
         await sessions[i].addUser(artists[0])
       } else {
         await sessions[i].addUser(artists[i + 1])
-      }  
+      }
       let finish = Math.ceil(Math.random() * 3)
       for (let j = 0; j < finish; j++) {
         await sessions[i].addTag(tags[Math.floor(Math.random() * tags.length)])

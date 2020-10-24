@@ -51,6 +51,7 @@ function onAddStream(event){
 //toast notifications
 const matchedToast = (matchedMessage) => {
 
+
   toast(`${matchedMessage.matcherName} has matched with your open request`, {
     className: "custom_toast",
     toastClassName: 'toast',
@@ -62,7 +63,10 @@ const matchedToast = (matchedMessage) => {
 
 const newRequestToast = (newSession) => {
 
-  toast(`${newSession.user.username} has openned a new ${newSession.category} request`, {
+
+
+  toast(`${newSession.user.username} has opened a new ${newSession.category} request`, {
+
     className: "custom_toast",
     toastClassName: 'toast',
     closeOnClick: true,
