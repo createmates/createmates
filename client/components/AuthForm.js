@@ -17,7 +17,7 @@ const AuthForm = (props) => {
         <div>
           <label htmlFor="email">
           </label>
-          <input type="email" name="email" id="defaultLoginFormEmail" className="form-control mb-4" type="text" placeholder="E-mail" />
+          <input type="email" name="email" id="defaultLoginFormEmail" className="form-control mb-4" type="text" placeholder="Email" />
         </div>
         <div>
           <label htmlFor="password">
@@ -41,10 +41,6 @@ const AuthForm = (props) => {
           </p>
           {error && error.response && <div> {error.response.data} </div>}
           <button type="button" className="btn btn-info btn-google btn-block btn-outline my-4"><Link to="/auth/google"><img src="https://img.icons8.com/color/16/000000/google-logo.png"/>{displayName}with Google</Link></button>
-
-
-
-
       </form>
 
 
