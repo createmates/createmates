@@ -18,6 +18,8 @@ export const sessionEndedToast = (partners) => {
     })
   }
 
+
+
 class Summary extends React.Component {
     constructor() {
         super();
@@ -35,10 +37,12 @@ class Summary extends React.Component {
     }
 
     handleSubmit() {
+        const categoryName = this.props.session.category.split(' ').join('-')
         const updatedSesson = {
             id: this.props.session.id,
             status: 'closed',
-            summary: this.props.session.summary
+            summary: this.props.session.summary,
+            image: `/images/${categoryName}.jpg`
         }
         this.props.updateSession(updatedSesson);
         this.props.history.push('/feed')
