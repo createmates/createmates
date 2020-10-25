@@ -51,7 +51,7 @@ router.post('/upload/:userId',  async function(req, res, next) {
             }
             else    {
               //returns an eTag
-              console.log(returnData);
+             
               // updating the user information in the database
               profileToUpdate.update({
                 photoPath: `https://createmates.nyc3.digitaloceanspaces.com/${files[firstFileName].name}`,

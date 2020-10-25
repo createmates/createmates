@@ -1,10 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
 import { connect } from "react-redux";
-import {Link, useHistory} from 'react-router-dom'
+import { useHistory} from 'react-router-dom'
 import MessagesList from './MessagesList';
 import { getMatchedSessionThunk } from "../store";
 import UserSession from './UserSession'
-import UserSummary from './UserSummary'
 import Summary from "./Summary";
 import socket from '../socket'
 import {finishSession} from '../store/videos'

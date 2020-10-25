@@ -2,6 +2,7 @@ const router = require("express").Router();
 const { User, Session } = require("../db/models");
 module.exports = router;
 const { isAdminMiddleware } = require("../app/authentication-middleware");
+
 //below is from boilermaker? commented out to deconflict with our model called Session, which is now required in line 2 above:
 // const { Session } = require("express-session");
 

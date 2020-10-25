@@ -1,8 +1,10 @@
 import React from 'react'
 import { expect } from 'chai';
-import { mount, shallow } from 'enzyme';
+import { mount} from 'enzyme';
 import { Provider } from 'react-redux';
 import store from '../../store';
+import MockAdapter from 'axios-mock-adapter';
+import axios from 'axios'
 
 import Navbar from '../navbar';
         
@@ -26,3 +28,4 @@ describe('not logged in', () => {
         expect(navBar.find('a', 3).text).to.not.equal('Match with a mate')
     })
 })
+

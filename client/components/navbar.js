@@ -8,7 +8,7 @@ const Navbar = ({ handleClick, handleClickAccount, isLoggedIn, singleSession, is
   <div>
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <a className="navbar-brand" href="/home">
-        {/* <img src="/public/images/sin_wavetable.png" width="30" height="30" className="d-inline-block align-top" alt="" loading="lazy"/> */}
+        <img src="/images/sin_wavetable.png" width="30" height="30" className="d-inline-block align-top" alt="" loading="lazy"/>
         CREATEMATES
       </a>
       <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -25,7 +25,7 @@ const Navbar = ({ handleClick, handleClickAccount, isLoggedIn, singleSession, is
              <a className="nav-link" href="/myAccount" onClick={handleClickAccount(user.id)}>My Account<span className="sr-only">(current)</span></a>
 
              <a className="nav-link" href="/feed">Match with a Mate<span className="sr-only">(current)</span></a>
-             {singleSession.id ? <a className="nav-link" href="/session" style={{color: "blue"}}>Go to Session<span className="sr-only">(current)</span></a> : ''}
+             {singleSession.roomId ? <a className="nav-link" href="/session" style={{color: "blue"}}>Go to Session<span className="sr-only">(current)</span></a> : ''}
 
              <a className="nav-link" href="#" onClick={handleClick}>Logout<span className="sr-only">(current)</span></a>
 

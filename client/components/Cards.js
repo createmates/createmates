@@ -34,7 +34,7 @@ class Cards extends React.Component {
 
   render() {
     const closedSessions = this.props.closedSessions
-    console.log('cards', this.whichSession(1))
+    
 
     return (
       closedSessions && closedSessions.length && closedSessions[closedSessions.length -1].users[0] ?

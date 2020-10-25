@@ -1,4 +1,4 @@
-  import axios from 'axios'
+import axios from 'axios'
 import history from '../history'
 import {getProfile} from './profile'
 import {toast} from 'react-toastify'

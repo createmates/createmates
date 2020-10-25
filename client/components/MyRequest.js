@@ -43,7 +43,7 @@ class MyRequest extends React.Component {
           tags: tags,
           id: this.props.myOpenSession.id
       }
-      console.log(updatedSession)
+      
       this.props.updateSession(updatedSession)
   }
 

@@ -10,10 +10,17 @@ const Session = db.define("session", {
     },
     category: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: false,
+        validate: {
+            notEmpty: true,
+        }
     },
     blurb: {
         type: Sequelize.STRING(100),
+        allowNull: false,
+        validate: {
+            notEmpty: true,
+        }
     },
     summary: {
         type: Sequelize.STRING(200)
@@ -25,4 +32,4 @@ const Session = db.define("session", {
 
 module.exports = Session;
 
-// song, poem, dance, painting, drawing, joke, scene, script, theater improv, comedy,
+//categories:  song, poem, dance, painting, drawing, joke, scene, script, theater improv, comedy,

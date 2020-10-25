@@ -1,13 +1,14 @@
 import React from "react";
 import {connect} from 'react-redux';
 import {addSessionThunk} from '../store/openSessions'
-import profile, {getProfileThunk} from '../store/profile'
+import {getProfileThunk} from '../store/profile'
 import {toast} from 'react-toastify'
 import "react-toastify/dist/ReactToastify.css";
 import "../../client/App.css"
 import socket from "../socket";
 
 export const categories = ['Categories', 'Music', 'Poem', 'Dance', 'Painting', 'Drawing', 'Joke', 'Scene', 'Script', 'Theater Improv', 'Comedy']
+
 class Form extends React.Component {
   constructor(props) {
     super(props);
@@ -44,7 +45,18 @@ class Form extends React.Component {
     })
   }
 
+  blurbToast = () => {
+    toast('Blurb can not be empty! Tell us what you want to create.', {
+      className: "custom_toast",
+      toastClassName: 'toast',
+      closeOnClick: true,
+      position: toast.POSITION.TOP_CENTER,
+      autoClose: false,
+    })
+  }
+
   handleSubmit = async (event) => {
+  
     event.preventDefault();
     let unmatchedCount = 0
     for(let i = 0; i < this.props.profile.sessions.length; i++){
@@ -55,6 +67,8 @@ class Form extends React.Component {
     }
     if(unmatchedCount){
        this.deniedToast()
+    } else if(this.state.blurb === ''){
+      this.blurbToast()
     } else {
       const tags = this.state.tags.split(' ')
       const newSession = {
@@ -65,7 +79,7 @@ class Form extends React.Component {
         tags: tags,
       }
       this.props.addSession(newSession, this.props.history);
-      // this.props.history.push('/feed')
+
       socket.emit('newRequest', newSession)
     }
   }

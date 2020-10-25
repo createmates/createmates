@@ -36,7 +36,7 @@ describe('User model', () => {
           password: 'bones'
         })
        })
-      xit('email cannot be empty', async () => {
+      it('email cannot be empty', async () => {
         const emptyEmailUser= User.build({ email: '', password: '12345'});
         try {
           await emptyEmailUser.validate();
@@ -58,6 +58,14 @@ describe('User model', () => {
         try {
           await User.create({ email: 'cody@puppybook.com', password: '12345'});
           throw Error('validation should have failed without an unique email');
+        } catch (err) {
+          expect(err.message).to.contain('Validation error');
+        }
+      })
+      it('email must be an Email', async () => {
+        try {
+          await User.create({ email: 'puppybook.com', password: '12345'});
+          throw Error('validation should have failed without an email');
         } catch (err) {
           expect(err.message).to.contain('Validation error');
         }

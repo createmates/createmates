@@ -47,13 +47,13 @@ export const updateSessionThunk = (updatedSession) => {
 export const deleteSessionThunk = (sessionToDelete) => {
   return async (dispatch) => {
     try {
-      console.log('step-2')
+    
       const userId = sessionToDelete.users[0].id
-      console.log('step-1')
+     
       await axios.delete(`/api/openSessions/${sessionToDelete.id}`)
-      console.log('step0')
+    
       dispatch(getSession({}));
-console.log('step1')
+
       dispatch(getOpenSessionsThunk())
 
       dispatch(getProfileThunk(userId))
