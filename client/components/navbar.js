@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { logout } from "../store";
 import { getProfileThunk } from '../store/profile'
 
-const Navbar = ({ handleClick, handleClickAccount, isLoggedIn, isAdmin, user }) => (
+const Navbar = ({ handleClick, handleClickAccount, isLoggedIn, singleSession, isAdmin, user }) => (
   <div>
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <a className="navbar-brand" href="/home">
@@ -25,7 +25,7 @@ const Navbar = ({ handleClick, handleClickAccount, isLoggedIn, isAdmin, user }) 
              <a className="nav-link" href="/myAccount" onClick={handleClickAccount(user.id)}>My Account<span className="sr-only">(current)</span></a>
 
              <a className="nav-link" href="/feed">Match with a Mate<span className="sr-only">(current)</span></a>
-             <a className="nav-link" href="/session">Return to Session<span className="sr-only">(current)</span></a>
+             {singleSession.id ? <a className="nav-link" href="/session">Return to Session<span className="sr-only">(current)</span></a> : ''}
 
              <a className="nav-link" href="#" onClick={handleClick}>Logout<span className="sr-only">(current)</span></a>
 
@@ -49,7 +49,8 @@ const Navbar = ({ handleClick, handleClickAccount, isLoggedIn, isAdmin, user }) 
 const mapState = (state) => {
   return {
     isLoggedIn: !!state.user.id,
-    user: state.user
+    user: state.user,
+    singleSession: state.singleSession
   };
 };
 
