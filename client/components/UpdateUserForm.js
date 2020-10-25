@@ -8,7 +8,6 @@ class UpdateUserForm extends React.Component {
     this.state = {
       username: '',
       medium: '',
-      email: '',
       city: '',
       userState: '',
       bio: ''
@@ -22,7 +21,6 @@ class UpdateUserForm extends React.Component {
     this.setState({
       username: this.props.user.username,
       medium: this.props.user.medium,
-      email: this.props.user.email,
       city: this.props.user.city,
       userState: this.props.user.state,
       bio: this.props.user.bio
@@ -54,10 +52,6 @@ class UpdateUserForm extends React.Component {
           <label htmlFor="medium">Medium</label>
       <input name="medium" type="text" onChange={this.handleChange} value={this.state.medium} />
         </div>
-        <div className="form-group text-left">
-      <label htmlFor="email">Email</label>
-      <input name="email" type="text" onChange={this.handleChange} value={this.state.email} />
-          </div>
             <div className="form-group text-left">
       <label htmlFor="city">City</label>
       <input name="city" type="text" onChange={this.handleChange} value={this.state.city} />

@@ -47,7 +47,7 @@ router.get("/:userid", async (req, res, next) => {
 router.put("/:userid", async (req, res, next) => {
 try {
 let profile = await User.findByPk(req.params.userid);
-    profile.update({
+    await profile.update({
       username: req.body.username,
       medium: req.body.medium,
       email: req.body.email,
