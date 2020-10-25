@@ -5,10 +5,10 @@ import sinon from 'sinon'
 import * as rrd from 'react-router-dom'
 import {expect} from 'chai'
 import { mount } from 'enzyme'
-import { Login } from './AuthForm'
+import { Login } from '../AuthForm'
 import { Provider } from 'react-redux'
-import store from '../store'
-import SignUpForm from './SignUpForm'
+import store from '../../store'
+import SignUpForm from '../SignUpForm'
 
 
 

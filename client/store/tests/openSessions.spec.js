@@ -75,10 +75,7 @@ describe('Redux - OpenSession', () => {
         mockAxios.onGet('/api/openSessions').replyOnce(200, testSessions)
         await store.dispatch(updateSessionThunk(testSession1))
         const actions = store.getActions()
-        console.log(actions)
-        console.log(actions[0])
-        console.log(actions[1])
-        console.log(actions[2])
+        
         expect(actions[1].type).to.be.equal('GET_OPEN_SESSIONS')
         expect(actions[1].sessions).to.be.deep.equal(testSessions)
       })
