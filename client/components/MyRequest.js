@@ -62,9 +62,8 @@ class MyRequest extends React.Component {
     if(myOpenSession && myOpenSession.users && myOpenSession.status !== 'closed'){
       return(
         <div>
-
           <h5 className="mb-0">My Session</h5>
-          <div className="p-4 rounded shadow-sm bg-light">
+          <div className="p-4 rounded shadow-sm bg-light text-dark">
             <p className="mb-0">Status: {myOpenSession.status} </p>
             <p className="mb-0">Medium: {myOpenSession.category}</p>
             <p className="mb-0">{myOpenSession.users[0].username} writes: </p>
@@ -75,8 +74,8 @@ class MyRequest extends React.Component {
           {myOpenSession.status === "unmatched"
           ?
           <div>
-            <button onClick={() => this.props.deleteSession(myOpenSession)}>Delete</button>
-            <button onClick={() => this.handleUpdate(myOpenSession)}>Update</button>
+            <button className="btn btn-danger" onClick={() => this.props.deleteSession(myOpenSession)}>Delete</button>
+            <button className="btn btn-secondary" onClick={() => this.handleUpdate(myOpenSession)}>Update</button>
           </div>
           :
 
@@ -91,26 +90,29 @@ class MyRequest extends React.Component {
                 {categories.map(category => (
                     <option value={category} key={category}>{category}</option>
                 ))}
-              </select>
-              <div>
-                  <label htmlFor="blurb">Write a couple of sentences about what you would like to create: </label>
-                  <input
-                  type="textarea"
-                  name="blurb"
-                  value={this.state.blurb}
-                  maxLength="75"
-                  onChange={this.handleChange}
-                  />
-                  <label htmlFor="tags">Tags: </label>
-                  <input
-                  type="text"
-                  name="tags"
-                  value={this.state.tags}
-                  onChange={this.handleChange}
-                  />
-                  <button type="submit">Go</button>
-              </div>
-            </form>
+
+            </select>
+            <div>
+                <label htmlFor="blurb">Write a couple of sentences about what you would like to create: </label>
+                <input
+                type="textarea"
+                name="blurb"
+                value={this.state.blurb}
+                maxLength="75"
+                onChange={this.handleChange}
+                />
+                <label htmlFor="tags">Tags: </label>
+                <input
+                type="text"
+                name="tags"
+                value={this.state.tags}
+                onChange={this.handleChange}
+                />
+                <button className="btn btn-info btn-sm" type="submit">Go</button>
+            </div>
+
+          </form>
+
 
           }
         </div>

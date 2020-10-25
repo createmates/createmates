@@ -36,20 +36,22 @@ export class NewMessageEntry extends Component {
 
     return (
       <div className="form-group">
-      <form id="new-message-form" onSubmit={this.handleSubmit} onKeyPress={this.onKeyUp}>
-        <div className="input-group input-group-lg w-50 p-3">
+        <div className="container position-fixed">
+          <form className="position-fixed" id="new-message-form" onSubmit={this.handleSubmit} onKeyPress={this.onKeyUp}>
           <textarea
-            className="form-control"
+            className="form-control text-dark"
             type="text"
             name="content"
             placeholder="Say something nice..."
+            style={{width: '18rem'}}
           />
-          <span className="input-group-btn">
+          <span className="input-group-btn position-fixed">
             <button className="btn btn-info btn-md" type="submit">Chat!</button>
           </span>
+          </form>
         </div>
-      </form>
-      </div>
+
+   </div>
     );
   }
 }

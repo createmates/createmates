@@ -36,23 +36,26 @@ function PastCreations(props) {
         })
 
     return (
-        <div className='cards__container'>
-        <div className='cards__wrapper'>
-          <ul className='cards__items'>
-              {myClosedSessions.map(session =>
-              <CardItem
 
-              src={session.image}
+             <div className='cards__container'>
+               <div className='cards__wrapper'>
+                 <ul className='cards__items'>
 
-              text={session.summary}
-              label={session.category}
-              users={session.users}
-              tags={session.tags}
-              date={convertDate(session.updatedAt)}
+                 {myClosedSessions.map(session =>
+                 <CardItem className="carousel-cell"
+                src={session.image}
+                text={session.summary}
+                label={session.category}
+                users={session.users}
+                tags={session.tags}
+                date={convertDate(session.updatedAt)}
               />)}
-          </ul>
-        </div>
-        </div>
+
+
+                         </ul>
+                    </div>
+                </div>
+
     )
 }
 

@@ -3,19 +3,12 @@ import { connect } from "react-redux";
 import {Link, useHistory} from 'react-router-dom'
 import MessagesList from './MessagesList';
 import { getMatchedSessionThunk } from "../store";
-
-
-
-
 import UserSession from './UserSession'
 import UserSummary from './UserSummary'
-
 import Summary from "./Summary";
 import socket from '../socket'
 import {finishSession} from '../store/videos'
 import SessionVideo from './Videos'
-
-
 
 
 export let roomId;
@@ -33,25 +26,30 @@ const Session = (props) => {
   })
 
   const getSummaryForm = () => {
-    socket.emit('finishSession', roomId); 
+    socket.emit('finishSession', roomId);
     props.finishSession()
   }
 
     return (
     //render two videos
-
-
-    <div>
-      <UserSession />
-
-      
-      <SessionVideo />
-
-      <MessagesList />
-      {props.videos.finishSession 
+     <div>
+      <div className="mb-2" style={{width: '22rem'}}>
+     {props.videos.finishSession
       ? <Summary history={history}/>
       : <button className="btn btn-info btn-md" onClick={() => getSummaryForm()}>Finish Session</button>}
+      </div>
 
+      <div className="container">
+        <div className="row">
+          <div className="col">
+          <SessionVideo />
+          </div>
+        </div>
+        <UserSession />
+
+        <MessagesList />
+
+      </div>
 
     </div>
   );
