@@ -33,7 +33,7 @@ class UserAccount extends React.Component {
       return (
         <div>
 
-          <div className="row py-5 px-4">
+         <div className="row py-5 px-4">
             <div className="col-md-5 mx-auto">
               <div className="bg-white shadow rounded overflow-hidden">
                 <div className="px-4 pt-0 pb-4 cover">
@@ -77,9 +77,7 @@ class UserAccount extends React.Component {
 
                 </div>
           </div>
-
-
-      </div>
+        </div>
       </div>
 
       )

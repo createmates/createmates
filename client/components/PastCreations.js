@@ -37,25 +37,36 @@ function PastCreations(props) {
 
     return (
 
-             <div className='cards__container'>
-               <div className='cards__wrapper'>
-                 <ul className='cards__items'>
+        <div id="carouselExampleIndicators" className="carousel slide" data-ride="carousel">
+        <ol className="carousel-indicators">
+        <li data-target="#multi-item-example" data-slide-to="0" className="active"></li>
+        <li data-target="#multi-item-example" data-slide-to="1"></li>
+        </ol>
 
-                 {myClosedSessions.map(session =>
-                 <CardItem className="carousel-cell"
+      <div className="carousel-inner d-flex align-items-center">
+         <div className="carousel-item active d-flex align-items-center">
+
+                {myClosedSessions.map(session =>
+                 <CardItem className="d-block w-50"
                 src={session.image}
                 text={session.summary}
                 label={session.category}
                 users={session.users}
                 tags={session.tags}
                 date={convertDate(session.updatedAt)}
-              />)}
-
-
-                         </ul>
-                    </div>
-                </div>
-
+              />
+              )}
+            </div>
+        </div>
+            <a className="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+            <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span className="sr-only">Previous</span>
+            </a>
+            <a className="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+            <span className="carousel-control-next-icon" aria-hidden="true"></span>
+            <span className="sr-only">Next</span>
+            </a>
+        </div>
     )
 }
 
