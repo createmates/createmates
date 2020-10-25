@@ -4,10 +4,9 @@ const router = require("express").Router();
 const formidable = require('formidable')
 const fs = require('fs');
 
-const { User } = require('../db/models');
+const { User, Session } = require('../db/models');
 if (process.env.NODE_ENV === "development") require('../../secrets');
 module.exports = router;
-
 
 
 const spacesEndpoint = new aws.Endpoint('nyc3.digitaloceanspaces.com');
@@ -19,6 +18,44 @@ const s3 = new aws.S3({
 });
 
 
+router.post('/upload/Session',  async function(req, res, next) {
+  try {
+
+    const form = new  formidable.IncomingForm();
+
+    // Parse `req` and upload all associated files
+    form.parse(req,  async function(err, fields, files) {
+      if (err) {
+          console.log(err)
+        return res.status(400).json({ error: err.message });
+      }
+      const [firstFileName] = Object.keys(files);
+      
+      //reads the file into a buffer stream
+      fs.readFile(files[firstFileName].path, async function(err, fileData){
+        const params = {
+            Bucket: "createmates",
+            Key: files[firstFileName].name,
+            Body: fileData,
+            ACL: 'public-read'
+          };
+          await s3.putObject(params , function(err, returnData) {
+            if (err) {
+              console.log(err, err.stack);
+              throw err
+            }
+            else    {
+              //returns an eTag
+              
+              res.sendStatus(201)
+            } 
+          });
+      })
+    });
+  } catch (err){
+    next(err)
+  }
+})
 
 router.post('/upload/:userId',  async function(req, res, next) {
   try {
@@ -66,7 +103,9 @@ router.post('/upload/:userId',  async function(req, res, next) {
   } catch (err){
     next(err)
   }
-  })
+})
+
+
 
 
   

@@ -18,6 +18,19 @@ export const getClosedSessionsThunk = () => {
     }
 }
 
+export const uploadSessionPhoto = (selectedFile) => {
+  return async dispatch => {
+    try {
+      const formData = new FormData()
+      formData.append('uploadImage', selectedFile)
+      
+      await axios.post('/spaces/upload/Session', formData,  { headers: {'Content-Type': 'multipart/form-data'}})
+    } catch (error){
+      console.error(error)
+    }
+  }
+}
+
 // export const updateSessionThunk = (updatedSession) => {
 //   return async (dispatch) => {
 //     try {

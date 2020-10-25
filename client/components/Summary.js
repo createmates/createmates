@@ -5,6 +5,8 @@ import { sessionSummary } from "../store";
 import {updateSessionThunk} from '../store/openSessions'
 import { roomId } from "./Session";
 import {resetVideo} from '../store/videos'
+import { uploadSessionPhoto } from "../store/closedSessions";
+import { toast } from "react-toastify";
 
 
 export const sessionEndedToast = (partners) => {
@@ -37,22 +39,31 @@ class Summary extends React.Component {
     }
 
     handleSubmit() {
+        const selectedFile =  document.getElementById('file').files[0]
         const categoryName = this.props.session.category.split(' ').join('-')
+        console.log(selectedFile.name)
+        let imagePath =  `/images/${categoryName}.jpg`
+        if(selectedFile.name){
+            imagePath = `https://createmates.nyc3.digitaloceanspaces.com/${selectedFile.name}`
+            this.props.uploadImage(selectedFile)
+        }
         const updatedSesson = {
             id: this.props.session.id,
             status: 'closed',
             summary: this.props.session.summary,
-            image: `/images/${categoryName}.jpg`
+            image: imagePath
         }
         this.props.updateSession(updatedSesson);
-        this.props.history.push('/feed')
+        
         const infoToEmit = {
             roomId: roomId,
             partners: this.props.session.users
         }
         socket.emit('closeSession', infoToEmit)
+
        this.props.resetVideo()
        sessionEndedToast(this.props.session.users)
+       this.props.history.push('/feed')
     }
 
     render() {
@@ -79,6 +90,8 @@ class Summary extends React.Component {
                     value={this.props.session.summary}
                     />
                     }
+                     <label htmlFor="file">Upload a Session photo</label>
+                        <input id="file" type="file" name="upload" />
                     <button className="btn btn-info btn-md" type="submit">Save Session</button>
                 </form>
             </div>
@@ -96,7 +109,8 @@ const mapState = state => {
     return {
         updateSession: (updatedSession) => dispatch(updateSessionThunk(updatedSession)),
         sessionSummary: (summary) => dispatch(sessionSummary(summary)),
-        resetVideo: () => dispatch(resetVideo())
+        resetVideo: () => dispatch(resetVideo()),
+        uploadImage: (selectedFile) => dispatch(uploadSessionPhoto(selectedFile))
     }
   }
 
