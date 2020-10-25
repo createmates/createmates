@@ -1,6 +1,7 @@
 import axios from 'axios'
 import history from '../history'
 import {getProfile} from './profile'
+import {toast} from 'react-toastify'
 
 const GET_USER = 'GET_USER'
 const REMOVE_USER = 'REMOVE_USER'
@@ -45,11 +46,23 @@ export const logout = () => async dispatch => {
   }
 }
 
+
+const deniedEmailToast = () => {
+  toast('We already have an account for that email address!', {
+    className: "custom_toast",
+    toastClassName: 'toast',
+    closeOnClick: true,
+    position: toast.POSITION.TOP_CENTER,
+    autoClose: false,
+  })
+}
+
 export const signup = signupInfo => async dispatch => {
   let response
   try {
     response = await axios.post('/auth/signup', signupInfo)
   } catch (authError) {
+    deniedEmailToast();
     return dispatch(getUser({error: authError}))
   }
   try {
@@ -70,6 +83,17 @@ export const getSingleUserThunk = (userId) => async dispatch => {
   }
 }
 
+
+const deniedUsernameToast = () => {
+  toast("Awesome username, but someone beat you to it!", {
+    className: "custom_toast",
+    toastClassName: 'toast',
+    closeOnClick: true,
+    position: toast.POSITION.TOP_CENTER,
+    autoClose: false,
+  })
+}
+
 export const updateUserThunk = (userFormData, userId) => {
   return async dispatch => {
     try {
@@ -77,6 +101,7 @@ export const updateUserThunk = (userFormData, userId) => {
       dispatch(getUser(userRes.data))
       dispatch(getProfile(userRes.data))
     } catch(err) {
+      deniedUsernameToast();
       console.error(err)
     }
   }
@@ -87,7 +112,7 @@ export const savePhotoThunk = (selectedFile, userId) => {
     try {
       const formData = new FormData()
       formData.append('uploadImage', selectedFile)
-      
+
       const userRes =  await axios.post(`/spaces/upload/${userId}`, formData, { headers: {'Content-Type': 'multipart/form-data'}})
       dispatch(getUser(userRes.data))
       dispatch(getProfile(userRes.data))

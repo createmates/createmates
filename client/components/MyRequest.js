@@ -81,7 +81,7 @@ class MyRequest extends React.Component {
 
             <div>
               <h2 style={{color: 'red'}}>SESSION MATCHED!</h2>
-              <a className="nav-link" href="/session">Join Room</a>
+              <a className="nav-link" href="/session" style={{color: 'blue'}}>Go to Session</a>
             </div>
           }
           {!this.state.updating ? '' :

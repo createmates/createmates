@@ -72,8 +72,7 @@ class SignUpAccountPage extends React.Component {
                 <div className="bg-light p-4 d-flex justify-content-end text-center">
                 <ul className="list-inline mb-0">
                     <li className="list-inline-item">
-                    <label htmlFor="email">Email</label>
-                    <input name="email" type="text" onChange={this.handleChange} value={this.state.email} />
+                        <small className="text-muted"> <i className="fas fa-image mr-1"></i>{user.email}</small>
                     </li>
                 </ul>
             </div>
