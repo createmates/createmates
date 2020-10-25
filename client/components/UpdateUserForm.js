@@ -46,28 +46,28 @@ class UpdateUserForm extends React.Component {
       <div>
       <a className="btn btn-info" type="button" data-toggle="collapse" data-target="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">Edit Profile</a>
         <form className="collapse" id="collapseExample" onSubmit={this.handleSubmit}>
-        <div className="form-group">
+        <div className="form-group text-left">
           <label htmlFor="username">Username</label>
       <input name="username" type="text" onChange={this.handleChange} value={this.state.username} />
         </div>
-        <div className="form-group">
+        <div className="form-group text-left">
           <label htmlFor="medium">Medium</label>
       <input name="medium" type="text" onChange={this.handleChange} value={this.state.medium} />
         </div>
-        <div className="form-group">
+        <div className="form-group text-left">
       <label htmlFor="email">Email</label>
       <input name="email" type="text" onChange={this.handleChange} value={this.state.email} />
           </div>
-            <div className="form-group">
+            <div className="form-group text-left">
       <label htmlFor="city">City</label>
       <input name="city" type="text" onChange={this.handleChange} value={this.state.city} />
             </div>
-             <div className="form-group">
+             <div className="form-group text-left">
       <label htmlFor="state">State</label>
       <input name="userState" type="text" onChange={this.handleChange} value={this.state.userState} />
       </div>
 
-      <label htmlFor="bio">Bio</label>
+      <label className="text text-left" htmlFor="bio">Bio</label>
       <textarea name="bio" type="text" rows="4" cols="50" onChange={this.handleChange} value={this.state.bio}></textarea>
       <br></br>
       <button className="btn btn-info btn-sm" type="submit" data-toggle="collapse" data-target="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">Save Changes</button>

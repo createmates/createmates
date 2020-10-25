@@ -32,7 +32,7 @@ class UserAccount extends React.Component {
     if(user.id){
       return (
         <div>
-       
+
           <div className="row py-5 px-4">
             <div className="col-md-5 mx-auto">
               <div className="bg-white shadow rounded overflow-hidden">
@@ -65,7 +65,10 @@ class UserAccount extends React.Component {
                 <p className="font-italic mb-0">Bio: {user.bio}</p>
             </div>
         </div>
-              <PastCreations user={user} sessions={this.props.sessions} /></div>
+            <div>
+              <PastCreations user={user} sessions={this.props.sessions} />
+              </div>
+              </div>
 
               <div className="p-4 rounded shadow-sm bg-light">
                     <p>
