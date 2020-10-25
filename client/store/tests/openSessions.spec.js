@@ -51,12 +51,13 @@ describe('Redux - OpenSession', () => {
         expect(actions[0].type).to.be.equal('GET_SESSION')
         expect(actions[0].session).to.be.deep.equal(testSession1)
       })
-       //test not passing - test probably written incorrectly
+       //test not passing - test probably written incorrectly actions is an array with two objects in it but index 1 keeps coming up as undefined
     xit('addSessionThunk eventually dispatches the Get SESSIONS action', async () => {
         mockAxios.onPost('/api/openSessions', testSession1).replyOnce(200, testSession1)
         mockAxios.onGet('/api/openSessions').replyOnce(200, testSessions)
-        await store.dispatch(addSessionThunk(testSession1))
+        await store.dispatch(addSessionThunk(testSession1, []))
         const actions = store.getActions()
+      
         expect(actions[1].type).to.be.equal('GET_OPEN_SESSIONS')
         expect(actions[1].sessions).to.be.deep.equal(testSessions)
       })
@@ -68,26 +69,30 @@ describe('Redux - OpenSession', () => {
         expect(actions[0].type).to.be.equal('GET_SESSION')
         expect(actions[0].session).to.be.deep.equal(testSession1)
       })
-      //test not passing - test probably written incorrectly
+             //test not passing - test probably written incorrectly actions is an array with two objects in it but index 1 keeps coming up as undefined
     xit('updateSessionThunk eventually dispatches the Get SESSIONS action', async () => {
         mockAxios.onPut('/api/openSessions/1', testSession1).replyOnce(200, testSession1)
         mockAxios.onGet('/api/openSessions').replyOnce(200, testSessions)
         await store.dispatch(updateSessionThunk(testSession1))
         const actions = store.getActions()
+        console.log(actions)
+        console.log(actions[0])
+        console.log(actions[1])
+        console.log(actions[2])
         expect(actions[1].type).to.be.equal('GET_OPEN_SESSIONS')
         expect(actions[1].sessions).to.be.deep.equal(testSessions)
       })
-      xit('deleteSessionThunk eventually dispatches the Get SESSION action', async () => {
-        mockAxios.onDelete('/api/openSessions/1').replyOnce(204)
-        mockAxios.onGet('/api/openSessions').replyOnce(200, testSessions)
-        await store.dispatch(deleteSessionThunk(testSession1))
-        const actions = store.getActions()
-        console.log(actions)
-
-        expect(actions[0].type).to.be.equal('GET_SESSION')
-        expect(actions[0].session).to.be.deep.equal({})
-        expect(actions[0]).to.not.equal(testSession1)
-      })
+      //actions is coming back as an empty array
+    xit('deleteSessionThunk eventually dispatches the Get SESSION action', async () => {
+      mockAxios.onDelete('/api/openSessions/1').replyOnce(204)
+      mockAxios.onGet('/api/openSessions').replyOnce(200, testSessions)
+      await store.dispatch(deleteSessionThunk(testSession1))
+      const actions = store.getActions()
+     
+      expect(actions[0].type).to.be.equal('GET_SESSION')
+      expect(actions[0].session).to.be.deep.equal({})
+      expect(actions[0]).to.not.equal(testSession1)
+    })
   })
   describe('openSession Reducer', () => {
     let testStore;
