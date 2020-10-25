@@ -32,8 +32,8 @@ describe('session model', () => {
           expect(err.message).to.contain('category cannot be null');
         }
     });
-    xit('Catergory cannot be empty', async () => {
-        const emptyTitleSession = Session.build({ category: '' });
+    it('Catergory cannot be empty', async () => {
+        const emptyTitleSession = Session.build({ category: '', blurb: 'hello' });
         try {
           await emptyTitleSession.validate();
           throw Error('validation should have failed with empty Category');
@@ -41,8 +41,8 @@ describe('session model', () => {
           expect(err.message).to.contain('Validation notEmpty on category failed');
         }
       });
-    xit('Blurb cannot be null', async () => {
-        const blankSession = Session.build();
+    it('Blurb cannot be null', async () => {
+        const blankSession = Session.build({ category: 'Dance' });
         try {
           await blankSession.validate();
           throw Error('validation should have failed without Blurb');
@@ -50,8 +50,8 @@ describe('session model', () => {
           expect(err.message).to.contain('blurb cannot be null');
         }
     });
-    xit('Blurb cannot be empty', async () => {
-        const emptyTitleSession = Session.build({ category: '' });
+    it('Blurb cannot be empty', async () => {
+        const emptyTitleSession = Session.build({ category: 'Dance', blurb: '' });
         try {
           await emptyTitleSession.validate();
           throw Error('validation should have failed with empty Blurb');

@@ -6,7 +6,7 @@ import {getProfileThunk} from '../store/profile';
 
 
 function CardItem(props) {
-  console.log('props baby')
+ 
   return (
     <React.Fragment>
 

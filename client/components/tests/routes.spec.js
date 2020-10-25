@@ -1,6 +1,6 @@
 import React from 'react'
 import { expect } from 'chai';
-import { mount, shallow } from 'enzyme';
+import { mount } from 'enzyme';
 import sinon from 'sinon';
 import { Provider } from 'react-redux';
 import * as rrd from 'react-router-dom';
@@ -24,7 +24,7 @@ import Navbar from '../navbar';
 
 describe('NavBar/Routes', () => {
     describe('Routes', () => {
-        const fakeUser = {email: 'chad@email.com', id: 1}
+        const fakeUser = {email: 'chad@email.com', id: 1, username: 'chad'}
         const testSession = {
             id: 1,
             name: 'cody'
@@ -54,7 +54,7 @@ describe('NavBar/Routes', () => {
             expect(wapper.find(Login)).to.have.length(1)
             expect(wapper.find(Home)).to.have.length(0)
         })
-        xit('renders <Home /> at path /home', () => {
+        it('renders <Home /> at path /home', () => {
             const wapper = mount(
                 <Provider store={store}>
                     <rrd.MemoryRouter initialEntries={['/home']}>
