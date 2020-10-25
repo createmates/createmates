@@ -2,6 +2,7 @@ import React from 'react'
 import axios from 'axios'
 import {connect} from 'react-redux'
 import {signup} from '../store/user'
+import {toast} from 'react-toastify'
 
  class SignUpForm extends React.Component {
    constructor() {
@@ -10,11 +11,11 @@ import {signup} from '../store/user'
    }
 
 
-
  handleSubmit = (event) => {
    event.preventDefault()
    this.props.signUp(event)
  }
+
  render() {
    return (
      <form onSubmit={this.handleSubmit} className="text-center border border-light p-5">

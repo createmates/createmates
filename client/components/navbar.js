@@ -25,7 +25,7 @@ const Navbar = ({ handleClick, handleClickAccount, isLoggedIn, singleSession, is
              <a className="nav-link" href="/myAccount" onClick={handleClickAccount(user.id)}>My Account<span className="sr-only">(current)</span></a>
 
              <a className="nav-link" href="/feed">Match with a Mate<span className="sr-only">(current)</span></a>
-             {singleSession.id ? <a className="nav-link" href="/session">Return to Session<span className="sr-only">(current)</span></a> : ''}
+             {singleSession.id ? <a className="nav-link" href="/session" style={{color: "blue"}}>Go to Session<span className="sr-only">(current)</span></a> : ''}
 
              <a className="nav-link" href="#" onClick={handleClick}>Logout<span className="sr-only">(current)</span></a>
 
