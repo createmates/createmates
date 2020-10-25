@@ -60,7 +60,10 @@ class UserAccount extends React.Component {
             <div className="px-4 py-3">
             <h5 className="mb-0">Artist Information</h5>
             <div className="p-4 rounded shadow-sm bg-light">
-              <p className="font-italic mb-0">Location: {user.city}, {user.state}</p>
+              {user.city && user.state ?
+              <p className="font-italic mb-0">Location: {user.city}, {user.state}</p> :
+              <p className="font-italic mb-0">Location: {user.city} {user.state}</p>
+              }
                 <p className="font-italic mb-0">Medium: {user.medium}</p>
                 <p className="font-italic mb-0">Bio: {user.bio}</p>
             </div>
