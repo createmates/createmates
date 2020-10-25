@@ -5,11 +5,11 @@ import {expect} from 'chai'
 import { mount } from 'enzyme'
 import { Provider } from 'react-redux'
 import store from '../../store'
-import UserHome from './UserHome'
+import UserHome from '../UserHome'
 
 
 
-describe('Signup component', () => {
+describe('Create component', () => {
     let wrapper
     before(()=> {
         sinon.stub(rrd, 'BrowserRouter').callsFake(({childern}) => {
@@ -23,7 +23,7 @@ describe('Signup component', () => {
     it('renders a link to See Other Artists', () => {
         expect(wrapper.find('a').text()).to.be.equal('See Other Artist\'s Requests')
     })
-    describe('form', () => {
+    describe('<Form />', () => {
         it('renders category', () => {
             expect(wrapper.find('label').at(0).text()).to.be.equal('Choose Your Practice')
         })

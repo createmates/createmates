@@ -6,35 +6,26 @@ import {getProfileThunk} from '../store/profile';
 
 
 function CardItem(props) {
- 
   return (
-    <React.Fragment>
-
-      <li className='cards__item' key={1}>
-
-
-        <div className='cards__item__link'>
-
-          <figure className='cards__item__pic-wrap' data-category={props.label}>
-            <img
-              className='cards__item__img'
-              alt='Travel Image'
-              src={props.src}
-            />
-          </figure>
-          <div className='cards__item__info'>
-            <h6 className='cards__item__text'><Link to={`/${props.users[0].id}`} onClick={()=> props.getProfile(props.users[0].id)}>{props.users[0].username}</Link> & <Link to={`/${props.users[1].id}`} onClick={()=> props.getProfile(props.users[1].id)}>{props.users[1].username}</Link></h6>
-            <h5 className='cards__item__text'>"{props.text}"</h5>
-            {props.tags.map(tag => <span key={tag.id} id={tag.id}>#{tag.name} </span>)}
-            <p>{props.date}</p>
+       <div key={1}>
+          <img className="card-img-top" src={props.src}/>
+          <div className="card mb-2">
+            <div className="card-body">
+            <h4 className="card-title text-center">
+            <Link to={`/${props.users[0].id}`} onClick={()=> props.getProfile(props.users[0].id)}>{props.users[0].username}</Link> & <Link to={`/${props.users[1].id}`} onClick={()=> props.getProfile(props.users[1].id)}>{props.users[1].username}</Link>
+            </h4>
+            <p className="card-text text-center text-dark">
+            "{props.text}"
+            </p>
+            <p className="text-center">
+            {props.tags.map(tag => <span className="text-center" key={tag.id} id={tag.id}>#{tag.name} </span>)}
+            </p>
+            <p className="text-center">
+            {props.date}
+            </p>
+            </div>
           </div>
-
-
-
-        </div>
-
-      </li>
-    </React.Fragment>
+       </div>
   );
 }
 
