@@ -5,6 +5,7 @@ const OpenRequestCard = props => {
     const session = props.session
     return (
         <div className="row">
+
         <div className="col d-flex justify-content-center">
             <div className="col-sm-6">
 
@@ -21,10 +22,11 @@ const OpenRequestCard = props => {
                     <p className="card-text text-center text-dark"><i ></i>{session.blurb}</p>
                     </div>
                     <div className="card-footer">
-                    {session.tags.filter(tag => tag.name !== '').map(tag => (<span key={tag.id}>#{tag.name} </span>))}
+                    {session.tags && session.tags.filter(tag => tag.name !== '').map(tag => (<span key={tag.id}>#{tag.name} </span>))}
                     </div>
 
                     <button className="btn btn-info btn-lg" onClick={() => props.handleMatch(session)} >Match</button>
+
                 </div>
             </div>
 

@@ -18,12 +18,15 @@ class UpdateUserForm extends React.Component {
   }
 
   componentDidMount() {
+    const city = this.props.user.city ? this.props.user.city : ''
+    const userState = this.props.user.state ? this.props.user.state : ''
+    const bio = this.props.user.bio ? this.props.user.bio : ''
     this.setState({
       username: this.props.user.username,
       medium: this.props.user.medium,
-      city: this.props.user.city,
-      userState: this.props.user.state,
-      bio: this.props.user.bio
+      city,
+      userState,
+      bio,
     })
   }
 
@@ -42,7 +45,7 @@ class UpdateUserForm extends React.Component {
   render() {
     return (
       <div>
-      <a className="btn btn-info" type="button" data-toggle="collapse" data-target="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">Edit Profile</a>
+      <button className="btn btn-info" type="button" data-toggle="collapse" data-target="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">Edit Profile</button>
         <form className="collapse" id="collapseExample" onSubmit={this.handleSubmit}>
         <div className="form-group text-left" style={{width: '100%'}}>
           <label htmlFor="username">Username</label>

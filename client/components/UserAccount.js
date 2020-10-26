@@ -17,9 +17,11 @@ class UserAccount extends React.Component {
 
   componentDidMount() {
     if (this.props.match.params.userId) {
+      
       const userId = this.props.match.params.userId
       this.props.getProfile(userId)
     } else {
+     
       this.props.getProfile(this.props.user.id)
     }
     this.props.getSessions();
@@ -58,12 +60,14 @@ class UserAccount extends React.Component {
             <div className="px-4 py-3" style={{width: '100%'}}>
             <h5 className="mb-0 text-dark">Artist Information</h5>
             <div className="p-4 rounded shadow-sm bg-light">
+
               {user.city && user.state ?
               <p className="font-italic mb-0 text-dark">Location: {user.city}, {user.state}</p> :
               <p className="font-italic mb-0 text-dark">Location: {user.city} {user.state}</p>
               }
                 <p className="font-italic mb-0 text-dark">Medium: {user.medium}</p>
                 <p className="font-italic mb-0 text-dark">Bio: {user.bio}</p>
+
             </div>
         </div>
             <div>
@@ -72,9 +76,9 @@ class UserAccount extends React.Component {
               </div>
 
               <div className="p-4 rounded shadow-sm bg-light">
-                    <p>
+                    <div>
                    <MyRequest />
-                   </p>
+                   </div>
 
                 </div>
           </div>

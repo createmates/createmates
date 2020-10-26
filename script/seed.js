@@ -214,7 +214,7 @@ const exampleSessions = [
     category: 'Dance',
     blurb: 'Would love some eyes on a new 30 second phrase I just came up with',
     summary: 'Got some great feedback from this session. Thanks partner!',
-    image: 'images/Dance.jpg'
+    image: '/images/Dance.jpg'
   },
   {
     status: 'closed',
@@ -246,10 +246,10 @@ const exampleSessions = [
   },
   {
     status: 'closed',
-    category: 'Theater improv',
+    category: 'Theater Improv',
     blurb: 'Looking to do some fun theater improv games',
     summary: 'That was the first time in months that I was able to do theater improv games with someone. Had such a blast!',
-    image: '/images/Theater-improv.jpg'
+    image: '/images/Theater-Improv.jpg'
   },
   {
     status: 'closed',
@@ -262,13 +262,15 @@ const exampleSessions = [
     status: 'closed',
     category: 'Scene',
     blurb: 'Doing a reading of a new scene and would love some outside perspective.',
-    summary: 'I loved practicing providing constructive feedback. Plus it was cool to watch actors in their element.'
+    summary: 'I loved practicing providing constructive feedback. Plus it was cool to watch actors in their element.',
+    image: '/images/Scene.jpg'
   },
   {
     status: 'closed',
     category: 'Script',
     blurb: "Is anyone available to read over my new screenplay? I don't know if I like the ending",
-    summary: 'Provided some tips for their screenplay\'s ending. I hope they appreciated my opinion!'
+    summary: 'Provided some tips for their screenplay\'s ending. I hope they appreciated my opinion!',
+    image: '/images/Script.jpg'
   },
   {
     status: 'closed',
@@ -338,9 +340,9 @@ const exampleSessions = [
   },
   {
     status: 'unmatched',
-    category: 'Theater improv',
+    category: 'Theater Improv',
     blurb: 'Beginner improviser. Looking to chat with someone with more experience and get some tips.',
-    image: '/images/Theater-improv.jpg'
+    image: '/images/Theater-Improv.jpg'
   },
   {
     status: 'unmatched',
@@ -392,15 +394,15 @@ const exampleSessions = [
   },
   {
     status: 'unmatched',
-    category: 'Theater improv',
+    category: 'Theater Improv',
     blurb: 'Improv actor looking for tips on zoom performances.',
-    image: './images/Theater-improv.jpg'
+    image: '/images/Theater-Improv.jpg'
   },
   {
     status: 'unmatched',
     category: 'Drawing',
     blurb: "What's your favorite pencil company? Anyone want to discuss?",
-    image: './images/Drawing.jpg'
+    image: '/images/Drawing.jpg'
   },
 ]
 

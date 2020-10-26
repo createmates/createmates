@@ -1,7 +1,5 @@
 import * as rrd from 'react-router-dom';
 import sinon from 'sinon';
-import MockAdapter from 'axios-mock-adapter';
-import axios from 'axios'
 import { shallow } from 'enzyme';
 import { expect } from 'chai';
 import React from 'react';
@@ -9,24 +7,41 @@ import Footer from './Footer';
 
 describe('About component', () => {
     const fakeUser = {email: 'chad@email.com', id: 1, username: 'chad'}
-    let mockAxios
+   
     let wrapper
 
     before(() => {
         sinon.stub(rrd, 'BrowserRouter').callsFake(({childern}) => {
             return <div>{childern}</div>
         })
-        mockAxios = new MockAdapter(axios)
-        mockAxios.onGet('/auth/me').replyOnce(200, fakeUser)
         wrapper = shallow(<Footer />)
     })
-    afterEach(() => {
-        mockAxios.restore()
-    })
+    
     it('renders About Us in an h2', () => {
         expect(wrapper.find('h2').at(0).text()).to.be.equal('About Us')
     })
-    xit('renders What are you waiting for? in an p', () => {
-        expect(wrapper.find('Link').text()).to.be.equal('What are you waiting for?')
+    it('renders How it works link', () => {
+        expect(wrapper.find('Link').at(0).text()).to.be.equal('How it works')
+    })
+    it('renders  testimonials link', () => {
+        expect(wrapper.find('Link').at(1).text()).to.be.equal('Testimonials')
+    })
+    it('renders Terms of Service link', () => {
+        expect(wrapper.find('Link').at(2).text()).to.be.equal('Terms of Service')
+    })
+    it('renders Contact Us in an h2', () => {
+        expect(wrapper.find('h2').at(1).text()).to.be.equal('Contact Us')
+    })
+    it('renders contact link', () => {
+        expect(wrapper.find('Link').at(3).text()).to.be.equal('Contact')
+    })
+    it('renders  support link', () => {
+        expect(wrapper.find('Link').at(4).text()).to.be.equal('Support')
+    })
+    it('renders CreateMates link', () => {
+        expect(wrapper.find('Link').at(5).text()).to.be.equal('CreateMates')
+    })
+    it('renders copywrite ', () => {
+        expect(wrapper.find('small').text()).to.be.equal('CM © 2020')
     })
 })
