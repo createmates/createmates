@@ -13,6 +13,7 @@ export const getOpenSessionsThunk = () => {
     try {
       const sessions = await axios.get('/api/openSessions');
       dispatch(getSessions(sessions.data));
+    
      } catch (error) {
        console.error(error)
      }
@@ -38,6 +39,7 @@ export const updateSessionThunk = (updatedSession) => {
       const session = await axios.put(`/api/openSessions/${updatedSession.id}`, updatedSession)
       dispatch(getSession(session.data))
       dispatch(getOpenSessionsThunk())
+    
     } catch (error) {
       console.error(error)
     }

@@ -54,6 +54,7 @@ function PastCreations(props) {
                 users={session.users}
                 tags={session.tags}
                 date={convertDate(session.updatedAt)}
+                key={session.id}
               />
               )}
             </div>
