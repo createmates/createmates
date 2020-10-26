@@ -136,7 +136,7 @@ class Feed extends React.Component {
 
                 {openSessions && openSessions.length && openSessions[openSessions.length -1].users[0]
                     ? openSessions.map(session => <OpenRequestCard session={session} key={session.id} handleMatch={this.handleMatch}/>)
-                    : <h2>No Open Requests found</h2>
+                    : <h2>No Open Requests Found</h2>
                 }
             </div>
         )

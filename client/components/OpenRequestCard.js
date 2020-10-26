@@ -11,7 +11,7 @@ const OpenRequestCard = props => {
             <h3><Link to={`/${session.users[0].id}`}>{session.users[0].username}</Link> writes: </h3>
             <p className="card-text text-dark">{session.blurb}</p>
             <div>
-                {session.tags.filter(tag => tag.name !== '').map(tag => (<span key={tag.id}>#{tag.name} </span>))}
+                {session.tags && session.tags.filter(tag => tag.name !== '').map(tag => (<span key={tag.id}>#{tag.name} </span>))}
             </div>
             <button className="btn btn-info btn-lg" onClick={() => props.handleMatch(session)} >Match</button>
                 </div>
