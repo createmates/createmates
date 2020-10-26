@@ -50,7 +50,7 @@ class SignUpFeedGuide extends React.Component {
                 {this.state.number === 6 && <p>Click 'next' to start creating!</p>}
                 {this.state.number < 7 ?
                 <div>
-                    <button type='button' onClick={this.handleNext}>Next</button>
+                    <button className="btn btn-info" type='button' onClick={this.handleNext}>Next</button>
                     <div>
                     <h1>Other Artists' Open Requests</h1>
 

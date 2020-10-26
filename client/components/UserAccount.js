@@ -31,14 +31,12 @@ class UserAccount extends React.Component {
 
     if(user.id){
       return (
-        <div>
-
-         <div className="row py-5 px-4">
-            <div className="col-md-5 mx-auto">
+         <div className="row">
+            <div className="mx-auto" style={{width: '100%'}}>
               <div className="bg-white shadow rounded overflow-hidden">
                 <div className="px-4 pt-0 pb-4 cover">
                   <div className="media align-items-end profile-head">
-                    <div className="profile mr-3"><img src={user.photoPath ? user.photoPath : "https://assets.vogue.com/photos/5a906834966d3031b95ca0fe/master/pass/01-Austyn.jpg"} width="130" className="rounded mb-2 img-thumbnail"/>
+                    <div className="profile mr-3"><img src={user.photoPath ? user.photoPath : "https://assets.vogue.com/photos/5a906834966d3031b95ca0fe/master/pass/01-Austyn.jpg"} width="200px" className="rounded mb-2 img-thumbnail"/>
                     {user.id === this.props.user.id &&  <ProfilePhoto />}
                     {user.id === this.props.user.id &&
                     <a className="btn btn-outline-dark btn-sm btn-block"><UpdateUserForm user={user}/></a>
@@ -57,15 +55,15 @@ class UserAccount extends React.Component {
                     </li>
                 </ul>
             </div>
-            <div className="px-4 py-3">
-            <h5 className="mb-0">Artist Information</h5>
+            <div className="px-4 py-3" style={{width: '100%'}}>
+            <h5 className="mb-0 text-dark">Artist Information</h5>
             <div className="p-4 rounded shadow-sm bg-light">
               {user.city && user.state ?
-              <p className="font-italic mb-0">Location: {user.city}, {user.state}</p> :
-              <p className="font-italic mb-0">Location: {user.city} {user.state}</p>
+              <p className="font-italic mb-0 text-dark">Location: {user.city}, {user.state}</p> :
+              <p className="font-italic mb-0 text-dark">Location: {user.city} {user.state}</p>
               }
-                <p className="font-italic mb-0">Medium: {user.medium}</p>
-                <p className="font-italic mb-0">Bio: {user.bio}</p>
+                <p className="font-italic mb-0 text-dark">Medium: {user.medium}</p>
+                <p className="font-italic mb-0 text-dark">Bio: {user.bio}</p>
             </div>
         </div>
             <div>
@@ -81,7 +79,6 @@ class UserAccount extends React.Component {
                 </div>
           </div>
         </div>
-      </div>
 
       )
     } else {

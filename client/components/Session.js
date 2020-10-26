@@ -10,6 +10,7 @@ import {finishSession} from '../store/videos'
 import SessionVideo from './Videos'
 
 
+
 export let roomId;
 
 const Session = (props) => {
@@ -32,21 +33,26 @@ const Session = (props) => {
     return (
     //render two videos
      <div>
+      <UserSession />
+
+
+
       <div className="mb-2" style={{width: '22rem'}}>
      {props.videos.finishSession
       ? <Summary history={history}/>
       : <button className="btn btn-info btn-md" onClick={() => getSummaryForm()}>Finish Session</button>}
       </div>
-
       <div className="container">
         <div className="row">
           <div className="col">
           <SessionVideo />
           </div>
         </div>
-        <UserSession />
 
-        <MessagesList />
+
+      <MessagesList />
+
+
 
       </div>
 
