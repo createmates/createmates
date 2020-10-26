@@ -246,10 +246,10 @@ const exampleSessions = [
   },
   {
     status: 'closed',
-    category: 'Theater improv',
+    category: 'Theater Improv',
     blurb: 'Looking to do some fun theater improv games',
     summary: 'That was the first time in months that I was able to do theater improv games with someone. Had such a blast!',
-    image: '/images/Theater-improv.jpg'
+    image: '/images/Theater-Improv.jpg'
   },
   {
     status: 'closed',
@@ -340,9 +340,9 @@ const exampleSessions = [
   },
   {
     status: 'unmatched',
-    category: 'Theater improv',
+    category: 'Theater Improv',
     blurb: 'Beginner improviser. Looking to chat with someone with more experience and get some tips.',
-    image: '/images/Theater-improv.jpg'
+    image: '/images/Theater-Improv.jpg'
   },
   {
     status: 'unmatched',
@@ -394,9 +394,9 @@ const exampleSessions = [
   },
   {
     status: 'unmatched',
-    category: 'Theater improv',
+    category: 'Theater Improv',
     blurb: 'Improv actor looking for tips on zoom performances.',
-    image: '/images/Theater-improv.jpg'
+    image: '/images/Theater-Improv.jpg'
   },
   {
     status: 'unmatched',
