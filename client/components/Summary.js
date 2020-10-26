@@ -41,9 +41,9 @@ class Summary extends React.Component {
     handleSubmit() {
         const selectedFile =  document.getElementById('file').files[0]
         const categoryName = this.props.session.category.split(' ').join('-')
-        console.log(selectedFile.name)
+        console.log(selectedFile)
         let imagePath =  `/images/${categoryName}.jpg`
-        if(selectedFile.name){
+        if(selectedFile){
             imagePath = `https://createmates.nyc3.digitaloceanspaces.com/${selectedFile.name}`
             this.props.uploadImage(selectedFile)
         }

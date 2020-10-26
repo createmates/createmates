@@ -3,7 +3,7 @@ import sinon from 'sinon';
 import { shallow } from 'enzyme';
 import { expect } from 'chai';
 import React from 'react';
-import Footer from './Footer';
+import Footer from '../Footer';
 
 describe('About component', () => {
     const fakeUser = {email: 'chad@email.com', id: 1, username: 'chad'}
