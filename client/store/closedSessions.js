@@ -11,7 +11,7 @@ export const getClosedSessionsThunk = () => {
     return async (dispatch) => {
     try {
       const sessions = await axios.get('/api/closedSessions');
-      console.log(sessions.data)
+      
       dispatch(getClosedSessions(sessions.data));
      } catch (error) {
        console.error(error)

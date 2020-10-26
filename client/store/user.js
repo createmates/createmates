@@ -77,6 +77,7 @@ export const getSingleUserThunk = (userId) => async dispatch => {
   try {
     const {data} = await axios.get(`/api/users/${userId}`)
     const singleUser = data
+
     dispatch(getUser(singleUser))
   } catch (err) {
     console.error(err)
@@ -98,6 +99,7 @@ export const updateUserThunk = (userFormData, userId) => {
   return async dispatch => {
     try {
       const userRes = await axios.put(`/api/users/${userId}`, userFormData)
+    
       dispatch(getUser(userRes.data))
       dispatch(getProfile(userRes.data))
     } catch(err) {
@@ -116,7 +118,7 @@ export const savePhotoThunk = (selectedFile, userId) => {
       const userRes =  await axios.post(`/spaces/upload/${userId}`, formData, { headers: {'Content-Type': 'multipart/form-data'}})
       dispatch(getUser(userRes.data))
       dispatch(getProfile(userRes.data))
-
+      
     } catch (err) {
       console.error(err)
     }

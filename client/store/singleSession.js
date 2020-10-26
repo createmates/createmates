@@ -31,7 +31,7 @@ export const sessionSummary = summary => ({type: SESSION_SUMMARY, summary})
   return async (dispatch) => {
   try {
     const singleSession = await axios.get(`/api/openSessions/${sessionId}`);
-    console.log('get signle session no profile')
+    
     dispatch(getSession(singleSession.data));
    } catch (error) {
      console.error(error)
@@ -56,7 +56,7 @@ export const sessionSummary = summary => ({type: SESSION_SUMMARY, summary})
      try {
        const response = await axios.get(`/api/openSessions/${userId}/open`);
        const myOpenSession = response.data
-       console.log('get open session no profile')
+       
        dispatch(getSession(myOpenSession || defaultSession));
      } catch (error) {
        console.error(error)

@@ -17,11 +17,11 @@ class UserAccount extends React.Component {
 
   componentDidMount() {
     if (this.props.match.params.userId) {
-      console.log('param')
+      
       const userId = this.props.match.params.userId
       this.props.getProfile(userId)
     } else {
-      console.log('else')
+     
       this.props.getProfile(this.props.user.id)
     }
     this.props.getSessions();
