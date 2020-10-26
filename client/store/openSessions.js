@@ -13,6 +13,7 @@ export const getOpenSessionsThunk = () => {
     try {
       const sessions = await axios.get('/api/openSessions');
       dispatch(getSessions(sessions.data));
+      console.log('open')
      } catch (error) {
        console.error(error)
      }
@@ -38,6 +39,7 @@ export const updateSessionThunk = (updatedSession) => {
       const session = await axios.put(`/api/openSessions/${updatedSession.id}`, updatedSession)
       dispatch(getSession(session.data))
       dispatch(getOpenSessionsThunk())
+      console.log('update')
     } catch (error) {
       console.error(error)
     }
@@ -55,8 +57,8 @@ export const deleteSessionThunk = (sessionToDelete) => {
       dispatch(getSession({}));
 
       dispatch(getOpenSessionsThunk())
-
-      dispatch(getProfileThunk(userId))
+console.log('delete')
+      // dispatch(getProfileThunk(userId))
 
     } catch (error) {
       console.error(error)

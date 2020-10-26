@@ -7,7 +7,7 @@ import {getProfileThunk} from '../store/profile';
 
 function CardItem(props) {
   return (
-       <div key={1}>
+       <div>
           <img className="card-img-top" src={props.src}/>
           <div className="card mb-2">
             <div className="card-body">
