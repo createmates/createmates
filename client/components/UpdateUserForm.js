@@ -47,7 +47,7 @@ class UpdateUserForm extends React.Component {
       <div>
       <button className="btn btn-info" type="button" data-toggle="collapse" data-target="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">Edit Profile</button>
         <form className="collapse" id="collapseExample" onSubmit={this.handleSubmit}>
-        <div className="form-group text-left">
+        <div className="form-group text-left" style={{width: '100%'}}>
           <label htmlFor="username">Username</label>
       <input name="username" type="text" onChange={this.handleChange} value={this.state.username} />
         </div>

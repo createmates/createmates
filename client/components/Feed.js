@@ -114,7 +114,7 @@ class Feed extends React.Component {
 
                 <MyRequest />
 
-                <h1>Other Artists' Open Requests</h1>
+                <h1 className="text-center">Other Artists' Open Requests</h1>
 
                 {this.state.filter
                 ? <form>
@@ -138,7 +138,8 @@ class Feed extends React.Component {
                     ? openSessions.map(session => <OpenRequestCard session={session} key={session.id} handleMatch={this.handleMatch}/>)
                     : <h2>No Open Requests Found</h2>
                 }
-            </div>
+                </div>
+
         )
     }
 }

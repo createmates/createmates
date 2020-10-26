@@ -34,10 +34,11 @@ class Cards extends React.Component {
 
   render() {
     const closedSessions = this.props.closedSessions
-    
+
 
     return (
       closedSessions && closedSessions.length && closedSessions[closedSessions.length -1].users[0] ?
+      <div>
         <div id="carouselExampleIndicators" className="carousel slide" data-ride="carousel">
         <ol className="carousel-indicators">
         <li data-target="#multi-item-example" data-slide-to="0" className="active"></li>
@@ -46,9 +47,9 @@ class Cards extends React.Component {
 
 
          {/*<h1 className="text-center">Check out what's been created so far!'</h1>*/}
-         <div className="carousel-inner d-flex align-items-center">
+         <div className="carousel-inner d-flex align-items-center" style={{ padding: '5rem'}}>
           <div className="carousel-item active d-flex align-items-center">
-             <CardItem className="d-block w-50" key={1}
+             <CardItem className="d-block w-25" key={1}
               src={this.whichSession(1).image}
               text={this.whichSession(1).summary}
               label={this.whichSession(1).category}
@@ -58,7 +59,7 @@ class Cards extends React.Component {
             />
             </div>
             <div className="carousel-item">
-            <CardItem className="d-block w-50" key={2}
+            <CardItem className="d-block w-25" key={2}
             src={this.whichSession(2).image}
               text={this.whichSession(2).summary}
               label={this.whichSession(2).category}
@@ -68,7 +69,7 @@ class Cards extends React.Component {
             />
             </div>
             <div className="carousel-item">
-            <CardItem className="d-block w-50" key={3}
+            <CardItem className="d-block w-25" key={3}
               src={this.whichSession(3).image}
               text={this.whichSession(3).summary}
               label={this.whichSession(3).category}
@@ -78,7 +79,7 @@ class Cards extends React.Component {
             />
             </div>
             <div className="carousel-item">
-            <CardItem className="d-block w-50" key={4}
+            <CardItem className="d-block w-25" key={4}
               src={this.whichSession(4).image}
               text={this.whichSession(4).summary}
               label={this.whichSession(4).category}
@@ -88,7 +89,7 @@ class Cards extends React.Component {
             />
             </div>
             <div className="carousel-item">
-            <CardItem className="d-block w-50" key={5}
+            <CardItem className="d-block w-25" key={5}
               src={this.whichSession(5).image}
               text={this.whichSession(5).summary}
               label={this.whichSession(5).category}
@@ -107,6 +108,7 @@ class Cards extends React.Component {
         <span className="carousel-control-next-icon" aria-hidden="true"></span>
         <span className="sr-only">Next</span>
         </a>
+        </div>
     </div>: ''
     )};
 }
