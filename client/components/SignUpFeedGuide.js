@@ -5,7 +5,6 @@ import {getOpenSessionsThunk} from '../store/openSessions'
 import {toast} from 'react-toastify'
 import OpenRequestCard from './OpenRequestCard'
 import {Redirect} from 'react-router-dom'
-import TutorialMessages from './TutorialMessages'
 
 class SignUpFeedGuide extends React.Component {
     constructor(){
@@ -27,7 +26,7 @@ class SignUpFeedGuide extends React.Component {
     }
 
     deniedToast = () => {
-        toast("KEEP CLICKING 'NEXT'", {
+        toast("Please finish reading the instructions before matching with another user. Click next to continue!", {
           className: "custom_toast",
           toastClassName: 'toast',
           closeOnClick: true,
@@ -36,52 +35,33 @@ class SignUpFeedGuide extends React.Component {
         })
       }
 
-    tutorialToast = () => {
-        toast(<TutorialMessages />)
-    }
-
-
     render(){
         let openSessions = this.props.openSessions;
-        // return (
-        //     <div>
-        //     {toast(<TutorialMessages />, {
-        //     className: "custom_toast",
-        //     toastClassName: 'toast',
-        //     closeOnClick: true,
-        //     position: toast.POSITION.TOP_CENTER,
-        //     autoClose: false,
-        //     })}
-        //     <Feed />
-        //     </div>
-        //     )
 
         return (
             <div>
-                <h1 style={{color: 'white'}}>HOW TO USE CREATEMATES:</h1>
-                {this.state.number === 0 && <p style={{color: 'white'}}>Here you will find all the open requests other users have made.</p>}
-                {this.state.number === 1 && <p style={{color: 'white'}}>You can filter the feed by category, tag, or username to find a request you wish to match with.</p>}
-                {this.state.number === 2 && <p style={{color: 'white'}}>To match with someone's request, simply have no open requests and click match under their request.</p>}
-                {this.state.number === 3 && <p style={{color: 'white'}}>Clicking match will send you into a chat room to collabrate with the other user on a project.</p>}
-                {this.state.number === 4 && <p style={{color: 'white'}}>You can click create above to open a new request for others to match with you.</p>}
-                {this.state.number === 5 && <p style={{color: 'white'}}>You can only have one open request at a time. That open request will show on the side of your screen.</p>}
-                {this.state.number === 6 && <p style={{color: 'white'}}>Click 'next' to start creating!</p>}
-                {this.state.number < 7 ?
+                {this.state.number === 0 && <h1 style={{color: 'white'}}>Welcome to the artist request feed!</h1>}
+                {this.state.number === 1 && <h1 style={{color: 'white'}}>You can see what other artists want to create and filter by category, tag, or username.</h1>}
+                {this.state.number === 2 && <h1 style={{color: 'white'}}>Match with an artist or click "Create" above to create your own request.</h1>}
+                {this.state.number === 3 && <h1 style={{color: 'white'}}>Once matched, both artists can join a video collaboration room and begin creating!</h1>}
+                {this.state.number === 4 && <h1 style={{color: 'white'}}>Click 'next' to start creating!</h1>}
+                {this.state.number < 5 ?
 
                 <div>
                     <button className="btn btn-info btn-lg" type='button' onClick={this.handleNext}>Next</button>
                     <div>
 
-                    <h1 className="text-center">Other artists' open requests</h1>
+                    <h1 className="text-center">Other Artists' Open Requests</h1>
 
                     <button className="btn btn-info btn-lg" type="button" onClick={this.deniedToast}>Filter</button>
 
 
-
+                    <div className="feed">
                     {openSessions && openSessions.length && openSessions[openSessions.length -1].users[0]
                         ? openSessions.map(session => <OpenRequestCard session={session} key={session.id} handleMatch={this.deniedToast}/>)
                         : <h2>No Open Requests found</h2>
                     }
+                </div>
                 </div>
             </div>
 
