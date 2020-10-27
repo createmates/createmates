@@ -114,7 +114,7 @@ class Feed extends React.Component {
 
                 <MyRequest />
 
-                <h1 className="text-center">Other Artists' Open Requests</h1>
+                <h1 className="text-center">Other artists' open requests</h1>
 
                 {this.state.filter
                 ? <form>

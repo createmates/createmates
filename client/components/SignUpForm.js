@@ -18,7 +18,8 @@ import {toast} from 'react-toastify'
 
  render() {
    return (
-     <form onSubmit={this.handleSubmit} className="text-center border border-light p-5">
+    <div className="media justify-content-center profile-head">
+     <form onSubmit={this.handleSubmit} className="text-center border border-light p-5" style={{width: '25%'}}>
         <h3>Sign Up</h3>
 
         <div className="form-group">
@@ -33,12 +34,12 @@ import {toast} from 'react-toastify'
 
         <div className="form-group">
           <label>Email Address</label>
-          <input name="email" type="text" className="form-control" placeholder="Enter email"/>
+          <input name="email" type="text" className="form-control" placeholder="Enter Email"/>
         </div>
 
         <div className="form-group">
           <label>Password</label>
-          <input name="password" type="password" className="form-control" placeholder="Enter password"/>
+          <input name="password" type="password" className="form-control" placeholder="Enter Password"/>
         </div>
 
         <button type="submit" className="btn btn-primary btn-block">Sign Up</button>
@@ -49,6 +50,7 @@ import {toast} from 'react-toastify'
 
         </p>
      </form>
+     </div>
    )
  }
 }
