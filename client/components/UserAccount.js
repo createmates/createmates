@@ -74,13 +74,6 @@ class UserAccount extends React.Component {
               <PastCreations user={user} sessions={this.props.sessions} />
               </div>
               </div>
-
-              <div className="p-4 rounded shadow-sm bg-light">
-                    <div>
-                   <MyRequest />
-                   </div>
-
-                </div>
           </div>
         </div>
 
