@@ -11,8 +11,8 @@ const AuthForm = (props) => {
   const { name, displayName, handleSubmit, error } = props;
 
   return (
-    <div>
-      <form onSubmit={handleSubmit} className="text-center border border-light p-5" name={name}>
+    <div className="media justify-content-center profile-head">
+      <form onSubmit={handleSubmit} className="text-center border border-light p-5" name={name} style={{width: '25%'}}>
         <p className="h4 mb-4">Sign in</p>
         <div>
           <label htmlFor="email">
