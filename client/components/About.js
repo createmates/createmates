@@ -6,8 +6,9 @@ import './About.css';
 function About() {
   return (
     <div className='hero-container'>
-      <h1>CREATEMATES</h1>
-      <p>Connect ••• Collabrate ••• Create</p>
+      <div className="button-and-text">
+      <h2>CONNECT ••• COLLABORATE ••• CREATE</h2>
+      </div>
       <div className='hero-btns'>
         <Button
           className='btns'
