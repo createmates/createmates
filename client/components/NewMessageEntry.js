@@ -3,7 +3,7 @@ import { sendMessage } from '../store/messages'
 import { connect } from 'react-redux'
 
 
-export class NewMessageEntry extends Component {
+export default class NewMessageEntry extends Component {
 
   constructor () {
     super()
@@ -39,7 +39,7 @@ export class NewMessageEntry extends Component {
       <div className="ps-container ps-theme-default ps-active-y" id="chat-content">
         <div className="container">
         <div className="media media-chat">
-        <div class="media-body">
+        <div className="media-body">
 
 
         </div>
