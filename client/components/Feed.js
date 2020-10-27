@@ -133,19 +133,19 @@ class Feed extends React.Component {
                     <input type="text" name="filterTag" onChange={this.handleChange} placeholder="Enter a Tag"/>
                 </form>
                 : <button className="btn btn-info btn-lg" type="button" onClick={this.filterForm}>Filter</button>}
-        <div clasName="container">
-            <div className="row">
-                <div className="col">
-                <div className="d-flex wrap col-sm-6">
+       
+            
+                
+                <div className="feed">
                 {openSessions && openSessions.length && openSessions[openSessions.length -1].users[0]
                     ? openSessions.map(session => <OpenRequestCard session={session} key={session.id} handleMatch={this.handleMatch}/>)
                     : <h2>No Open Requests Found</h2>
                 }
+                
+               
                 </div>
                 </div>
-                </div>
-                </div>
-                </div>
+               
 
 
         )

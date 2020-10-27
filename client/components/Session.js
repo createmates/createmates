@@ -10,6 +10,7 @@ import {finishSession} from '../store/videos'
 import SessionVideo from './Videos'
 // import Chat from './Chat'
 import './Session.css'
+import Chat from "./Chat";
 
 
 
@@ -34,17 +35,22 @@ const Session = (props) => {
 
     return (
     //render two videos
-     <div>
-
-
-
+     <div >
+       <header className="text-center blurb">
+      SESSION PROMPT:
+      <p className="text-center blurb">{session.blurb}</p>
+    </header>
+    <Chat />
+<SessionVideo />
+  
+  <UserSession />
      {props.videos.finishSession
       ? <Summary history={history}/>
-      : <button className="btn btn-info btn-md" onClick={() => getSummaryForm()}>Finish Session</button>}
+      : <button className="btn btn-info btn-md" style={{marginLeft: '25px'}} onClick={() => getSummaryForm()}>Finish Session</button>}
 
 
 
-      <UserSession />
+    
 
 
 

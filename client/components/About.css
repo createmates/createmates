@@ -1,7 +1,7 @@
 .hero-container {
   background: url("https://wallpaperaccess.com/full/4982.jpg") center
     center/cover no-repeat;
-  height: 100vh;
+  height: 80vh;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -9,6 +9,7 @@
   align-items: center;
   box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.2);
   object-fit: contain;
+  border-radius: 2000px;
 }
 
 .hero-container > h1 {

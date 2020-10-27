@@ -21,35 +21,41 @@ const UserSession = (props) => {
 
   })
     return (
-      <div id="container-vid">
-      {/*<header className="text-center">
-      SESSION PROMPT:
-      <p className="text-center">{session.blurb}</p>
-    </header>*/}
-
-
-
-
+      <div >
       {session.users && session.users[1]
        ?
 
-       <div>
+       <div id="container-vid">
+       
+       <div className="card border-dark mb-3" style={{width: '20rem'}}>
+            <div className="row no-gutters">
+              <div className="col-md-4">
+                <img src={session.users[1].photoPath} className="card-img"/>
+              </div>
+              <div className="col-md-8">
+                <div className="card-body">
+                  <h5 className="card-title"><Link to={`/${session.users[1].id}`}>{session.users[1].username}</Link></h5>
+                   <p className="card-text text-dark">Medium: {session.users[1].medium}</p>
+                </div>
+              </div>
+            </div>
+          </div>
 
-       <video className="video-container" muted ref={userVideo} autoPlay>   </video>
+     
 
-       {/*<img className="img-sm" src={session.users[1].photoPath} className="card-img"/>
-       <Link to={`/${session.users[1].id}`}>{session.users[1].username}</Link>
-      <p className='text-dark'>Medium: {session.users[1].medium}</p>*/}
-
-
-      <Chat />
-
-
-          <video className="video-container2" ref={partnerVideo} autoPlay></video>
-          {/*<img src={session.users[0].photoPath} className="card-img"/>
-          <Link to={`/${session.users[0].id}`}>{session.users[0].username}</Link>
-      <p className="card-text text-dark">Medium: {session.users[0].medium}</p>*/}
-
+          <div className="card border-dark mb-3" style={{width: '20rem'}}>
+              <div className="row no-gutters">
+                <div className="col-md-4">
+                  <img src={session.users[0].photoPath} className="card-img"/>
+                </div>
+                <div className="col-md-8">
+                  <div className="card-body">
+                    <h5 className="card-title"><Link to={`/${session.users[0].id}`}>{session.users[0].username}</Link></h5>
+                     <p className="card-text text-dark">Medium: {session.users[0].medium}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
 
 
 

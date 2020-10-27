@@ -45,17 +45,16 @@ class Chat extends Component {
       const filteredMessages = messages.filter(
           message => message.sessionId === sessionId
       )
-      console.log('messages?', filteredMessages)
       return(
         <div className="chat-box">
-        <div className="container">
-        <ul className="message-list">
+        <div className="container-messages">
+        <ul >
         {filteredMessages.map(message => (
             <Message message={message} key={message.id} />
         ))}
         </ul>
         </div>
-          <form id="new-message-form" onSubmit={this.handleSubmit} onKeyPress={this.onKeyUp}>
+          <form  onSubmit={this.handleSubmit} onKeyPress={this.onKeyUp}>
           <textarea
             className="form-control text-dark"
             type="text"
@@ -63,7 +62,7 @@ class Chat extends Component {
             placeholder="Say something nice..."
             style={{width: '18rem'}}
           />
-          <span className="input-group-btn position-fixed">
+          <span className="input-group-btn">
           <button className="btn btn-info btn-md" type="submit">Chat!</button>
         </span>
           </form>
@@ -71,7 +70,7 @@ class Chat extends Component {
       )
     } else {
       return (
-        <div>
+        <div className="chat-box">
         <form id="new-message-form" onSubmit={this.handleSubmit} onKeyPress={this.onKeyUp}>
           <textarea
             className="form-control text-dark"

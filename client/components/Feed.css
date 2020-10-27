@@ -1,6 +1,6 @@
-.container.row {
+.feed {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  background-color: red;
+  justify-content: space-around;
 }
