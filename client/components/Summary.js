@@ -68,7 +68,7 @@ class Summary extends React.Component {
 
     render() {
         return (
-            <div>
+            <div id='summary'>
                 <h1>What did you create today?</h1>
                 <form onSubmit={this.handleSubmit}>
                     <label htmlFor="summary">Summary: </label>

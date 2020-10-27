@@ -1,20 +1,33 @@
-import React from 'react'
+import React, {useEffect, useRef} from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import './UserSession.css'
+import Chat from './Chat'
+
 
 const UserSession = (props) => {
   const session = props.session
+  const userVideo = useRef();
+  const partnerVideo = useRef();
+
+  useEffect(() => {
+
+    if(userVideo.current && props.videos.myVideo.id){
+      userVideo.current.srcObject = props.videos.myVideo
+    }
+    if(partnerVideo.current && props.videos.partnersVideo && props.videos.partnersVideo.id){
+      partnerVideo.current.srcObject = props.videos.partnersVideo
+    }
+
+  })
     return (
-      <div className="container">
-      <header className="text-center">
-      SESSION PROMPT:
-      <p className="text-center">{session.blurb}</p>
-      </header>
-      <div>
+      <div >
       {session.users && session.users[1]
-       ?<div className="row">
-          <div className="card border-dark mb-3" style={{width: '20rem'}}>
+       ?
+
+       <div id="container-vid">
+       
+       <div className="card border-dark mb-3" style={{width: '20rem'}}>
             <div className="row no-gutters">
               <div className="col-md-4">
                 <img src={session.users[1].photoPath} className="card-img"/>
@@ -28,8 +41,9 @@ const UserSession = (props) => {
             </div>
           </div>
 
-          <div>
-            <div className="card border-dark mb-3" style={{width: '20rem'}}>
+     
+
+          <div className="card border-dark mb-3" style={{width: '20rem'}}>
               <div className="row no-gutters">
                 <div className="col-md-4">
                   <img src={session.users[0].photoPath} className="card-img"/>
@@ -42,19 +56,22 @@ const UserSession = (props) => {
                 </div>
               </div>
             </div>
-            </div>
-            </div>
+
+
+
+      </div>
 
 
         : ''}
         </div>
 
-      </div>
+
     )
 }
 
 const mapState = (state) => {
   return {
+    videos: state.videos,
     session: state.singleSession,
   };
 };

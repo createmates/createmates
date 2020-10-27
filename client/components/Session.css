@@ -1,0 +1,42 @@
+
+
+#container-vid {
+  display: inline-flex;
+  width: 950px;
+  margin-left: 400px;
+  margin-right: 50px;
+  justify-content: space-around;
+ 
+}
+
+.video-container {
+  width: 450px;
+  height: 350px;
+  margin-bottom: -140px;
+  margin-top: 150px;
+  margin-left: 400px;
+  margin-right: 50px;
+  border: white 5px solid;
+  border-radius: 10px;
+}
+
+.video-container2 {
+  width: 450px;
+  height: 350px;
+  margin-top: 150px;
+  margin-left: 900px;
+  background: green;
+  margin-bottom: -140px;
+  border: white 5px solid;
+  border-radius: 10px;
+}
+
+.blurb {
+  font-size: large;
+}
+
+#summary {
+ width: 90%;
+ margin-top: -50px;
+ margin-left: 25px;
+}

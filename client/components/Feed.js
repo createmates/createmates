@@ -9,6 +9,7 @@ import OpenRequestCard from './OpenRequestCard'
 import {toast} from 'react-toastify'
 import "react-toastify/dist/ReactToastify.css";
 import "../../client/App.css"
+import './Feed.css'
 
 class Feed extends React.Component {
     constructor() {
@@ -132,13 +133,20 @@ class Feed extends React.Component {
                     <input type="text" name="filterTag" onChange={this.handleChange} placeholder="Enter a Tag"/>
                 </form>
                 : <button className="btn btn-info btn-lg" type="button" onClick={this.filterForm}>Filter</button>}
-
-
+       
+            
+                
+                <div className="feed">
                 {openSessions && openSessions.length && openSessions[openSessions.length -1].users[0]
                     ? openSessions.map(session => <OpenRequestCard session={session} key={session.id} handleMatch={this.handleMatch}/>)
                     : <h2>No Open Requests Found</h2>
                 }
+                
+               
                 </div>
+                </div>
+               
+
 
         )
     }

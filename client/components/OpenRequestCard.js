@@ -4,9 +4,9 @@ import { Link } from 'react-router-dom'
 const OpenRequestCard = props => {
     const session = props.session
     return (
-        <div className="row">
 
-        <div className="col d-flex justify-content-center">
+
+
             <div className="col-sm-6">
 
                  <div className="card testimonial-card">
@@ -28,9 +28,9 @@ const OpenRequestCard = props => {
                     <button className="btn btn-info btn-lg" onClick={() => props.handleMatch(session)} >Match</button>
 
                 </div>
-            </div>
 
-            </div>
+
+
         </div>
 
 

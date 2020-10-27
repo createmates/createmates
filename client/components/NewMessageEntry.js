@@ -3,7 +3,7 @@ import { sendMessage } from '../store/messages'
 import { connect } from 'react-redux'
 
 
-export class NewMessageEntry extends Component {
+export default class NewMessageEntry extends Component {
 
   constructor () {
     super()
