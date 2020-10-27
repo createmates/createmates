@@ -1,15 +1,14 @@
 .hero-container {
-  background: url("https://wallpaperaccess.com/full/4982.jpg") center
+  background: url("https://createmates.nyc3.digitaloceanspaces.com/Screen%20Shot%202020-10-27%20at%204.55.32%20PM.png") center
     center/cover no-repeat;
-  height: 80vh;
+  height: 90vh;
   width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.2);
   object-fit: contain;
-  border-radius: 2000px;
+  border-radius: 3000px;
 }
 
 .hero-container > h1 {
@@ -20,19 +19,18 @@
 
 .hero-container > p {
   margin-top: 8px;
-  color: #fff;
   font-size: 32px;
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
     "Lucida Sans", Arial, sans-serif;
 }
 
-.hero-btns {
-  margin-top: 32px;
+.button-and-text {
+  position: absolute;
+  bottom: 10px;
+  color: #503348eb;
+  align-content: center;
 }
 
-.hero-btns .btn {
-  margin: 6px;
-}
 
 .fa-play-circle {
   margin-left: 4px;
@@ -54,13 +52,17 @@
   .hero-container > p {
     font-size: 30px;
   }
-
+/* 
   .btn-mobile {
-    display: block;
-    text-decoration: none;
-  }
+    text-align: center;
+  } */
 
   .btn {
     width: 100%;
+    
   }
 }
+ #button {
+   display: flex;
+   justify-content: center;
+ }

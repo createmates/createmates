@@ -8,7 +8,7 @@ const Navbar = ({ handleClick, handleClickAccount, isLoggedIn, singleSession, is
   <div>
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <a className="navbar-brand" href="/home">
-        <img src="/images/sin_wavetable.png" width="30" height="30" className="d-inline-block align-top" alt="" loading="lazy"/>
+        <img src="/images/logo.png" width="30" height="30" className="d-inline-block align-top" alt="" loading="lazy"/>
         CREATEMATES
       </a>
       <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
