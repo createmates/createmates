@@ -9,6 +9,7 @@ import OpenRequestCard from './OpenRequestCard'
 import {toast} from 'react-toastify'
 import "react-toastify/dist/ReactToastify.css";
 import "../../client/App.css"
+import './Feed.css'
 
 class Feed extends React.Component {
     constructor() {
