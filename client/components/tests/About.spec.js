@@ -7,7 +7,7 @@ import About from '../About';
 import { expect } from 'chai';
 import React from 'react';
 
-describe('About component', () => {
+describe.skip('About component', () => {
     const fakeUser = {email: 'chad@email.com', id: 1, username: 'chad'}
     let mockAxios
     let wrapper
