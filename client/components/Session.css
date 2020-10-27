@@ -1,0 +1,18 @@
+#local-media {
+  width: 270px;
+  height: 202px;
+  padding: 4rem;
+  border: 1px solid #ffffff;
+  box-sizing: border-box;
+  background-color: blueviolet;
+}
+
+#local-media2 {
+  width: 270px;
+  height: 202px;
+  border: 1px solid #ffffff;
+  box-sizing: border-box;
+  background-color: blueviolet;
+  display: flex;
+  float: right;
+}

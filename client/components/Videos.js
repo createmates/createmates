@@ -18,11 +18,11 @@ const SessionVideo = (props) => {
 
   })
 
-
+ 
 
     return (
     //render two videos
-    <div>
+ <div>
       <div className="d-flex flex-row bg-secondary">
       <video muted ref={userVideo} autoPlay></video>
       </div>
@@ -38,7 +38,8 @@ const SessionVideo = (props) => {
 
 const mapState = (state) => {
   return {
-    videos: state.videos
+    videos: state.videos,
+    session: state.singleSession
   };
 };
 
