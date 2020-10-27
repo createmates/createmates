@@ -17,16 +17,16 @@ const users = [
     photoPath: "https://createmates.nyc3.digitaloceanspaces.com/21starkssmith1-mobileMasterAt3x.jpg"
   },
   {
-    username: "chesterguitar",
-    firstName: 'Chester',
-    lastName: 'Jones',
-    city: "Brooklyn",
-    state: "NY",
-    bio: "Blues rock guitar virtuoso, singer-songwriter and producer, Chester Jones, is hailed the world over as a master guitarist with raw talent and power to spare. Blending his signature mix of blues, rock and jazz into dynamic original songs, Jones is known for his incendiary live performances, whether at the Grammy Awards or the Kennedy Center Honors with Mick Jagger, Raphael Saadiq and others. ",
-    medium: "music",
-    email: "iwannarocknroll@gmail.com",
+    username: "yourfriendtaryn",
+    firstName: 'Taryn',
+    lastName: 'Miller',
+    city: "Winfield",
+    state: "Kansas",
+    bio: "Miller was born in Winfield, Kansas. They studied music at Cowley Community College for two years before moving to Lawrence to pursue a degree in linguistics at the University of Kansas.[1] Miller produced their first album, Jekyll/Hyde, using $1,000 in prize money from a KJHK-hosted battle of the bands.[2] They signed with Domino Recording Company in February 2014.",
+    medium: "Music",
+    email: "yourfriend@mail.com",
     password: "12345",
-    photoPath: "https://createmates.nyc3.digitaloceanspaces.com/Dollarphotoclub_89401063-Edited-1024x745.jpg"
+    photoPath: "https://createmates.nyc3.digitaloceanspaces.com/clf_yourfriendtaryn-3.jpg"
   },
   {
     username: "welcometodrama",
@@ -41,16 +41,16 @@ const users = [
     photoPath: "https://createmates.nyc3.digitaloceanspaces.com/smash-tv-monroe-om01.jpg"
   },
   {
-    username: "sofiacomedy",
-    firstName: 'Sofia',
-    lastName: 'Javed',
-    city: "D.C.",
-    state: "USA",
-    bio: "Sofia Javed is a Washington, DC-based comedian. She hones her skills on unsuspecting co-workers and metro riders for an undisclosed amount of time before taking them to the stage to wow audiences. She delivers tightly-worded, thought-provoking jokes around the DC area and has also performed in Seattle, Boston, Chicago, Los Angeles, and New York. Sofia’s comedy is inspired by her life as a woman of color in America and her side hustle as a cubicle bureaucrat. She enjoys steak.",
-    medium: "comedy",
-    email: "sofia@gmail.com",
+    username: "clairedance",
+    firstName: 'Claire',
+    lastName: 'Moore',
+    city: "Brooklyn",
+    state: "New York",
+    bio: "Claire Moore is a multi-disciplinary artist and Thai Massage practitioner from Brooklyn, New York. She currently resides in Columbus, Ohio. After receiving a Bachelor of Fine Arts in Dance from The Ohio State University in 2017, Claire began her career as a movement artist, body worker, and collaborator. Alongside dancing for choreographers such as Leslie Dworkin, Lilianna Kane, and Cole Garlando, Claire explored other artistic mediums, informing and broadening her creative voice. In 2018, Claire participated in the intermedia performance Appendage for ceramicist Katie Coughlin, and received artistic mentoring from landscape choreographer Kim Wilczak.",
+    medium: "dance",
+    email: "claire@gmail.com",
     password: "12345",
-    photoPath: "https://createmates.nyc3.digitaloceanspaces.com/rs=h_1000,cg_true.webp"
+    photoPath: "https://createmates.nyc3.digitaloceanspaces.com/IMG_4716.jpg"
   },
   {
     username: "janine20",
@@ -74,7 +74,7 @@ const users = [
     medium: "Water color",
     email: "treegirl98@gmail.com",
     password: "12345",
-    photoPath: "https://createmates.nyc3.digitaloceanspaces.com/GettyImages-922707682-5b90467bc9e77c0025931eef.jpg"
+    photoPath: "https://createmates.nyc3.digitaloceanspaces.com/1.jpg"
 
   },
   {
@@ -133,9 +133,10 @@ const users = [
     city: "Los Angeles",
     state: "California",
     bio: "Begins her studies 1979 at the Hertfordshire College of Art and Design in St Albans, UK. In Portugal she studied etching and painting at Ar.Co. (Art and Visual Communication Center). Her first group exhibition was in 1982 at the 1ª Mostra de Artes in Lagos, Portugal and her first solo show was in 1990 at Galeria Alda Cortez, Lisbon. Since then, Sofia has exhibited in various countries individually and collectively.",
-    medium: "etching",
+    medium: "Comedy",
     email: "painter@gmail.com",
-    password: "12345"
+    password: "12345",
+    photoPath: "https://createmates.nyc3.digitaloceanspaces.com/file-20200731-14-yfu9hp.webp"
   },
   {
     username: "lilianna95",
