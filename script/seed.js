@@ -90,14 +90,14 @@ const users = [
     photoPath: "https://createmates.nyc3.digitaloceanspaces.com/photo-1498830923224-e1c12d1564a6.webp"
   },
   {
-    username: "sculptorjamaal",
-    firstName: 'Jamaal',
+    username: "sculptorsteve",
+    firstName: 'Steve',
     lastName: 'Holland',
     city: "Portland",
     state: "Oregon",
-    bio: "Award winning sculptor, Jamaal Holland, a native of Dayton, Ohio, has been a professional artist since 1990. He is best known for his realistic bronze creations of both animal and human subjects. After attending art classes at the University of Dayton and studying with several well- known painters and sculptors, such as Lincoln Fox, Veryl Goodnight, Guy Coheleach, and John Seerey-Lester, Jamaal found his true love in sculpture.",
+    bio: "Award winning sculptor, Steve Holland, a native of Dayton, Ohio, has been a professional artist since 1990. He is best known for his realistic bronze creations of both animal and human subjects. After attending art classes at the University of Dayton and studying with several well- known painters and sculptors, such as Lincoln Fox, Veryl Goodnight, Guy Coheleach, and John Seerey-Lester, Steve found his true love in sculpture.",
     medium: "Sculpture",
-    email: "jamaal@gmail.com",
+    email: "steve@gmail.com",
     password: "12345",
     photoPath: "https://createmates.nyc3.digitaloceanspaces.com/man-wearing-grey-shirt-doing-sculpture.jpg"
   },
