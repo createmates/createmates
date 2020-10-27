@@ -8,7 +8,7 @@ import Summary from "./Summary";
 import socket from '../socket'
 import {finishSession} from '../store/videos'
 import SessionVideo from './Videos'
-import Chat from './Chat'
+// import Chat from './Chat'
 import './Session.css'
 
 
@@ -44,13 +44,7 @@ const Session = (props) => {
 
 
 
-
-     <Chat />
-
-
-     <UserSession />
-
-
+      <UserSession />
 
 
 

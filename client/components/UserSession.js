@@ -2,6 +2,8 @@ import React, {useEffect, useRef} from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import './UserSession.css'
+import Chat from './Chat'
+
 
 const UserSession = (props) => {
   const session = props.session
@@ -19,7 +21,7 @@ const UserSession = (props) => {
 
   })
     return (
-      <div>
+      <div id="container-vid">
       {/*<header className="text-center">
       SESSION PROMPT:
       <p className="text-center">{session.blurb}</p>
@@ -32,22 +34,23 @@ const UserSession = (props) => {
        ?
 
        <div>
-        <div className="d-flex align-items-start">
-       <video id="local-media" muted ref={userVideo} autoPlay></video>
-        </div>
+
+       <video className="video-container" muted ref={userVideo} autoPlay>   </video>
+
        {/*<img className="img-sm" src={session.users[1].photoPath} className="card-img"/>
        <Link to={`/${session.users[1].id}`}>{session.users[1].username}</Link>
       <p className='text-dark'>Medium: {session.users[1].medium}</p>*/}
 
 
+      <Chat />
 
 
-          <div className="d-flex align-items-end">
-          <video id="local-media2" ref={partnerVideo} autoPlay></video>
+          <video className="video-container2" ref={partnerVideo} autoPlay></video>
           {/*<img src={session.users[0].photoPath} className="card-img"/>
           <Link to={`/${session.users[0].id}`}>{session.users[0].username}</Link>
       <p className="card-text text-dark">Medium: {session.users[0].medium}</p>*/}
-          </div>
+
+
 
 
       </div>
