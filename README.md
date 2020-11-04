@@ -63,3 +63,8 @@ To look at the repo and run the project locally, you'll need to take the followi
 5. Npm run start-dev
 
 **Note:** If you would like to use Google OAuth and Digital Oceans, you will need to get the required credentials. 
+
+### MORE WAYS TO CHECK OUT CREATEMATES:
+
+* Heroku: https://createmates.herokuapp.com
+* YouTube: https://youtu.be/ydQ94-8N3NI
