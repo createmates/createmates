@@ -18,7 +18,7 @@ module.exports = io => {
         } else if( numClients === 1){ //only one user in the room
           socket.join(room)
           socket.emit('joined', room)
-        } else {  //room is full  becuase both users are in the room
+        } else {  //room is full becuase both users are in the room
           socket.emit('full', room)
         }
       })
