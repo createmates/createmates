@@ -55,7 +55,7 @@ class Form extends React.Component {
     })
   }
 
-  handleSubmit = async (event) => {
+  handleSubmit = (event) => {
   
     event.preventDefault();
     let unmatchedCount = 0

@@ -11,7 +11,7 @@ class ProfilePhoto extends React.Component {
 
 
 
-  handleSubmit = async (event) => {
+  handleSubmit = (event) => {
     event.preventDefault()
     const selectedFile = document.getElementById('file').files[0]
    this.props.savePhoto(selectedFile, this.props.user.id)

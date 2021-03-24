@@ -36,10 +36,10 @@ class SignUpAccountPage extends React.Component {
         })
       }
 
-      async handleSubmit(event) {
+       handleSubmit(event) {
         event.preventDefault()
         const userId = this.props.user.id
-        await this.props.updateUser(this.state, userId)
+        this.props.updateUser(this.state, userId)
       }
 
       render() {

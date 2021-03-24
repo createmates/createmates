@@ -30,7 +30,7 @@ const constraints = {
 };
 
 // handler functions for our WebRTC socket connections
-async function onIceCandidate(event){
+function onIceCandidate(event){
   if(event.candidate){
     socket.emit('candidate', {
       type: 'candidate',

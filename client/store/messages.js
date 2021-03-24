@@ -18,14 +18,25 @@ export const gotNewMessage = message => ({
 
 // Thunk Creator
 export const fetchMessages = () => async dispatch => {
-    const { data: messages } = await axios.get('/api/messages')
+    try{
+          const { data: messages } = await axios.get('/api/messages')
     dispatch(gotMessagesFromServer(messages))
+    } catch (error){
+        console.error(error)
+    }
+  
 }
 export const sendMessage = message => async (dispatch, getState) => {
+    try {
+        
     message.user = getState().user
     const { data: newMessage } = await axios.post('/api/messages', message)
     dispatch(gotNewMessage(newMessage))
     socket.emit('new-message', newMessage)
+
+    } catch (error) {
+        console.error(error)
+    }
 }
 
 // Reducer
